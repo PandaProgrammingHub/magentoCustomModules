@@ -1,0 +1,144 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+?>
+<?php $_product = $this->getProduct();
+ // echo "<pre>";
+ // print_r($_product->getData());
+ ?>
+<?php /* @var $this Mage_Bundle_Block_Catalog_Product_View_Type_Bundle_Option_Select */ ?>
+<?php $_option      = $this->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $this->_getDefaultValues(); ?>
+<?php $tierPriceHtml = ''; ?>
+     
+     <topmenu>
+     <div class="input-box">
+      <div id="bundle-option-div-<?php echo $_option->getPosition(); ?>" class="row bundle-option-block <?php if($_option->getPosition() != 0){ echo 'bundle-option-div-display-none'; } ?>">
+      <div class="col-md-3 custom-bundle-options-menu-lable">
+        
+          <span class="bundle-option-steps">
+            step <?php echo $_option->getPosition()+1; ?> - <?php echo $_option->getDefault_title() ?><?php if ($_option->getRequired()) echo '<em>*</em>' ?>
+          </span>
+       
+      </div>
+      
+         <?php /** @var $_selection Mage_Catalog_Model_Product*/ ?>
+           <?php if ($this->_showSingle()): ?>
+              <?php echo $this->getSelectionTitlePrice($_selections[0]); ?>
+              <?php if ($_selections[0]->getSelectionCanChangeQty()): ?>
+                  <?php $tierPriceHtml = $this->getTierPriceHtml($_selections[0]); ?>
+              <?php endif; ?>
+              <input type="hidden" name="bundle_option[<?php echo $_option->getId() ?>]" value="<?php echo $_selections[0]->getSelectionId() ?>"/>
+          <?php else:?>
+            <div class="col-md-9 custom-bundle-options">            
+            
+              <?php foreach ($_selections as $_selection): ?>
+                  <?php if ($_selection->getSelectionCanChangeQty() && $this->_isSelected($_selection)): ?>
+                      <?php $tierPriceHtml = $this->getTierPriceHtml($_selection); ?>
+                  <?php endif; ?>
+                   <?php $str = $this->getSelectionTitlePrice($_selection, true); 
+                         $namePriceString =explode("&nbsp;",$str);
+                         // echo $namePriceString[0];
+                         $currentproductprice = strip_tags($namePriceString[1]) ;
+                         $currentproductprice =explode("+",$currentproductprice);
+                         $productId = $_selection->getId();
+                     $product = Mage::getModel('catalog/product')->load($productId);
+                      $imageUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage();
+                    $imageCacheUrl = Mage::helper('catalog/image')->init($product, 'image')->resize(100,100);
+                    //echo $imageCacheUrl."<br>";
+                    ?> 
+
+                    <div id="bundle-option-product-<?php echo $_selection->getSelectionId() ?>" class="bundle-option-product-block bundle-option-product-block-<?php echo $_option->getId() ?>">
+                      <div class="bundle-option-product-block-inner">
+                    <input type="checkbox" onclick="bundle.changeSelection(this)" id="bundle-option-<?php echo $_option->getId() ?>" class="bundle-option-<?php echo $_option->getId() ?><?php //if ($_option->getRequired()) echo ' required-entry' ?> bundle-option-select bundle-option-select-<?php echo $_option->getPosition() ?> change-container-classname" name="bundle_option[<?php echo $_option->getId() ?>]" value="<?php echo $_selection->getSelectionId() ?>" data-position="<?php echo $_option->getPosition() ?>" data-product-id="<?php echo $_product->getId() ?>" data-required="<?php echo $_option->getRequired(); ?>" data-optionName="<?php echo $_option->getDefault_title(); ?>" <?php //if($_option->getPosition() != 0){ echo "disabled='disabled'"; } ?> data-currentproductid="<?php echo $_selection->getId() ?>">
+                    <img src="<?php echo $imageCacheUrl; ?>" >
+                    <span class="bundle-option-product-lable"><?php echo $namePriceString[0];?></span>
+                    <span class="bundle-option-product-price price"><?php echo $currentproductprice[1] ?></span>
+                    </div> 
+                    </div>           
+              <?php endforeach; ?>
+              
+          </div>
+          <?php endif; ?>
+          
+           <div class="bundle-option-warpper">
+             <div class="bundel-option-next-warpper">
+              <input type="button"  id="bundel-option-next-<?php echo $_option->getPosition(); ?>" class="bundel-option-next" value="NEXT" data-required="<?php echo $_option->getRequired(); ?>" data-position="<?php echo $_option->getPosition() ?>"  data-optionName="<?php echo $_option->getDefault_title(); ?>" data-optionName="<?php echo $_option->getDefault_title(); ?>" data-optionId="<?php echo $_option->getId() ?>"/>
+             </div>
+              <div class="bundle-option-qty-warpper">
+                <input onkeyup="bundle.changeOptionQty(this, event)" onblur="bundle.changeOptionQty(this, event)" <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?> id="bundle-option-<?php echo $_option->getId() ?>-qty-input" class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>" type="text" name="bundle_option_qty[<?php echo $_option->getId() ?>]" value="<?php echo $_defaultQty ?>"  />
+             </div>
+          </div> 
+      </div>
+     
+  </div>
+        <span id="bundle-option-<?php echo $_option->getId() ?>-tier-prices"> <?php echo $tierPriceHtml; ?></span>
+ 
+</topmenu>
+ 
+<script type="text/javascript">
+      jQuery(document).ready(function() {
+     
+       jQuery('#bundle-option-<?php echo $_option->getId()?>').filterByText(jQuery('#textbox-<?php echo $_option->getId()?>'), true);
+       jQuery('#custom-bundle-options-menu-<?php echo $_option->getId()?>').click(function(){
+          //console.log('hello');
+       });
+
+       url = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/options'); ?>" + "?isAjax=true";
+           var productId = "<?php echo  $_product->getId() ?>"; 
+          jQuery.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",productId:productId}, function (res) {
+          var data = jQuery.parseJSON(res);
+                 jQuery.each(data, function(index, value) { 
+                     if( value['position']!= 0 ) {
+                       var textboxId= "#textbox-"+value['option_id'];
+                       var selectId = "#bundle-option-"+value['option_id'];
+                      if (jQuery(selectId).find("option:selected").length){
+                          jQuery(textboxId).removeAttr("disabled", "disabled");
+                          jQuery(selectId).removeAttr("disabled", "disabled"); 
+                       }
+                     // console.log(selectId+'=>'+jQuery(selectId).attr('data-required'));
+                    /* if (jQuery(selectId).attr('data-required') == 0){
+                          jQuery(textboxId).removeAttr("disabled", "disabled");
+                          jQuery(selectId).removeAttr("disabled", "disabled"); 
+                       } */
+                   }
+                   
+               
+                });
+             
+             
+              
+            });
+    });  
+  
+  
+ var dependencyFilterIndexUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/index'); ?>" + "?isAjax=true";
+ var dependencyFilterProductNamesUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/productname'); ?>" + "?isAjax=true";
+ var dependencyFilterOptionUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/options'); ?>" + "?isAjax=true";
+
+</script>  

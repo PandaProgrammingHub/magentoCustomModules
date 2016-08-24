@@ -1,0 +1,60 @@
+<config>
+    <modules>
+        <Fedobe_Customlogin>
+            <version>0.0.1</version>
+        </Fedobe_Customlogin>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <customlogin>
+                <use>standard</use>
+                <args>
+                    <module>Fedobe_Customlogin</module>
+                    <frontName>Customlogin</frontName>
+                </args>
+            </customlogin>
+        </routers>  
+        <layout>
+            <updates>
+                <customlogin>
+                    <file>fedobe/customlogin/customlogin.xml</file>
+                </customlogin>
+            </updates>
+        </layout>
+    </frontend>
+
+     <default>
+        <customlogin>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </customlogin>
+    </default>
+    
+    <global>
+
+        <blocks>
+            <customlogin>
+                <class>Fedobe_Customlogin_Block</class>
+            </customlogin>
+        </blocks>
+     
+         <helpers>
+            
+            <customlogin>
+                <class>Fedobe_Customlogin_Helper</class>
+            </customlogin>
+            
+        </helpers>
+        
+        
+          
+        <models>
+            <customlogin>
+                <class>Fedobe_Customlogin_Model</class>
+            </customlogin>
+        </models>
+            
+    </global>
+</config>

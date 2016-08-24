@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<widgets>
+    <widgetproductcarousel translate="label description" type="carousel/Carouselwidget">
+        <name>Product Carousel</name>
+        <description>Create a Product Carousel.</description>
+        <parameters>
+			<heading>
+                <label>Collection Name</label>
+                <description>Enter a name that will shown at top.</description>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+            </heading>
+            <product_type>
+                <label>Filter Products</label>
+                <type>select</type>
+                <source_model>carousel/system_config_source_producttypes</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </product_type>
+           
+            <categories>
+                <label>From Categories</label>
+                <type>multiselect</type>
+                <source_model>carousel/system_config_source_category</source_model>
+                <visible>1</visible>
+            </categories>
+            <attributes>
+                <label>Filter Attributes</label>
+                <description><![CDATA[Example:- <strong>Color:Black, Material:Fiber</strong>]]></description>
+                <type>text</type>
+                <visible>1</visible>
+            </attributes>
+            <show_product_name>
+                <label>Show Product Name</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_product_name>
+            <show_product_sku>
+                <label>Show Product Sku</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_product_sku>
+            <show_product_price>
+                <label>Show Product Price</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_product_price>
+            <show_product_addtocart>
+                <label>Show Add To Cart Button</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_product_addtocart>
+            <items>
+                <label>Number of Items To Display</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>6</value>
+            </items>
+            <navigation_button>
+                <label>Show Navigation</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </navigation_button>
+            <navigation_button_position>
+                <label>Navigation Position</label>
+                <type>select</type>
+                <source_model>carousel/system_config_source_navigationposition</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </navigation_button_position>
+            <template>
+                <visible>0</visible>
+                <value>fedobe/carousel/carousel.phtml</value>  
+            </template>
+        </parameters>
+    </widgetproductcarousel>
+</widgets>

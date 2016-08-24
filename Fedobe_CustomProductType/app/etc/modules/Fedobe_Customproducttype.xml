@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_Customproducttype>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fedobe_Customproducttype>
+    </modules>
+</config>

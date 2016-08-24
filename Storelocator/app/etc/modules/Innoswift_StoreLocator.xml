@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Innoswift_StoreLocator>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Innoswift_StoreLocator>
+    </modules>
+</config>

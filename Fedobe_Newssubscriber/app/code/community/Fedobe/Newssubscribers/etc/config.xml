@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_Newssubscribers>
+            <version>1.2.2</version>
+        </Fedobe_Newssubscribers>
+    </modules>
+
+    <frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <Fedobe_Newssubscribers before="Mage_Newsletter">Fedobe_Newssubscribers</Fedobe_Newssubscribers>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>
+
+        <layout>
+            <updates>
+                <newssubscribers>
+                    <file>newssubscribers.xml</file>
+                </newssubscribers>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <Fedobe_Newssubscribers>
+                    <files>
+                        <default>Fedobe_Newssubscribers.csv</default>
+                    </files>
+                </Fedobe_Newssubscribers>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Fedobe_Newssubscribers>
+                    <files>
+                        <default>Fedobe_Adminhtml_Newssubscribers.csv</default>
+                    </files>
+                </Fedobe_Newssubscribers>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <global>
+        <blocks>
+            <newssubscribers>
+                <class>Fedobe_Newssubscribers_Block</class>
+            </newssubscribers>
+        </blocks>
+
+        <helpers>
+            <newssubscribers>
+                <class>Fedobe_Newssubscribers_Helper</class>
+            </newssubscribers>
+        </helpers>
+
+        <models>
+            <newssubscribers>
+                <class>Fedobe_Newssubscribers_Model</class>
+            </newssubscribers>
+            <newsletter>
+                <rewrite>
+                    <subscriber>Fedobe_Newssubscribers_Model_Subscriber</subscriber>
+                </rewrite>
+            </newsletter>
+        </models>
+
+    </global>
+</config>

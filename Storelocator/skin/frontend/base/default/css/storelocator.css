@@ -1,0 +1,32 @@
+/* 
+    Document   : storelocator
+    Created on : Jul 30, 2013, 5:31:17 PM
+    Author     : prasad
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.locations{margin-top: 24px;
+           overflow: hidden; padding: 20px 0;}
+.locations .location-list{width: 30%; float: left;}
+.locations .location-list #pre,.locations .location-list #next{background:#0f0f0f;opacity: 0.7;display:block;font-weight: bold;color: #EBBC58;cursor: pointer;text-align: center;width: 40px;margin: auto;}
+.locations .location-list #pre,.locations .location-list #next{z-index: 9999;position: absolute;margin-left:120px;}
+.locations .location-list #next{margin-top: -17px;}
+.locations .location-list .list li{padding: 10px;background: #f9f9f9;min-height: 75px;cursor: pointer;}
+.locations .location-list .list li.odd{background: #f1f1f1;}
+.locations .location-list .list{position: relative;overflow: hidden;height: 380px;}
+.locations .location-list .list li#select{background:#e1e1e1;border-radius:20px 0 0 20px; }
+.locations .location-frame{width: 70%; float: right;height:380px;}
+/*classic*/
+.locations .location-list#classic{width: 100%;float:none;position: relative;}
+.locations .location-list#classic .list li{width:31%;float:left;}
+.locations .location-list#classic .list{height: 96px;}
+.locations .location-list#classic .list li#select{border-radius:20px 20px 0px 0;}
+.locations .location-frame.classic{width: 100%;height:450px;}
+.locations .location-list#classic a#pre,.locations .location-list#classic a#next{width:10px;z-index: 99;position: absolute;display:none;height: 30px;padding-top: 10px;}
+.locations .location-list#classic:hover a#pre,.locations .location-list#classic:hover a#next{background:#0f0f0f;opacity: 0.7;display:block;font-weight: bold;}
+.locations .location-list#classic #pre{margin-top: 30px;margin-left:0px;}
+.locations .location-list#classic #next{margin-top:-66px;right:3px;}
+
+.locations .location-list p {font-size: 12px;font-weight:bold;margin:auto; }

@@ -1,0 +1,36 @@
+
+<?php $_location = $this->getLocation(); ?>
+
+
+<div class="content-header" style="margin-top:17px;">
+    <h3 class="icon-head head-adminhtml-location">Details</h3> 
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend">Geo Details</h4>
+    </div>
+</div>
+
+<div style="line-height:15px;padding: 12px;">
+    <?php if (!$_location->getData()): ?>
+        Here you will see the Geo information
+        like latitude , longitude and geo address
+        after save location.
+    <?php else: ?>
+        <div style="font-weight: bold;border: 1px solid #77BFC7; text-align: center;">
+            <p style=" background:#6F8992;color:#ffffff;">Address</p>
+            <p style="font-weight:normal;"><?php echo $_location->getAddressGeo(); ?></p>
+        </div>
+        <p>&nbsp;</p>
+        <div style="font-weight: bold;border: 1px solid #77BFC7; text-align: center;">
+            <p style=" background:#6F8992;color:#ffffff;">Latitude</p>
+            <p style="font-weight:normal;"><?php echo $_location->getStoreLatitude(); ?></p>
+        </div>
+        <p>&nbsp;</p>
+        <div style="font-weight: bold;border: 1px solid #77BFC7; text-align: center;">
+            <p style=" background:#6F8992;color:#ffffff;">Longitude</p>
+            <p style="font-weight:normal;"><?php echo $_location->getStoreLongitude(); ?></p>
+        </div>
+    <?php endif; ?>
+</div>
+

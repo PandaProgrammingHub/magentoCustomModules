@@ -1,0 +1,56 @@
+<config>
+    <modules>
+        <Fedobe_Stickysidebar>
+            <version>0.0.1</version>
+        </Fedobe_Stickysidebar>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <stickysidebar>
+                <use>standard</use>
+                <args>
+                    <module>Fedobe_Stickysidebar</module>
+                    <frontName>stickysidebar</frontName>
+                </args>
+            </stickysidebar>
+        </routers>  
+        <layout>
+           <updates>
+              <stickysidebar>
+                 <file>fedobe/stickysidebar/stickysidebar.xml</file>
+              </stickysidebar>
+          </updates>
+        </layout>
+    </frontend>
+
+     <default>
+        <stickysidebar>
+            <general>
+                <enabled>1</enabled>
+                <layout_2Col_right>1</layout_2Col_right>
+                <sticky_end>.footer-container</sticky_end>
+            </general>
+        </stickysidebar>
+    </default>
+    
+    <global>
+
+        <blocks>
+            <stickysidebar>
+                <class>Fedobe_Stickysidebar_Block</class>
+            </stickysidebar>
+        </blocks>
+        <helpers>
+            <stickysidebar>
+                <class>Fedobe_Stickysidebar_Helper</class>
+            </stickysidebar>
+        </helpers>
+         <models>
+            <stickysidebar>
+                <class>Fedobe_Stickysidebar_Model</class>
+            </stickysidebar>   
+        </models>
+        
+    </global>
+</config>

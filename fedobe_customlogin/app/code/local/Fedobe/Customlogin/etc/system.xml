@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <!-- custom Login -->
+    <tabs>
+        <fedobe translate="label" module="customlogin">
+            <label>Fedobe</label>
+            <sort_order>0</sort_order>
+        </fedobe>
+    </tabs>
+    <sections>
+        <customlogin translate="label" module="customlogin">
+            <label>Custom Login</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>50</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="customlogin">
+                    <label>General</label>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable Custom Login</label>
+                            <comment>enable custom login</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                </general>
+            </groups>
+        </customlogin>
+    </sections>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Fedobe_Barter_Manufacturers>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>1.0.0</version>
+      <depends>
+            <Fedobe_AttributeSplash />
+      </depends>
+    </Fedobe_Barter_Manufacturers>
+  </modules>
+</config>

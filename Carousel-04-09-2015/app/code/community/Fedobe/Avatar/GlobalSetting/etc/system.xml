@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <fedobe translate="label">
+            <label>Fedobe</label>
+            <sort_order>147</sort_order>
+        </fedobe>
+    </tabs>
+    <sections>
+        <global_options>
+            <label>Global Design Setting</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>0</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Basic Global Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <global_color translate="label">
+                            <label>Global Color</label>
+                            <comment>Set global color theme for all modules.</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </global_color>
+                        <global_setting translate="label">
+                            <label>Global Style</label>
+                            <comment>Choose our predefined style collections.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>globalsetting/system_config_source_globalsettings</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </global_setting>
+                    </fields>
+                </general>
+                <advance translate="label">
+                    <label>Advance Global Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <advance_global_setting_enable>
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </advance_global_setting_enable>
+                        <basic_color_settings_heading translate="label">
+                            <label>Basic Color</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </basic_color_settings_heading>
+                        <text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </text_color>
+                        <link_color translate="label">
+                            <label>Link Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </link_color>
+                        <link_hover_color translate="label">
+                            <label>Link Hover Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </link_hover_color>
+                        <button_color_settings_heading translate="label">
+                            <label>Button Color</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </button_color_settings_heading>
+                        <button_background_color translate="label">
+                            <label>Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </button_background_color>
+                        <button_text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </button_text_color>
+                        <button_hover_color translate="label">
+                            <label>Hover Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </button_hover_color>
+                        <button_hover_text_color translate="label">
+                            <label>Hover Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>globalsetting/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>globalsetting/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><advance_global_setting_enable>1</advance_global_setting_enable></depends>
+                        </button_hover_text_color>
+                    </fields>
+                </advance>
+            </groups>
+        </global_options>
+        <avatar_modules translate="label">
+            <label>Avatar Settings</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>5</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        </avatar_modules>
+    </sections>
+</config>

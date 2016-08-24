@@ -1,0 +1,161 @@
+<form id="msform">
+		<fieldset id="cl1">
+		<h2 class="fs-title">enter your email address here</h2>
+		<input type="text" name="email" id="email" class="input-text required-entry validate-email " placeholder="Email" />
+		<input type="button" name="next" class="next action-button" value="Next" />
+	</fieldset>
+	
+
+	<fieldset id="cl2">
+		<h2 class="fs-title">Welcome Back</h2>
+	   <input type="text" name="email" placeholder="Email" id="lemailId" disabled="disabled" />
+		<input type="password" name="pass"  id="password" class="input-text required-entry validate-password" placeholder="Password" />
+		<div class="fs-error" id="fs-l-error"></div>
+		<input type="button" name="previous" class="previous action-button" value="Back" />
+		<input type="button" name="next" class="login-submit action-button" value="Login" />
+	</fieldset>
+	
+	<fieldset id="cl3" >
+
+		<h2 class="fs-title">Hi there!</h2>
+		<h3 class="fs-subtitle">it looks like you'r new here,we need a bit more info...</h3>
+			<div class="fs-error"></div>
+	<input type="text" name="email" placeholder="Email" id="remailId" disabled="disabled" />
+		<input type="text" name="fname" id="fname" class="input-text required-entry" placeholder="First Name" />
+		<input type="text" name="lname" id="lname" class="input-text required-entry" placeholder="Last Name" />
+		<input type="password" name="pass"  id="pass" class="input-text required-entry validate-password" placeholder="Password" />
+		<input type="password" name="cpass"  id="cpass" class="input-text required-entry validate-password" placeholder="Confirm Password" />
+		<div class="fs-error" id="fs-r-error"></div>
+		<input type="button" name="previous" class="previous action-button" value="Back" />
+		<input type="button" name="submit" class="register-submit action-button" value="Register" />
+			
+	</fieldset>
+	</form>
+	
+<script type="text/javascript">
+
+        function clstep1() {
+        var formToValidate = $('cl1');
+        var validator = new Validation(formToValidate);
+		if (validator.validate()) { return true; }
+		}
+		function clstep2() {
+        var formToValidate = $('cl2');
+        var validator = new Validation(formToValidate);
+		if (validator.validate()) { return true; }
+		}
+		function clstep3() {
+        var formToValidate = $('cl3');
+        var validator = new Validation(formToValidate);
+		if (validator.validate()) { return true; }
+		}
+
+jQuery(function($){
+  var current_fs, next_fs, previous_fs;
+
+          
+/*=================Next============================*/
+
+	$(".next").click(function(event){
+      if(clstep1()) {
+		url = "<?php echo $this->getUrl('customlogin/index/index'); ?>" + "?isAjax=true";
+           var email = $("#email").val(); 
+          $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",email:email }, function (res) {
+              
+              if(res == 1){
+              	
+              	next_fs = "#cl2";
+              	$("#lemailId").val(email);
+              }
+              else{
+              	next_fs = "#cl3";
+              	$("#remailId").val(email);
+              }
+              $(next_fs).show(); 
+
+           });
+
+		}else{
+				return false;
+			}
+			
+});
+				
+/*============================Previous====================*/
+$(".previous").click(function(){
+	
+	current_fs = $(this).parent().attr("id");
+	current_fs ="#"+current_fs;
+	previous_fs = "#cl1";
+	$(current_fs).hide();
+	$(previous_fs).show(); 
+	
+	
+});
+
+/*===============================Login==========================*/
+
+$(".login-submit").click(function(event){
+      if(clstep2()) {
+      	
+      	url = "<?php echo $this->getUrl('customlogin/index/login'); ?>" + "?isAjax=true";
+           var email = $("#lemailId").val();
+           var password = $("#password").val(); 
+          $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",email:email,password:password }, function (res) {
+             // alert(res);
+              if(res == 1)
+              {
+              	$("#cl3").hide();
+              	$("#cl1").hide();
+              	$("#cl2").hide(1000);
+              	location.reload();
+              }
+              else if(res == 0) {
+              	document.getElementById('fs-l-error').innerHTML = "Worng Password";
+              	
+              }
+
+
+           });
+	 }else{
+      	return false;
+      }
+
+
+});
+
+$(".register-submit").click(function(event){
+      if(clstep3()) {
+      	url = "<?php echo $this->getUrl('customlogin/index/register'); ?>" + "?isAjax=true";
+           var email = $("#remailId").val();
+           var fname = $("#fname").val();
+           var lname = $("#lname").val();
+           var pass = $("#pass").val(); 
+           var cpass = $("#cpass").val(); 
+           
+          $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",email:email,fname:fname,lname:lname,pass:pass,cpass:cpass, }, function (res) {
+          		
+              if(res == 1)
+              {
+              	$("#cl2").hide();
+              	$("#cl1").hide();
+              	$("#cl3").hide(1000);
+              	location.reload();
+              }
+              else if(res == 2) {
+              	document.getElementById('fs-r-error').innerHTML = "your password and Confirm password not Match";
+              }
+              else{
+              	document.getElementById('fs-r-error').innerHTML = "Registertion unsuccessful";
+              }
+               });
+      }else{
+      	return false;
+      }
+
+
+});
+
+
+});
+</script>

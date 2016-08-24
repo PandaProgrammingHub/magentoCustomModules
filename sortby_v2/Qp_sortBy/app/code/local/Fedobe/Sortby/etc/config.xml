@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+ <config>
+    <modules>
+        <Fedobe_Sortby>
+            <version>0.1.0</version>
+        </Fedobe_Sortby>
+    </modules>
+    <global>
+        
+        <helpers>
+        <sortby>
+            <class>Fedobe_Sortby_Helper</class>
+        </sortby>
+        </helpers>
+        
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_list>Fedobe_Sortby_Block_Product_List</product_list>
+                </rewrite>
+            </catalog>
+            <sortby>
+                <class>Fedobe_Sortby_Block</class>
+            </sortby>
+        </blocks>
+        
+        <models>
+            <catalog>
+                <rewrite>
+                    <config>Fedobe_Sortby_Model_Config</config>
+                </rewrite>
+            </catalog>
+            <sortby>
+                <class>Fedobe_Sortby_Model</class>
+            </sortby>
+        </models>
+    </global>
+    
+       <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <sortby_options>
+                                            <title>Store sort by Module Section</title>
+                                        </sortby_options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

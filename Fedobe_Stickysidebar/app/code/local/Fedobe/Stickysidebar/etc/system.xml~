@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config>
+    <!-- Sticky Product Information -->
+    <tabs>
+        <fedobe translate="label" module="stickysidebar">
+            <label>Fedobe</label>
+            <sort_order>0</sort_order>
+        </fedobe>
+    </tabs>
+    <sections>
+        <stickysidebar translate="label" module="stickysidebar">
+            <label>Sticky Product Information</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>50</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="stickysidebar">
+                    <label>General</label>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable Popularity Counter</label>
+                            <comment>enable popularity cointer</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <layout_2Col_right translate="label">
+                            <label>2columns-right Page Layout</label>
+                            <comment>please set your Product View Page Layout to 2columns-right,so that your prdduct Sticky Side Bar show in right side.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model> 
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout_2Col_right>
+                        <layout_2Col_left translate="label">
+                            <label>2columns-left Page Layout</label>
+                            <comment>please set your Product View Page Layout to 2columns-left,so that your prdduct Sticky Side Bar show in left side.<![CDATA[<br> Note:- please select any one Page Layout from above two layout options.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model> 
+                            <depends>
+                                       <layout_2Col_right>0</layout_2Col_right>
+                           </depends>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout_2Col_left>
+                        <sticky_end translate="label">
+                            <label>Sticky Side Bar Scroll End</label>
+                            <comment>Pass class or id of container where Sticky Side Bar Scroll End.<![CDATA[<br> Example:- .footer-container or #footer-container .]]> </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sticky_end>
+                    </fields>
+                </general>
+            </groups>
+        </stickysidebar>
+    </sections>
+</config>

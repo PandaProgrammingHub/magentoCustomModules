@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>        
+    <modules>
+        <Fedobe_Color>
+            <version>0.1.0</version>
+        </Fedobe_Color>
+    </modules>
+    
+    <global>
+    
+    <helpers>
+        <color>
+            <class>Fedobe_Color_Helper</class>
+        </color>
+    </helpers>  
+    
+    <blocks>
+            <color>
+                <class>Fedobe_Color_Block</class>
+            </color>
+        </blocks>
+        
+        <models>
+            <color>
+                <class>Fedobe_Color_Model</class>
+            </color>   
+        </models>
+    
+    </global>
+
+<frontend>
+        <routers>
+            <color>
+                <use>standard</use>
+                <args>
+                    <module>Fedobe_Color</module>
+                    <frontName>color</frontName>
+                </args>
+            </color>
+        </routers>  
+        
+        
+         <layout>
+            <updates>
+                <color>
+                    <file>color.xml</file>
+                </color>
+            </updates>
+        </layout>
+ </frontend>
+
+ <adminhtml>
+      <layout>
+            <updates>
+                <basket>
+                    <file>color_picker.xml</file>
+                </basket>
+            </updates>
+         </layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <color_options>
+                                            <title>Store Theme Color Module Section</title>
+                                        </color_options>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+</config>

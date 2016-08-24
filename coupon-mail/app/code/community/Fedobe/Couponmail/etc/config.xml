@@ -1,0 +1,74 @@
+<config>
+    <modules>
+        <Fedobe_Couponmail>
+            <version>0.1.0</version>
+        </Fedobe_Couponmail>
+    </modules>
+    <global>
+        
+        <helpers>
+        <couponmail>
+            <class>Fedobe_Couponmail_Helper</class>
+        </couponmail>
+        </helpers>
+        
+        <blocks>
+            <couponmail>
+                <class>Fedobe_Couponmail_Block</class>
+            </couponmail>  
+        </blocks>
+        
+          
+        <models>
+            <couponmail>
+                <class>Fedobe_Couponmail_Model</class>
+            </couponmail>   
+        </models>
+		
+		<events>
+          <checkout_onepage_controller_success_action>
+                <observers>
+                    <sendOrderEmails>
+                        <type>singleton</type>
+                        <class>Fedobe_Couponmail_Model_Observer</class>
+                        <method>sendOrderEmails</method>
+                    </sendOrderEmails>
+                </observers>
+            </checkout_onepage_controller_success_action> 
+
+        </events>
+         
+	<template>
+            <email>
+                <coupon_mail module="Fedobe_Couponmail">
+                    <label>Coupon Mail</label>
+                    <file>coupon_mail.html</file>
+                    <type>html</type>
+                </coupon_mail>
+            </email>
+        </template>
+		
+    </global>
+    
+       <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <coupon_mail>
+                                            <title>Coupon Mail Module Section</title>
+                                        </coupon_mail>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

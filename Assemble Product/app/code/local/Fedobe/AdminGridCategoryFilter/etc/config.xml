@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_AdminGridCategoryFilter>
+            <version>0.0.0.1</version>
+        </Fedobe_AdminGridCategoryFilter>
+    </modules>
+    <global>
+		<models>
+			<admingridcategoryfilter>
+    			<class>Fedobe_AdminGridCategoryFilter_Model</class>
+			</admingridcategoryfilter>
+		</models>
+		<helpers>
+			<admingridcategoryfilter>
+				<class>Fedobe_AdminGridCategoryFilter_Helper</class>
+			</admingridcategoryfilter>
+		</helpers>
+		<blocks>
+			<admingridcategoryfilter>
+				<class>Fedobe_AdminGridCategoryFilter_Block</class>
+			</admingridcategoryfilter>
+            <bundle>
+                    <rewrite>
+                        <adminhtml_catalog_product_edit_tab_bundle_option_search_grid>Fedobe_AdminGridCategoryFilter_Block_Adminhtml_Catalog_Product_Edit_Tab_Bundle_Option_Search_Grid</adminhtml_catalog_product_edit_tab_bundle_option_search_grid>
+                    </rewrite>
+            </bundle>
+		</blocks>
+	</global>
+  <!--  <adminhtml>
+    	<events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <admingridcategoryfilter>
+                        <class>admingridcategoryfilter/observer</class>
+                        <method>addCategoryFilterToProductGrid</method>
+                    </admingridcategoryfilter>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>-->
+</config>

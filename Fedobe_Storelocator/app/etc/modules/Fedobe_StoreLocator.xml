@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Fedobe_StoreLocator>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fedobe_StoreLocator>
+    </modules>
+</config>

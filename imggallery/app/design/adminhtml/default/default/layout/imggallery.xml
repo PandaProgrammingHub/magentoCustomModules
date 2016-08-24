@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    
+    <imggallery_adminhtml_image_index>
+            <reference name="content">
+                <block type="imggallery/adminhtml_image" name="image"></block>
+            </reference>
+        </imggallery_adminhtml_image_index>
+</layout>

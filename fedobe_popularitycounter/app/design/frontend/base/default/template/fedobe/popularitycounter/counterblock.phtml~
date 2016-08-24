@@ -1,0 +1,177 @@
+<?php 
+$enableOptions=Mage::getStoreConfig('popularitycounter/general/enabled');
+$disableOptions=Mage::getStoreConfig('popularitycounter/general/disable-options');
+if($enableOptions)
+{
+  
+              
+            $disable=  explode(',', $disableOptions);  
+             $str = count($disable);
+            $flag1=true;
+            $flag2=true;
+            $flag3=true;
+            $flag4=true;
+            for($i=0;$i<$str;$i++)
+            {
+               if( $disable[$i] == 'love')
+               {
+                  
+                   $flag1=false;
+               }
+               else if( $disable[$i] == 'viewed')
+               {
+                  
+                   $flag2=false;
+               }
+               else if( $disable[$i] == 'like')
+               {
+                  
+                   $flag3=false;
+               }
+              else if( $disable[$i] == 'recommended')
+               {
+                  
+                   $flag4=false;
+               }
+               
+            } 
+           
+      
+?>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<?php $productId = $this->getProductId();
+//echo $productId;
+$collection = Mage::getModel('popularitycounter/popularitycountervotes')
+              ->getCollection()
+              ->addFieldToFilter('product_id',array('in'=>$productId));
+              
+					foreach ($collection as $data) {
+                  $love  = $data->getLove();
+                  $viewed = $data->getViewed();  
+                  $like = $data->getLike();
+                  $recommended =$data->getRecommended();    
+          }
+               
+ ?>
+ <div class="counter-div">
+ <?php if($flag1) { ?>
+<i class="fa fa-heart love-id-<?php echo $productId; ?>"  title="Love">
+  <span id="love-id-<?php echo $productId; ?>" title="Love(s)">
+            <?php 
+              if($love)
+              { 
+                echo $love;
+              }
+            else 
+              { 
+                echo "0";
+              }
+               ?>
+  </span>
+  </i>
+  <?php } ?>
+  <?php if($flag2) { ?>
+  <i class="fa fa-eye viewed-id-<?php echo $productId; ?>" title="Viewed">
+  <span id="viewed-id-<?php echo $productId; ?>" title="viewed(s)">
+          <?php 
+              if($viewed) 
+              {
+                echo $viewed;
+              }
+              else
+              { echo "0";
+              }
+          ?>
+</span></i>
+<?php } ?>
+<?php if($flag3) { ?>
+  <i class="fa fa-facebook-square like-id-<?php echo $productId; ?>" title="Like">
+  <span id="like-id-<?php echo $productId; ?>" title="Like(s)">
+            <?php 
+                  if($like)
+                    { echo $like;
+                    }
+                  else
+                  { 
+                    echo "0";
+                  }
+            ?>
+  </span></i>
+  <?php } ?>
+  <?php if($flag4) { ?>
+  <i class="fa fa-smile-o recommended-id-<?php echo $productId; ?>" title="Recommended">
+  <span id="recommended-id-<?php echo $productId; ?>" title="Recommended(s)">
+        <?php 
+              if($recommended) 
+              {  
+                echo $recommended;
+              }
+              else
+              {
+                echo "0";
+              }
+        ?>
+  </span></i>
+  <?php } ?>
+</div>
+
+
+
+<script type="text/javascript">
+jQuery(function($){
+  
+url = "<?php echo $this->getUrl('popularitycounter/index/index'); ?>" + "?isAjax=true";
+          /*===============Love Counter Ajax Call =================*/
+           $j(".love-id-<?php echo $productId; ?>").click(function(){
+           $j("#loader").show(); 
+           $j.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>", productId:<?php echo $productId; ?>,item:"love" }, function (res) {
+              
+              //alert(res);
+              document.getElementById('love-id-<?php echo $productId; ?>').innerHTML = res;
+           });
+           
+          });
+          /*===============Viewed Counter Ajax Call =================*/
+           $j(".viewed-id-<?php echo $productId; ?>").click(function(){
+           
+           $j.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>", productId:<?php echo $productId; ?>,item:"viewed" }, function (res) {
+              
+              //alert(res);
+              document.getElementById('viewed-id-<?php echo $productId; ?>').innerHTML = res;
+           });
+           
+          });
+          /*===============Like Counter Ajax Call =================*/
+           $j(".like-id-<?php echo $productId; ?>").click(function(){
+           
+           $j.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>", productId:<?php echo $productId; ?>,item:"like" }, function (res) {
+              
+              //alert(res);
+              document.getElementById('like-id-<?php echo $productId; ?>').innerHTML = res;
+           });
+           
+          });
+          /*===============Recommended Counter Ajax Call =================*/
+           $j(".recommended-id-<?php echo $productId; ?>").click(function(){
+            
+           $j.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>", productId:<?php echo $productId; ?>,item:"recommended" }, function (res) {
+              
+              //alert(res);
+              document.getElementById('recommended-id-<?php echo $productId; ?>').innerHTML = res;
+           });
+           
+          });
+
+});
+</script>
+
+<?php
+} 
+?>
+
+
+
+
+
+

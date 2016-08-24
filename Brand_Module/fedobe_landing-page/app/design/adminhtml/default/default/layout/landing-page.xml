@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<layout>
+    <!--
+   /**
+    * Splash Dashboard
+    */
+    -->
+    <default>
+        <reference name="head">
+            <action method="addJs"><name>landingpage/storechecker.js</name></action>
+            <action method="addJs"><name>landingpage/conditions.js</name></action>
+        </reference>
+    </default>
+    <adminhtml_landingpage_index>
+        <reference name="menu">
+            <action method="setActive"><menupath>landingpage/index</menupath></action>
+        </reference>
+        <reference name="content">
+            <block type="landingpage/adminhtml_page" name="splash.page">
+                <block type="adminhtml/store_switcher" name="store_switcher" as="store_switcher"><action method="setUseConfirm"><params>0</params></action></block>
+            </block>
+        </reference>
+    </adminhtml_landingpage_index>
+    <adminhtml_landingpage_pagegrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="landingpage/adminhtml_page_grid" name="splash.grid"/>
+        </block>
+    </adminhtml_landingpage_pagegrid>
+    <!--
+   /**
+    * Splash Page edit
+    */
+    -->
+    <adminhtml_landingpage_page_edit>
+        <reference name="left">
+            <block type="adminhtml/store_switcher" name="store_switcher" before="-"></block>
+            <block type="landingpage/adminhtml_page_edit_tabs" name="splash_page.edit.tabs" />
+	    <block type="adminhtml/template" template="landing-page/uniquerulecheckjs.phtml" name="condition_product_grid_jsinit"/>
+        </reference>
+        <reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <flag>1</flag>
+            </action>
+            <action method="setCanLoadRulesJs">
+                <flag>1</flag>
+            </action>
+	    <action method="addJs">
+                <script>landingpage/jquery-1.9.1.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>lib/jquery/noconflict.js</script>
+            </action>
+        </reference>
+        <update handle="editor" />
+        <reference name="content">
+            <block type="landingpage/adminhtml_page_edit" name="splash_page.edit" />
+        </reference>
+    </adminhtml_landingpage_page_edit>
+</layout>

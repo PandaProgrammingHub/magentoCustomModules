@@ -1,0 +1,13 @@
+.counter-div{
+	width:100%;
+    text-align:center;
+    //display: none;
+}
+.counter-div > i{width:11%; margin:0 6%;}
+.counter-div > i:hover{color : #2e8ab8 !important;}
+.counter-div > i > span {float: left;font-size: 11px;text-align: center;color: #184861;position: relative;}
+.fa{font-size:35px;}
+.fa-heart{color:red;}
+.fa-eye{color:#000000;}
+.fa-facebook-square{color:#3b5998;}
+.fa-smile-o{color:#2aef10 ;}

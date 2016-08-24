@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_Landingpage>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Fedobe_Landingpage>
+        <Fedobe_Landingpage_FPAdmin>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Fedobe_Landingpage_FPAdmin>
+    </modules>
+</config>

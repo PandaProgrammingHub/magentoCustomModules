@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    
+    <tabs>
+        <fedobe translate="label" module="color">
+            <label>Fedobe</label>
+            <sort_order>0</sort_order>
+        </fedobe>
+    </tabs>
+    
+    <sections>
+        <color_options translate="label" module="color">
+            <label>RWD Color Settings</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>  
+             <groups>
+                <color translate="label">
+                    <label>Theme color</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store> 
+                    <fields>
+                            <color-value>
+                                <label>Color</label>
+                                <frontend_type>text</frontend_type>
+                                 <frontend_model>color/adminhtml_system_config_color</frontend_model>
+                                <sort_order>1</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                                <validate>color</validate>                     
+                            </color-value>
+                    </fields>                
+                </color>
+            </groups>                 
+        </color_options>
+    </sections>   
+      
+</config>

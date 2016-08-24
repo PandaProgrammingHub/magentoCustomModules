@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Inchoo_CustomerCollection>
+            <version>1.0.0.0</version>
+        </Inchoo_CustomerCollection>
+    </modules>
+    <global>
+        <helpers>
+            <customercollection>
+                <class>Inchoo_CustomerCollection_Helper</class>
+            </customercollection>  
+        </helpers>
+        <blocks>
+            <customercollection><class>Inchoo_CustomerCollection_Block_Adminhtml</class></customercollection>
+        </blocks>
+        <models>
+            <customercollection>
+                <class>Inchoo_CustomerCollection_Model</class>
+                <resourceModel>customercollection_resource</resourceModel>
+            </customercollection>
+            <customercollection_resource>
+                <class>Inchoo_CustomerCollection_Model_Resource</class>
+            </customercollection_resource>
+        </models>
+    </global>
+    <admin>
+         <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <customercollection>Inchoo_CustomerCollection_Adminhtml</customercollection>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

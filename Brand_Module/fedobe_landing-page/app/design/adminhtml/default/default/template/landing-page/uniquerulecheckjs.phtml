@@ -1,0 +1,63 @@
+<?php
+/**
+ * @category    Fedobe
+ * @package     Fedobe_LandingPage
+ * @license     http://fedobe.com
+ */
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+    function checkConditions(idPrefix, generateUrl, pageid, url) {
+        var params = $j("#" + idPrefix + 'conditions_fieldset').serialize();
+        new Ajax.Request(generateUrl, {
+            parameters: params + '&pageid=' + pageid + '&url=' + url,
+            method: 'post',
+            onComplete: function (transport, param) {
+                $j('#rule_check_note').html(transport.responseText);
+            }
+        });
+    }
+
+    function checkRuleSave(generateUrl) {
+        var params = $j('#rule_conditions_fieldset').serialize();
+        new Ajax.Request(generateUrl, {
+            parameters: params,
+            method: 'post',
+            onComplete: function (transport, param) {
+                if(transport.responseText == "all--1") {
+                    $j('#messages').html('<ul class=\'messages\' ><li class=\'error-msg\'><ul><li><span>A page cannot be created without any condition rules.</span></li></ul></li></ul>');
+                }else{
+                    editForm.submit();
+                }
+            }
+        });
+    }
+
+    function checkRuleSaveAndEdit(redirectUrl, generateUrl) {
+        var params = $j('#rule_conditions_fieldset').serialize();
+        new Ajax.Request(generateUrl, {
+            parameters: params,
+            method: 'post',
+            onComplete: function (transport, param) {
+                if(transport.responseText == "all--1") {
+                    $j('#messages').html('<ul class=\'messages\' ><li class=\'error-msg\'><ul><li><span>A page cannot be created without any condition rules.</span></li></ul></li></ul>');
+                }else{
+                    editForm.submit(redirectUrl);
+                }
+            }
+        });
+    }
+
+//]]>
+</script>
+
+<style type="text/css">
+    span.success-msg, span.error-msg {
+        padding: 12px 8px 2px 20px !important;
+        border: none!important;
+        background-color: #fff !important;
+    }
+</style>
+
+

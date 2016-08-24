@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default translate="label">
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>fedobe/manufacturers/css/frontend.css</name>
+            </action>
+            <action method="addJs" ifconfig="manufacturers/general/brand_page_load_external_jquery">
+                <script>fedobe/jquery/jquery-1.7.2.min.js</script>
+            </action>
+            <action method="addJs" ifconfig="manufacturers/general/brand_page_load_external_jquery">
+                <script>fedobe/jquery/jquery-noconflict.js</script>
+            </action>
+            <action method="addJs" ifconfig="manufacturers/general/brand_page_load_external_jquery">
+                <script>fedobe/jquery/plugins/jquery.owlcarousel.min.js</script>
+            </action>
+        </reference>
+    </default>
+    <catalog_product_view translate="label">
+        <!--reference name="product.info">
+            <block type="manufacturers/searchresult" name="fedobe_manufacturer_product_view" template="fedobe/manufacturers/productsfromsamebrand.phtml" ></block>
+        </reference-->
+    </catalog_product_view>
+</layout>
+

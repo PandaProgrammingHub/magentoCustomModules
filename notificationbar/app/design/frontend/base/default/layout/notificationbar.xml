@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+ /** 
+  * @author Justin Stern (www.foxrunsoftware.net)
+  * @copyright  Copyright (c) 2012 All Rights Reserved, http://www.foxrunsoftware.net
+  * @license    FoxRunSoftware License Agreement
+  * 
+  * @package FoxRunSoftware_NotificationBar
+  */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs"><file>fedobe_notificationbar/jquery-1.9.1.js</file></action>
+    <action method="addJs"><file>fedobe_notificationbar/noconflict.js</file></action>
+    <action method="addJs"><file>fedobe_notificationbar/fedobe_notificationbar.js</file></action>
+        </reference>
+        
+          <reference name="head">
+        <block type="core/template" name="notificationbar" template="notificationbar/notifications.phtml" />
+        </reference> 
+    
+    </default>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="avatar_modules/general/enable_module"><type>skin_js</type><name>fedobe/common/js/owl.carousel.min.js</name></action>
+            <action method="addItem" ifconfig="avatar_modules/general/include_jquery"><type>skin_js</type><name>fedobe/common/js/jquery-1.9.1.min.js</name></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/owl.carousel.css</stylesheeet></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/owl.theme.css</stylesheeet></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/owl.transitions.css</stylesheeet></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/bootstrapTheme.css</stylesheeet></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/custom.css</stylesheeet></action>
+            <action method="addCss" ifconfig="avatar_modules/general/enable_module"><stylesheeet>fedobe/common/css/owlcarousel/responsive.css</stylesheeet></action>
+        </reference>
+    </default>
+<!--    <carousel_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+            <action method="setHeaderTitle" translate="title">
+                <title>Carousel</title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="carousel/carousel" name="avtar_carousel" template="fedobe/carousel/carousel.phtml" />
+        </reference>
+    </carousel_index_index>-->
+</layout>

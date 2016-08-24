@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_Stickysidebar>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fedobe_Stickysidebar>
+    </modules>
+</config>

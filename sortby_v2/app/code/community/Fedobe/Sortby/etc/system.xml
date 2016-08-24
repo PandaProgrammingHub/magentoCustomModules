@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    
+    <tabs>
+        <sortbyconfig translate="label" module="sortby">
+            <label>Fedobe </label>
+            <sort_order>250</sort_order>
+        </sortbyconfig>
+    </tabs>
+    
+    <sections>
+        <sortby_options translate="label" module="sortby">
+            <label>Improve Sorting</label>
+            <tab>sortbyconfig</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>  
+             <groups>
+                <sortby translate="label">
+                    <label>Basic Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store> 
+                    <fields>
+                            <enable-options>
+                                <label>Enable</label>
+				<comment>Select "Yes" to Enable and "No" to Disable Block.</comment>
+            			<frontend_type>select</frontend_type>
+				<source_model>sortby/moduleEnableOptions</source_model> 
+            			<sort_order>1</sort_order>
+            			<show_in_default>1</show_in_default>
+            			<show_in_website>1</show_in_website>
+            			<show_in_store>1</show_in_store>                     
+                            </enable-options>
+                            
+                            <showWithoutImages-options>
+                                <label>Show Products without Images Last</label>
+				<comment>If it is not important, select `No` to optimize server resources usage.</comment>
+            			 <frontend_type>select</frontend_type>
+                                 <source_model>sortby/moduleEnableOptions</source_model>
+                                 <depends>
+                                       <enable-options>1</enable-options>
+                                 </depends>
+            			<sort_order>2</sort_order>
+            			<show_in_default>1</show_in_default>
+            			<show_in_website>1</show_in_website>
+            			<show_in_store>1</show_in_store>                     
+                            </showWithoutImages-options>
+                            <showOutOfStock-options>
+                                <label>Show `Out of Stock` Products Last</label>
+				<comment>If it is not important, select `No` to optimize server resources usage.</comment>
+            			 <frontend_type>select</frontend_type>
+                                 <source_model>sortby/moduleEnableOptions</source_model>
+                                 <depends>
+                                       <enable-options>1</enable-options>
+                                 </depends>
+            			<sort_order>3</sort_order>
+            			<show_in_default>1</show_in_default>
+            			<show_in_website>1</show_in_website>
+            			<show_in_store>1</show_in_store>                     
+                            </showOutOfStock-options>
+                            <best-sellers-period>
+                                    <label>Bestsellers Period(days)</label>
+                                    <comment>Leave empty for the life-time statics.</comment>
+                                    <frontend_type>text</frontend_type>
+                                    <depends>
+                                            <enable-options>1</enable-options>
+                                    </depends>
+                                    <sort_order>4</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store> 
+                            </best-sellers-period>
+                            <most-views-period>
+                                    <label>Most Viewed Period(days)</label>
+                                    <comment>Leave empty for the life-time statics.</comment>
+                                    <frontend_type>text</frontend_type>
+                                    <depends>
+                                            <enable-options>1</enable-options>
+                                    </depends>
+                                    <sort_order>5</sort_order>
+                                    <show_in_default>1</show_in_default>
+                                    <show_in_website>1</show_in_website>
+                                    <show_in_store>1</show_in_store> 
+                            </most-views-period>
+                            <disable-options>
+                                <label>Disable Sorting By</label>
+				<comment>Press CTRL+mouse to select multiple values.</comment>
+            			 <frontend_type>multiselect</frontend_type>
+                                 <source_model>sortby/sortbySpecificFeaturesOptions</source_model>
+                                 <depends>
+                                       <enable-options>1</enable-options>
+                                 </depends>
+            			<sort_order>6</sort_order>
+            			<show_in_default>1</show_in_default>
+            			<show_in_website>1</show_in_website>
+            			<show_in_store>1</show_in_store>                     
+                            </disable-options>
+                            
+                    </fields>                
+                </sortby>
+            </groups>                 
+        </sortby_options>
+    </sections>   
+      
+</config>

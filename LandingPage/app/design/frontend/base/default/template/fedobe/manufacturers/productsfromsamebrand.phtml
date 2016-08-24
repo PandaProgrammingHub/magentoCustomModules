@@ -1,0 +1,127 @@
+<?php echo $this->getChildHtml('child')?>
+<?php
+$is_enabled_settings = (bool) Mage::getStoreConfig('manufacturers/general/is_enable');
+$is_enabled_settings_param = (isset($all_params['is_enable'])) ? $all_params['is_enable'] : $is_enabled_settings;
+$displaybrandinfo = (bool) Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_use_in_product_page');
+$displaybrandinfo_param = (isset($all_params['displaybrandinfo'])) ? $all_params['displaybrandinfo'] : $displaybrandinfo;
+$block = $this->getLayout()->createBlock('manufacturers/searchresult');
+$attr_id = $block->getBrandid();
+if (($is_enabled_settings_param && $displaybrandinfo_param) && $attr_id)  :
+?>
+<?php
+    $display_images = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_images_use_in_product_page');
+    $display_images_param = (isset($all_params['display_images'])) ? $all_params['display_images'] : $display_images;
+    $display_type = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_display_type_in_product_page');
+    $display_type_param = (isset($all_params['display_type'])) ? $all_params['display_type'] : $display_type;
+    $display_branddesc = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_description_text_in_product_page');
+    $display_branddesc_param = (isset($all_params['display_branddesc'])) ? $all_params['display_branddesc'] : $display_branddesc;
+    $display_related = Mage::getStoreConfig('manufacturers/product_page_brand_settings/show_related_brand_items_in_product_page');
+    $display_related_param = (isset($all_params['display_related'])) ? $all_params['display_related'] : $display_related;
+    $manufacturer = $block->getManufacturerDetails($attr_id);
+    $manufacturer = $manufacturer[$attr_id];
+    $img_url = Mage::helper('attributeSplash/image')->getImageUrl($manufacturer['thumbnail']);
+    $brandpagemodel = Mage::getModel('attributeSplash/page')->load($manufacturer['page_id']);
+    $link = $brandpagemodel->getUrl();
+    if(!$link)
+        $link = Mage::helper('cms')->getPageTemplateProcessor()->filter('{{store url="catalogsearch/advanced/result" _query="' . $attribute_to_select . '=' . $attr_id . '"}}');
+?>
+<?php if($display_images_param || $display_branddesc_param || $display_related_param):?>
+<div class="fedobe_product_page_brand_wrapper_outer">
+    <div class="fedobe_product_page_brand_wrapper_inner">
+        <?php if($display_images_param || $display_branddesc_param) :?>
+            <!--Here for images and description's-->
+            <div class="brand_infromations_top_section brand-page-full-grid10-10">
+                <div class="fltlft <?php if($display_images_param):?>brand-page-full-grid10-2<?php else:?>brand-page-full-grid10-0<?php endif;?>">
+                    <?php if($display_images_param):?>
+                       <?php 
+                            switch ($display_type_param) {
+                                    case 'image_text':
+                                        $show_image = TRUE;
+                                        $only_text = TRUE;
+                                        break;
+                                    case 'image':
+                                        $show_image = TRUE;
+                                        break;
+                                    case 'text':
+                                        $only_text = TRUE;
+                                        break;
+                                }
+                            $img_width = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_image_width_in_product_page');
+                            $img_width_param = (isset($all_params['img_width'])) ? $all_params['img_width'] : $img_width;
+                            $img_height = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_image_height_in_product_page');
+                            $img_height_param = (isset($all_params['img_height'])) ? $all_params['img_height'] : $img_height;
+                            $img_width = ($img_width_param) ? $img_width_param  : 120;
+                            $img_height = ($img_height_param) ? $img_height_param : 60;
+                        ?>
+                        <a href="<?php echo $link;?>">
+                            <?php if($show_image):?>
+                                <div class="fedobe_category_brand_image">
+                                    <img width="<?php echo $img_width;?>px;" height="<?php echo $img_height;?>px;" src="<?php if($img_url):?><?php echo $img_url;?><?php else:?><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'manufacturers/noimage.jpg';?><?php endif;?>" alt="<?php echo $this->__($manufacturer['name']); ?>"  />
+                                </div>
+                            <?php endif; ?>
+                            <?php if($only_text):?>
+                            <div class="fedobe_category_brand_text">
+                                <span><?php echo $this->__($manufacturer['name']) ?></span>
+                            </div>
+                            <?php endif; ?>
+                        </a>
+                    <?php endif;?>
+                </div>
+                <div class="fltrht <?php if($display_images_param && $display_branddesc_param):?>brand-page-full-grid10-8<?php elseif($display_branddesc_param):?>brand-page-full-grid10-10<?php else:?>brand-page-full-grid10-0<?php endif;?>">
+                    <?php if($display_branddesc_param):?>
+                        <p><?php echo $this->__($manufacturer['short_description']);?></p>
+                    <?php endif;?>
+                </div>
+                <div class="clrbth"></div>
+            </div>
+            <!--End of images and description's-->
+        <?php endif;?>
+        
+        <?php if($display_related_param):?>
+            <?php 
+                $show_productname = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_name_in_product_page');
+                $show_productname_param = (isset($all_params['show_productname'])) ? $all_params['show_productname'] : $show_productname;
+                $show_productprice = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_price_in_product_page');
+                $show_productprice_param = (isset($all_params['show_productprice'])) ? $all_params['show_productprice'] : $show_productprice;
+                $show_productreview = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_review_in_product_page');
+                $show_productreview_param = (isset($all_params['show_productreview'])) ? $all_params['show_productreview'] : $show_productreview;
+                $show_productaddtocart = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_add_to_cart_in_product_page');
+                $show_productaddtocart_param = (isset($all_params['show_productaddtocart'])) ? $all_params['show_productaddtocart'] : $show_productaddtocart;
+                $productquantity = (int)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_items_quantity_in_product_page');
+                $productquantity_param = (isset($all_params['productquantity'])) ? $all_params['productquantity'] : $productquantity;
+                $breakkpoints = Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_breakpoints');
+                $breakkpoints_param = (isset($all_params['breakkpoints'])) ? $all_params['breakkpoints'] : $breakkpoints;
+                $pagination = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_pagination');
+                $pagination_param = (isset($all_params['pagination'])) ? $all_params['pagination'] : $pagination;
+                $timeout = Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_time_out');
+                $timeout_param = (isset($all_params['timeout'])) ? $all_params['timeout'] : $timeout;
+                $pauseonhover = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_pauseonmouse');
+                $pauseonhover_param = (isset($all_params['pauseonhover'])) ? $all_params['pauseonhover'] : $pauseonhover;
+                $hovereffect = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_hover_effect');
+                $hovereffect_param = (isset($all_params['hovereffect'])) ? $all_params['hovereffect'] : $hovereffect;
+                $automove = (bool)Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_item_product_slider_settings_move_auto');
+                $automove_param = (isset($all_params['automove'])) ? $all_params['automove'] : $automove;
+                $relatedtitle = Mage::getStoreConfig('manufacturers/product_page_brand_settings/related_brand_items_title_in_product_page');
+                $relatedtitle_param = (isset($all_params['relatedtitle'])) ? $all_params['relatedtitle'] : $relatedtitle;
+                $slidlerparams = array(
+                    'relatedtitle' => $relatedtitle_param,
+                    'show_productname' => $show_productname_param,
+                    'show_productprice' => $show_productprice_param,
+                    'show_productreview' => $show_productreview_param,
+                    'show_productaddtocart' => $show_productaddtocart_param,
+                    'productquantity' => $productquantity_param,
+                    'breakkpoints' => $breakkpoints_param,
+                    'pagination' => $pagination_param,
+                    'timeout' => $timeout_param,
+                    'pauseonhover' => $pauseonhover_param,
+                    'hovereffect' => $hovereffect_param,
+                    'automove' => $automove_param
+                );
+                $str = $this->getLayout()->createBlock('manufacturers/searchresult')->setData($slidlerparams)->setTemplate("fedobe/manufacturers/sliderfromsamebrand.phtml")->_toHtml();
+                echo $str;
+                ?>
+        <?php endif;?>
+    </div>
+</div>
+<?php endif;?>
+<?php endif; ?>

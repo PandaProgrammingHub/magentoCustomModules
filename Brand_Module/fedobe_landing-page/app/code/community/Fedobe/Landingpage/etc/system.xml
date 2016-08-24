@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<fedobe translate="label" module="landingpage">
+			<label>Fedobe</label>
+			<sort_order>200</sort_order>
+		</fedobe>
+	</tabs>
+    <sections>
+        <landingpage translate="label" module="landingpage">
+            <label>Landing Page Settings</label>
+            <tab>fedobe</tab>
+            <sort_order>210</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+            	<page>
+            		<label>Pages</label>
+            		<sort_order>6</sort_order>
+            		<show_in_default>1</show_in_default>
+            		<show_in_website>1</show_in_website>
+            		<show_in_store>1</show_in_store>
+            		<fields>
+            			<template>
+            				<label>Page Layout</label>
+            				<frontend_type>select</frontend_type>
+            				<source_model>landingpage/system_config_source_layout</source_model>
+            				<sort_order>1</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+            			</template>
+            			<column_count>
+            				<label>Column Count</label>
+            				<comment>Number of Splash pages per row</comment>
+            				<frontend_type>text</frontend_type>
+            				<sort_order>6</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+            				<validate>validate-number required-entry</validate>
+            			</column_count>
+            		</fields>
+            	</page>
+            	<seo>
+            		<label>Search Engine Optimizations</label>
+            		<sort_order>14</sort_order>
+            		<show_in_default>1</show_in_default>
+            		<show_in_website>1</show_in_website>
+            		<show_in_store>1</show_in_store>
+            		<fields>
+            			<url_suffix>
+            				<label>URL Suffix</label>
+            				<frontend_type>text</frontend_type>
+            				<sort_order>6</sort_order>
+            				<show_in_default>1</show_in_default>
+            			</url_suffix>
+            		</fields>
+            	</seo>
+            </groups>
+        </landingpage>
+    </sections>
+</config>

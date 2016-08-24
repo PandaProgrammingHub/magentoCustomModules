@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <global_options>
+                                        <title>Modules Global Option</title>
+                                    </global_options>
+                                    <avatar_modules>
+                                        <title>Product Carousel</title>
+                                    </avatar_modules>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

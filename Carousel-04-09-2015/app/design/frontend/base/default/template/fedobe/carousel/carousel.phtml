@@ -1,0 +1,348 @@
+<?php
+/*
+ * Edition : Community 
+ * Package: Avatar Module
+ * Author: Fedobe
+ * Email: support@fedobe.com
+ */
+
+$uniquename = "fedobe".uniqid();
+if(Mage::getStoreConfig('avatar_modules/general/enable_module'))
+{
+    $get = $this->parameterValue();
+?>
+    
+    <?php 
+        if($get['product_type'] == "allproduct"):
+            $_productCollection = Mage::helper('carousel')->getAllProductCollection($get['categories'],$get['attributes']);
+            $heading = $get['heading'];
+        elseif($get['product_type'] == "recently-added"):
+            $_productCollection = Mage::helper('carousel')->getRecentlyAddedProductCollection($get['categories'],$get['attributes']);
+            $heading = $get['heading'];
+        elseif($get['product_type'] == "best-seller"):
+            $_productCollection = Mage::helper('carousel')->getBestSellerProductCollection($get['categories'],$get['attributes']);
+            $heading = $get['heading'];
+        elseif($get['product_type'] == "featured"):
+            $_productCollection = Mage::helper('carousel')->getFeaturedProductCollection();
+            $heading = $get['heading'];
+        endif;
+    ?>
+    <div id="demo">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div><h4><?php echo $heading; ?></h4></div>
+                    <div id="owl-example" class="owl-carousel <?php echo $uniquename; ?>">
+                        <?php  foreach ($_productCollection as $_product) { ?>
+                        <div class="item darkCyan">
+                            <a href="<?php echo $_product->getProductUrl() ?>">
+                                <span class="sticker-wrapper top-right">
+                                    <span class="sticker">
+                                        <?php echo $get['product_top_label']; ?>
+                                    </span>
+                                </span>
+                                <span class="sticker-wrapper top-left">
+                                    <span class="sticker">
+                                        <?php if ($_product->getSpecialPrice() > 0){ echo Mage::helper('carousel')->calcPerc($_product->getPrice(), $_product->getSpecialPrice()); } ?>
+                                    </span>
+                                </span>
+                                <img src="<?php echo $_product->getImageUrl(); ?>" alt="<?php echo $_product->getName() ?>">
+                            </a>
+                            <?php if($get['show_product_name']) echo "<h5 class='p-name'>".$_product->getName()."</h5>" ?>
+                            <?php if($get['show_product_price']): ?>
+                                <h5 class='p-price'>
+                                    <?php if(!$_product->canConfigure()): ?>
+                                        <?php if ($_product->getSpecialPrice() <= 0): ?>
+                                            <div class="price"><?php echo Mage::helper('core')->currency($_product->getPrice()); ?></div>
+                                        <?php else: ?>
+                                            <div class="old-price"><?php echo Mage::helper('core')->currency($_product->getPrice()); ?></div>
+                                            <div class='new-price'><?php echo Mage::helper('core')->currency($_product->getSpecialPrice()); ?></div>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                            <div class="price" style="text-transform: capitalize">configurable Item</div>
+                                    <?php endif; ?>
+                                </h5>
+                            <?php endif; ?>
+                            <?php if($get['show_product_sku']) echo "<h5 class='p-sku'>".$_product->getSku()."</h5>" ?>
+                            <?php if($get['show_product_addtocart']){ ?>
+                                    <?php if (!$_product->canConfigure() && $_product->isSaleable()): ?>
+                                        <a href="<?php echo Mage::helper('checkout/cart')->getAddUrl($_product) ?>">
+                                            <button type="button" title="Add to Cart" id="product-addtocart-button" class="button btn-cart"><span><span>Add to Cart</span></span></button>
+                                        </a>
+                                    <?php elseif ($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
+                                        <a href="<?php echo $_product->getProductUrl() ?>">
+                                            <button type="button" title="View Details" id="product-addtocart-button" class="button btn-cart"><span><span>View Details</span></span></button>
+                                        </a>
+                                    <?php else: ?>
+                                            <button type="button" title="Out of Stock" id="product-addtocart-button" class="button btn-cart"><span><span>Out of Stock</span></span></button>
+                                    <?php endif; ?>
+                            <?php } ?>
+                        </div>
+                            <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            jQuery("#owl-example<?php echo ".".$uniquename; ?>").owlCarousel({
+                items : <?php echo $get['carousel_items'] ?>,
+                itemsCustom : false,
+                itemsDesktop : [1199,4],
+                itemsDesktopSmall : [980,3],
+                itemsTablet: [768,2],
+                itemsTabletSmall: false,
+                itemsMobile : [479,1],
+                singleItem : false,
+                itemsScaleUp : false,
+
+                //Basic Speeds
+                slideSpeed : <?php echo $get['slider_speed'] ?>,
+                paginationSpeed : <?php echo $get['pagination_speed'] ?>,
+                rewindSpeed : 1000,
+
+                //Autoplay
+                autoPlay : <?php echo $get['auto_play'] ?>,
+                stopOnHover : <?php echo $get['stop_on_hover'] ?>,
+
+                // Navigation
+                navigation : <?php echo $get['navigation_button'] ?>,
+                navigationText : ["prev","next"],
+                rewindNav : true,
+                scrollPerPage : false,
+
+                //Pagination
+                pagination : <?php echo $get['show_pagination'] ?>,
+                paginationNumbers: false,
+
+                // Responsive 
+                responsive: true,
+                responsiveRefreshRate : 200,
+                responsiveBaseWidth: window,
+
+                // CSS Styles
+                baseClass : "owl-carousel",
+                theme : "owl-theme",
+
+                //Lazy load
+                lazyLoad : <?php echo $get['lazy_load'] ?>,
+                lazyFollow : true,
+                lazyEffect : "fade",
+
+                //Auto height
+                autoHeight : false,
+
+                //JSON 
+                jsonPath : false, 
+                jsonSuccess : false,
+
+                //Mouse Events
+                dragBeforeAnimFinish : true,
+                mouseDrag : true,
+                touchDrag : true,
+
+                //Transitions
+                transitionStyle : false,
+
+                // Other
+                addClassActive : false,
+
+                //Callbacks
+                beforeUpdate : false,
+                afterUpdate : false,
+                beforeInit: false, 
+                afterInit: false, 
+                beforeMove: false, 
+                afterMove: false,
+                afterAction: false,
+                startDragging : false,
+                afterLazyLoad : false
+            });
+        });
+        jQuery("body").data("page", "frontpage");
+    </script>
+    <style>
+        <?php echo ".".$uniquename; ?> .sticker-wrapper.top-right {
+            top: 10px;
+            right: 10px;
+            position:absolute;
+           <?php echo $get['product_label_display_none']; ?>;
+        }
+        <?php echo ".".$uniquename; ?> .top-right .sticker {
+            width: 49px;
+            <?php echo "color: ".$get['product_label_color']; ?>;
+            <?php echo "background-color: ".$get['product_label_bg_color']; ?>;
+            //height: 49px;
+            //border-radius: 50%;
+            /*font-size: 1.16em;*/
+            /*line-height: 1em;*/
+            /*font-weight: bold;*/
+            text-align: center;
+            display: table-cell !important;
+            vertical-align: middle !important;
+            transition: all 150ms ease-in-out;
+            -moz-transition: all 150ms ease-in-out;
+            -webkit-transition: all 150ms ease-in-out;
+            -o-transition: all 150ms ease-in-out;
+        }
+        <?php echo ".".$uniquename; ?> .sticker-wrapper.top-left {
+            top: 10px;
+            left: 10px;
+            position:absolute;
+            <?php echo $get['discount_percentage_display_none']; ?>;
+        }
+        <?php echo ".".$uniquename; ?> .top-left .sticker {
+            width: 49px;
+            <?php echo "color: ".$get['discount_percentage_color']; ?>;
+            <?php echo "background-color: ".$get['discount_percentage_bg']; ?>;
+            text-align: center;
+            display: table-cell !important;
+            vertical-align: middle !important;
+            transition: all 150ms ease-in-out;
+            -moz-transition: all 150ms ease-in-out;
+            -webkit-transition: all 150ms ease-in-out;
+            -o-transition: all 150ms ease-in-out;
+        }
+        
+        <?php echo ".".$uniquename; ?> .p-price .old-price {
+            color: <?php echo $get['price_color']; ?>;
+            margin-right: 20px;
+            text-decoration: line-through;
+        }
+        <?php echo ".".$uniquename; ?> .p-price .price {
+            color: <?php echo $get['price_color']; ?>;
+        }
+        <?php echo ".".$uniquename; ?> .p-price .old-price, <?php echo ".".$uniquename; ?> .p-price .new-price{
+            display: inline;
+        }
+        <?php echo ".".$uniquename; ?> .p-price .new-price .price{
+            color: <?php echo $get['new_price_color']; ?>;
+        }
+        
+    <?php echo ".".$uniquename; ?> .darkCyan {
+      background: <?php echo $get['link_color']; ?>;
+    }
+    <?php echo ".".$uniquename; ?> .darkCyan:hover {
+      background: <?php echo $get['link_hover_color'] ?>;
+      border-color: #000000!important;
+    }
+    <?php echo ".".$uniquename; ?> #owl-example .item{
+     border-color: <?php echo $get['border_color']; ?>;
+     border-width: <?php echo $get['border_width']; ?>;
+     border-style: <?php echo $get['border_type']; ?>;
+    }
+    <?php echo ".".$uniquename; ?> .owl-item .item h5.p-name{
+     color: <?php echo $get['text_color'] ?>;
+     margin-top: 10px;
+     height: 3em;
+     line-height: 1.5em;
+     overflow: hidden;
+    }
+    <?php echo ".".$uniquename; ?> .button.btn-cart{
+      background: <?php echo $get['button_background_color']; ?>;
+      color: <?php echo $get['button_text_color']; ?>;
+    }
+    <?php echo ".".$uniquename; ?> .button.btn-cart:hover {
+      background: <?php echo $get['button_hover_color']; ?>;
+      color: <?php echo $get['button_hover_text_color']; ?>;
+    }
+    <?php echo ".".$uniquename; ?> .owl-theme .owl-controls .owl-buttons div{
+      background: <?php echo $get['global_theme_color']; ?>;
+      opacity: 1;
+    }
+    <?php echo ".".$uniquename; ?> .owl-theme .owl-controls.clickable .owl-buttons div:hover{
+      opacity: 0.5;
+    }
+   <?php echo ".".$uniquename; ?> .owl-theme .owl-controls .owl-page span{
+       background: <?php echo $get['global_theme_color']; ?>;
+   }
+   
+
+   <?php if($get['navigation_button_position'] == "topright"){ ?>
+   <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons div{
+    float: left;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: url(<?php echo $this->getSkinUrl('carousel/images/slider-arrows.png'); ?>)!important;
+    border-radius: 0px!important;
+    background-repeat: no-repeat;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    text-decoration: none;
+    text-indent: -9999px;
+    overflow: hidden;
+    -webkit-transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+   }
+   <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-prev {
+        background-position: -10px -10px!important;
+    }
+     <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-next {
+        background-position: -60px -10px!important;
+    }
+    <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons{
+        position: absolute;
+        top: -40px;
+        right: 0;
+    }
+    <?php } ?>
+    <?php if($get['navigation_button_position'] == "bottomright"){ ?>
+        <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons div{
+            float: left;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url(<?php echo $this->getSkinUrl('carousel/images/slider-arrows.png'); ?>)!important;
+            border-radius: 0px!important;
+            background-repeat: no-repeat;
+            background-color: #e5e5e5;
+            cursor: pointer;
+            text-decoration: none;
+            text-indent: -9999px;
+            overflow: hidden;
+            -webkit-transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+       }
+       <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-prev {
+            background-position: -10px -10px!important;
+        }
+         <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-next {
+            background-position: -60px -10px!important;
+        }
+        <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons{
+            float:right;
+        }
+    <?php } ?>
+    <?php if($get['navigation_button_position'] == "overcarousel"){ ?>
+         <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons div{
+            float: left;
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-image: url(<?php echo $this->getSkinUrl('carousel/images/slider-arrows.png'); ?>)!important;
+            border-radius: 0px!important;
+            background-repeat: no-repeat;
+            background-color: #e5e5e5;
+            cursor: pointer;
+            text-decoration: none;
+            text-indent: -9999px;
+            overflow: hidden;
+            -webkit-transition: opacity 300ms ease-in-out, background-color 300ms ease-in-out, background-position 300ms ease-in-out;
+       }
+        <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-prev {
+            background-position: -10px -10px!important;
+            position: absolute;
+            top: 150px;
+            left: 0;
+        }
+         <?php echo ".".$uniquename; ?> .owl-controls .owl-buttons .owl-next {
+             background-position: -60px -10px!important;
+            position: absolute;
+            top: 150px;
+            right: 0;
+        }
+    <?php } ?>
+    //<?php //echo $get['custom_style_css']; ?> //custom css from adminpanel
+    </style>
+<?php }

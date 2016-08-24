@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <fedobe translate="title" module="landingpage">
+            <title>Fedobe</title>
+            <sort_order>31</sort_order>
+            <children>
+                <dashboard translate="title">
+                    <title>Landing Pages</title>
+                    <action>adminhtml/landingpage</action>
+                    <sort_order>1</sort_order>
+                </dashboard>
+            </children>
+        </fedobe>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <fedobe translate="title" module="landingpage">
+                        <title>Landing Pages</title>
+                        <sort_order>40</sort_order>
+                        <children>
+                            <dashboard translate="title">
+                                <title>Manage Landing Pages</title>
+                                <sort_order>6</sort_order>
+                            </dashboard>
+                        </children>
+                    </fedobe>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <landingpage translate="title" module="landingpage">
+                                        <title>Landing Pages</title>
+                                        <sort_order>990</sort_order>
+                                    </landingpage>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

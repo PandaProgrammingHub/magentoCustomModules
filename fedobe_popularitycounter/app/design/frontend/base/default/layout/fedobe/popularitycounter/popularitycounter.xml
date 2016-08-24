@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/fedobe/popularitycounter/popularitycounter.css</name></action>
+            <!--<action method="setText">
+            	 <text><![CDATA[<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">]]>
+                </text>
+            </action> -->
+        </reference> 
+    </default> 
+</layout>

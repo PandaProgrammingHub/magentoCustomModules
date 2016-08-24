@@ -1,0 +1,426 @@
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/fedobe/assembleproduct/jquery-1.9.1.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/fedobe/assembleproduct/noconflict.js') ?>"></script>
+<?php
+$productId =$this->getCurrentProductId();
+
+
+$optionCollection = $this->getCurrentBundleProductOptionsCollection();
+
+$primaryOptionCollection = $this->getPrimaryOptionCollection();
+
+$dependencyOptionArray = $this->getDependencyOptionArray();
+//echo "<pre>";
+//print_r($dependencyOptionArray);
+foreach ($primaryOptionCollection as $val) {
+    $primaryoption = $val->getPrimaryoption();
+}
+
+foreach ($optionCollection as $option) {
+        if($option->getOption_id() == $primaryoption){
+            $primaryoptionLable = $option->default_title;
+          }
+}
+
+
+?>
+
+<input type="hidden" id="productId" name="productId" value="<?php echo $productId ;?>" />
+
+<!-- =============== Primary Option Containner  =============== -->
+<div id="customer_info_tabs_customer_edit_tab_action_content">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Primary Option</h4>
+        </div>
+        <div id="group_fields4" class="fieldset fieldset-wide">
+            <div class="hor-scroll">
+           <fieldset id="primary_option">
+           <div class="primary_option_select_wrapper">
+            <label for="primary_option_select"><?php echo $this->__('primary option') ?> <span class="required">*</span> </label>
+            <select class="primary_option_select validate-select" name="primary_option_select">
+            	<option value="">Please Choose one primary option</option>
+            	<?php 
+            		foreach ($optionCollection as $option) { ?>
+            		<option value="<?php echo $option->getOption_id(); ?>" 
+                    <?php if($option->getOption_id() == $primaryoption){ echo "selected" ;} ?> >
+                    <?php echo $option->getDefault_title();  ?>
+                    </option>	
+            	<?php }
+            	?>
+            	
+            </select>
+            </div>
+            <div class="final_primary_option_wrapper">
+
+            <input type="text" class="final_primary_option" name="final_primary_option" 
+            value="<?php echo $primaryoptionLable ; ?>" 
+            style="<?php if($primaryoption){ echo 'background:#DDDDDD;'; } ?>"
+            <?php if($primaryoption){ echo "readonly='readonly'"; } ?> />
+
+            <input type="hidden" class="final_primary_option_id" value="<?php echo $primaryoption ;?>" name="final_primary_option_id">
+            </div>
+            
+           </fieldset>
+
+
+ 			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- =============== Dependency Option Containner  =============== -->
+<div id="customer_info_tabs_customer_edit_tab_action_content">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend">Dependency Option</h4>
+        </div>
+        <div id="group_fields4" class="fieldset fieldset-wide">
+            <div class="hor-scroll">
+            <input type="button" class="new_dependency_option" value="Create New Dependency">
+            <div class="no-dependency-found" style="<?php if($dependencyOptionArray){
+              echo 'display:none;' ;} ?>" >
+            
+            	<span>No Dependency found</span>
+           
+            </div>
+      <div id="dependency_options_container" class="box dependency_options_container" style="<?php if(!$dependencyOptionArray){
+              echo 'display:none;' ;} ?>">
+                  <div id="product_bundle_container_top"></div>
+        <?php
+          $i = 0;
+              foreach ($dependencyOptionArray as $key => $value) {
+        ?>
+
+    <div id="dependency_option_<?php echo $i; ?>" class="option-box">
+           <div class="option-title" id="option_<?php echo $i; ?>">
+            <label for="dependency_primary_product">Dependency Primary Product</label>
+            <input class="input-text" type="text" name="dependency_primary_product" id="dependency_primary_product" value="<?php echo $this->getProductName($key); ?>" style="background:#DDDDDD;" readonly="readonly">
+
+            <input type="hidden" class="dependency_primary_productId" value="<?php echo $key ?>">
+            <input type="button" id="delete_dependency_option_<?php echo $key ?>" class="delete_dependency_option" value="Delete Option">
+           <input type="button" id="edit_dependency_option_<?php echo $key ?>" class="edit_dependency_option" value="Edit Option">
+            </div>
+
+  <div class="grid tier form-list">
+  <table class="border" id="dependency_selection_box_<?php echo $i; ?>" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr class="headings">
+        <th>Option Name</th>
+        <th>Product Name</th>
+        <th>SKU</th>
+                    
+      </tr>           
+           
+   </thead>
+   <tbody>
+   
+   <?php
+      foreach ($value as $k => $v) {
+       foreach ($v as $ki => $vi) {
+        $pId = explode(",", $vi);
+
+       
+   ?>
+       <tr class="selection">
+          <td rowspan="<?php echo count($pId);?>"><?php echo $this->getOptionsLable($ki); ?></td>
+          <?php 
+            foreach ($pId as  $pv) {
+          ?>
+          <td><?php echo $this->getProductName($pv); ?></td>
+          <td><?php echo $this->getProductSku($pv); ?></td>
+          
+        </tr>
+        <?php } } } ?>
+   </tbody>
+ </table>
+ </div>
+ </div>
+
+ <?php $i++; }?>
+</div>
+
+
+            <div class="create_dependency">
+            
+            </div>
+ 			</div>
+		</div>
+	</div>
+</div>
+
+<div style="left: -2px; top: 0px; width: 1353px; height: 886px; display: none;" id="loading-mask">
+    <p id="loading_mask_loader" class="loader">
+    <img alt="Loading..." src="<?php echo str_replace("index.php/","",Mage::getBaseUrl()); ?>/skin/adminhtml/default/default/images/ajax-loader-tr.gif"><br>Please wait...</p>
+</div>
+
+<style type="text/css">
+	.primary_option_select{
+    padding: 4px 5px 4px 9px;
+    margin-left: 20px;
+}
+
+ 	.final_primary_option {
+    padding: 4px 5px 4px 9px;
+    margin-left: 20px;
+}
+#dependency_options_container .option-title label {
+      font-weight: bold;
+    line-height: 21px;
+    padding-right: 1em;
+    float: left;
+}
+#dependency_options_container .option-title .input-text{
+    float: left;
+    width: 260px;
+    vertical-align: middle;
+}
+
+.primary_option_save,.new_dependency_option {
+	border-width: 1px;
+    border-style: solid;
+    border-color: #ed6502 #a04300 #a04300 #ed6502;
+    padding: 4px 5px 4px 9px;
+    background: #ffac47 url(images/btn_bg.gif) repeat-x 0 100%;
+    color: #fff;
+    font: bold 12px arial, helvetica, sans-serif;
+    cursor: pointer;
+    text-align: center !important;
+    white-space: nowrap;
+    height: 30px;
+    margin-left: 20px;
+}
+.remove_dependency_option, .delete_dependency_option {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ed6502 #a04300 #a04300 #ed6502;
+    padding: 4px 5px 4px 9px;
+    background: #ad0303 url(images/btn_bg.gif) repeat-x 0 100%;
+    color: #fff;
+    font: bold 12px arial, helvetica, sans-serif;
+    cursor: pointer;
+    text-align: center !important;
+    white-space: nowrap;
+    height: 30px;
+    margin-left: 20px;
+    float: right;
+    
+}
+ .edit_dependency_option, .dependency_option_back {
+   border-width: 1px;
+    border-style: solid;
+    border-color: #ed6502 #a04300 #a04300 #ed6502;
+    padding: 4px 5px 4px 9px;
+    background: #ffac47 url(images/btn_bg.gif) repeat-x 0 100%;
+    color: #fff;
+    font: bold 12px arial, helvetica, sans-serif;
+    cursor: pointer;
+    text-align: center !important;
+    white-space: nowrap;
+    height: 30px;
+    margin-left: 20px;
+    float: right;
+    
+}
+.primary_option_select_wrapper {
+    float: left;
+}
+.final_primary_option_wrapper {
+    float: left;
+}
+.no-dependency-found{
+    border-width: 0 1px 1px 0;
+    padding: 17px 58px 15px 16px;
+    border: 1px solid #dadfe0;
+    margin: 11px;
+    background: #dadfe0;
+    text-align: center;
+}
+.dependency_options_container{
+  border-width: 0 1px 1px 0;
+    padding: 17px 58px 15px 16px;
+    border: 1px solid #dadfe0;
+    margin: 11px;
+    
+}
+.dependency_options_container .option-box {
+    border: 1px solid #cddddd;
+    padding: 1em;
+    background: #e7efef;
+    margin: 1.5em 0;
+}
+
+    
+
+.primary_option_select_wrapper .validation-advice {
+    clear: both;
+    min-height: 15px;
+    margin: 3px 0 0 103px;
+    padding-left: 16px;
+    font-size: .95em;
+    font-weight: bold;
+    line-height: 1.25em;
+}
+.create_dependency .option-box {
+    border: 1px solid #cddddd;
+    padding: 1em;
+    background: #e7efef;
+    margin: 1.5em 0;
+}
+</style>
+
+<script type="text/javascript">
+var i = 1;
+var primaryoption = "<?php echo $primaryoption; ?>"
+function aspstep1() {
+        var formToValidate = $('primary_option');
+        var validator = new Validation(formToValidate);
+		if (validator.validate()) { return true; }
+		}
+        
+	jQuery(function($){
+
+	$('select[name*="primary_option_select"]').change(function() { 
+    var lable = $('select[name*="primary_option_select"] option:selected').text();
+    var value = $('select[name*="primary_option_select"] option:selected').val();
+    
+    if(lable != "Please Choose one primary option"){
+    	if(!primaryoption){
+    	$('.final_primary_option').css('background', '#DDDDDD');
+        $('.final_primary_option').attr('readonly', 'readonly');
+        $('.final_primary_option').val(lable); 
+       	$('.final_primary_option_id').val(value); 
+       }
+        
+      }else {
+        if(!primaryoption){
+         $('.final_primary_option_id').val(""); 
+         $('.final_primary_option').val("");
+         $('.final_primary_option').css('background', '#FFF');
+         $('.final_primary_option').removeAttr('readonly');
+      }
+  }
+  if( $('.create_dependency').children('fieldset').length > 0 || primaryoption ) {
+             if(value != primaryoption ){
+              var t =  confirm("The Dependencyoption will be delete! continue?");
+                if(t == true){
+                     url = "<?php echo $this->getUrl('assembleproduct/index/delete'); ?>" + "?isAjax=true";
+           var productId = $("#productId").val(); 
+           $("#loading-mask").show();
+        $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",productId:productId,}, function (res) {
+            $("#loading-mask").hide();
+              
+              $("#messages").html(res);
+              primaryoption = '';
+              $('.create_dependency').children('fieldset').remove();
+              window.setTimeout(function(){location.reload()},2000);
+
+            });
+                }
+                  if(!primaryoption)
+                    $('.create_dependency').children('fieldset').remove();
+
+                if(primaryoption)
+               $('select[name*="primary_option_select"]').val(primaryoption); 
+            }
+
+}
+    
+     });
+    
+     var scntDiv = $('.create_dependency');
+     
+	$(".new_dependency_option").click(function(event){
+      if(aspstep1()) {
+      	
+        $('.no-dependency-found').css('display','none');
+        if (!$('.create_dependency').children('fieldset').length > 0) {
+        $('<fieldset class="option-box dependency_option_fieldset_'+ i +'"><input type="button" class="remove_dependency_option" value="Delete Option"></fieldset>').appendTo(scntDiv);
+        var curr_fieldset = $('.dependency_option_fieldset_'+ i); 
+             
+        url = "<?php echo $this->getUrl('assembleproduct/index/index'); ?>" + "?isAjax=true";
+           var productId = $("#productId").val(); 
+           var option_id = $(".final_primary_option_id").val();
+           var option_label = $(".final_primary_option").val();
+
+          $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",productId:productId,option_id:option_id,option_label:option_label}, function (res) {
+            $(curr_fieldset).append(res);
+              
+            });
+
+          i++;
+      }
+  }
+  });
+    $(scntDiv).on('click', '.remove_dependency_option', function(){ 
+        $(this).parent('fieldset').remove();
+    });
+    
+    $(".delete_dependency_option").click(function(event){
+      var mainProId = "<?php echo $productId; ?>" ; 
+      var parentDivId = $(this).parent('div').attr("id") ;
+      var currentproId = $("#"+parentDivId+" .dependency_primary_productId ").val();
+    
+
+     url = "<?php echo $this->getUrl('assembleproduct/index/singledelete'); ?>" + "?isAjax=true";
+           
+           $("#loading-mask").show();
+          $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",mainProId:mainProId, currentproId:currentproId}, function (res) {
+           $("#loading-mask").hide();
+            $("#messages").html(res);
+            window.setTimeout(function(){location.reload()},2000);
+              
+            }); 
+
+    });
+   
+    $(".edit_dependency_option").click(function(event){
+      var productId = $("#productId").val(); 
+      var option_id = $(".final_primary_option_id").val();
+      var option_label = $(".final_primary_option").val();
+      var mainProId = "<?php echo $productId; ?>" ; 
+      var parentDivId = $(this).parent('div').attr("id") ;
+      var dependencyparentDivId=  $("#"+parentDivId).parent('div').attr("id") ;
+      var currentproId = $("#"+parentDivId+" .dependency_primary_productId ").val();
+       divId = $('#'+dependencyparentDivId);
+       $(divId).empty();
+    $('<input type="button" class="dependency_option_back" value="Back">').prependTo(divId); 
+        var curr_fieldset = $('#'+dependencyparentDivId); 
+        
+             
+        url = "<?php echo $this->getUrl('assembleproduct/index/singleedit'); ?>" + "?isAjax=true";
+         $("#loading-mask").show();  
+        $.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",productId:productId,option_id:option_id,option_label:option_label,mainProId:mainProId, currentproId:currentproId}, function (res) {
+            $("#loading-mask").hide();
+            $(curr_fieldset).append(res);
+              
+            }); 
+
+    });
+
+$("#dependency_options_container").on('click', '.dependency_option_back', function(){ 
+        location.reload();
+        
+    });
+  
+
+
+
+    
+    
+    
+});
+
+
+    
+
+
+</script>
+
+
+
+    
+
+
+

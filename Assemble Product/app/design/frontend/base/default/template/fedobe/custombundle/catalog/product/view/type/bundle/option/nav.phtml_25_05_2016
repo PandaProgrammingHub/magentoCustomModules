@@ -1,0 +1,140 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+?>
+<?php $_product = $this->getProduct();
+ // echo "<pre>";
+ // print_r($_product->getData());
+ ?>
+<?php /* @var $this Mage_Bundle_Block_Catalog_Product_View_Type_Bundle_Option_Select */ ?>
+<?php $_option      = $this->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $this->_getDefaultValues(); ?>
+<?php $tierPriceHtml = ''; ?>
+     
+     <topmenu>
+     <div class="input-box">
+      <div class="row">
+         <div class="col-md-3 custom-bundle-options-menu-lable">
+            <label <?php if ($_option->getRequired()) echo ' class="required"' ?> ><?php echo $this->escapeHtml($_option->getTitle()) ?><?php if ($_option->getRequired()) echo '<em>*</em>' ?> </label>
+          </div>
+           <?php /** @var $_selection Mage_Catalog_Model_Product*/ ?>
+           <?php if ($this->_showSingle()): ?>
+              <?php echo $this->getSelectionTitlePrice($_selections[0]); ?>
+              <?php if ($_selections[0]->getSelectionCanChangeQty()): ?>
+                  <?php $tierPriceHtml = $this->getTierPriceHtml($_selections[0]); ?>
+              <?php endif; ?>
+              <input type="hidden" name="bundle_option[<?php echo $_option->getId() ?>]" value="<?php echo $_selections[0]->getSelectionId() ?>"/>
+          <?php else:?>
+            <div class="col-md-6 custom-bundle-options">
+            <input <?php if($_option->getPosition() != 0){ echo "disabled='disabled'"; } ?> placeholder="<?php echo $this->__('Choose a selection...') ?>" id="textbox-<?php echo $_option->getId()?>" class="textbox-<?php echo $_option->getPosition() ?>" type="text" onfocus="showBundelOptions(<?php echo $_option->getId() ?>)"   /><br>
+ 
+              <select size="10" onchange="bundle.changeSelection(this)" id="bundle-option-<?php echo $_option->getId() ?>" name="bundle_option[<?php echo $_option->getId() ?>]" class="multiselect bundle-option-<?php echo $_option->getId() ?><?php if ($_option->getRequired()) echo ' required-entry' ?> bundle-option-select bundle-option-select-<?php echo $_option->getPosition() ?> change-container-classname" style="display: none;" onfocusout="getBundelOptions(<?php echo $_option->getId() ?>)" data-position="<?php echo $_option->getPosition() ?>" data-product-id="<?php echo $_product->getId() ?>" data-required="<?php echo $_option->getRequired(); ?>" data-optionName="<?php echo $_option->getDefault_title(); ?>" <?php if($_option->getPosition() != 0){ echo "disabled='disabled'"; } ?> >
+                  <option value=""></option>
+              <?php foreach ($_selections as $_selection): ?>
+                  <?php if ($_selection->getSelectionCanChangeQty() && $this->_isSelected($_selection)): ?>
+                      <?php $tierPriceHtml = $this->getTierPriceHtml($_selection); ?>
+                  <?php endif; ?>
+                   <?php $str = $this->getSelectionTitlePrice($_selection, true); 
+                         $namePriceString =explode("&nbsp;",$str);
+                         echo $namePriceString[0];
+                         $currentproductprice = strip_tags($namePriceString[1]) ;
+                         
+                    ?> 
+                  <option value="<?php echo $_selection->getSelectionId() ?>" data-currentproductprice="<?php echo $currentproductprice ?>" data-currentproductid="<?php echo $_selection->getId() ?>" <?php if ($this->_isSelected($_selection)) echo ' selected="selected"' ?><?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>> <?php echo $namePriceString[0]; ?> 
+            </option>
+              
+              <?php endforeach; ?>
+              </select>
+          </div>
+          <?php endif; ?>
+          <div class="col-md-2">
+             <input style="width:100%;height:28px" disabled="disabled"  id="pricetextbox-<?php echo $_option->getPosition() ?>"/>
+          </div>
+          <div class="col-md-1">
+             <input onkeyup="bundle.changeOptionQty(this, event)" onblur="bundle.changeOptionQty(this, event)" <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?> id="bundle-option-<?php echo $_option->getId() ?>-qty-input" class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>" type="text" name="bundle_option_qty[<?php echo $_option->getId() ?>]" value="<?php echo $_defaultQty ?>"  />
+          </div>
+      </div>
+  </div>
+        <span id="bundle-option-<?php echo $_option->getId() ?>-tier-prices"> <?php echo $tierPriceHtml; ?></span>
+ 
+</topmenu>
+ 
+<script type="text/javascript">
+  /* jQuery(document).click(function(e) {
+    
+    if (jQuery(e.target).parents(".bundle-option-select").length === 0) {
+        jQuery(".bundle-option-select").hide();
+    }
+    
+}); */
+      jQuery(document).ready(function() {
+     
+       jQuery('#bundle-option-<?php echo $_option->getId()?>').filterByText(jQuery('#textbox-<?php echo $_option->getId()?>'), true);
+       jQuery('#custom-bundle-options-menu-<?php echo $_option->getId()?>').click(function(){
+          console.log('hello');
+       });
+
+       url = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/options'); ?>" + "?isAjax=true";
+           var productId = "<?php echo  $_product->getId() ?>"; 
+          jQuery.post(url, {form_key: "<?php echo Mage::getSingleton('core/session')->getFormKey() ?>",productId:productId}, function (res) {
+          var data = jQuery.parseJSON(res);
+                 jQuery.each(data, function(index, value) { 
+                     if( value['position']!= 0 ) {
+                       var textboxId= "#textbox-"+value['option_id'];
+                       var selectId = "#bundle-option-"+value['option_id'];
+                      if (jQuery(selectId).find("option:selected").length){
+                          jQuery(textboxId).removeAttr("disabled", "disabled");
+                          jQuery(selectId).removeAttr("disabled", "disabled"); 
+                       }
+                     // console.log(selectId+'=>'+jQuery(selectId).attr('data-required'));
+                    /* if (jQuery(selectId).attr('data-required') == 0){
+                          jQuery(textboxId).removeAttr("disabled", "disabled");
+                          jQuery(selectId).removeAttr("disabled", "disabled"); 
+                       } */
+                   }
+                   
+               
+                });
+             
+             
+              
+            });
+    });  
+  
+  function  showBundelOptions(id){
+  jQuery("#bundle-option-"+ id ).css("display","block"); 
+}  
+function getBundelOptions(id){
+  jQuery("#bundle-option-"+ id ).css("display","none"); 
+   var val = jQuery("#bundle-option-"+ id +"   option:selected").text();
+  jQuery("#textbox-"+ id ).val(val);
+}   
+ var dependencyFilterIndexUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/index'); ?>" + "?isAjax=true";
+ var dependencyFilterProductNamesUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/productname'); ?>" + "?isAjax=true";
+ var dependencyFilterOptionUrl = "<?php echo $this->getUrl('assembleproduct/dependencyfilter/options'); ?>" + "?isAjax=true";
+</script>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>  
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all> 
+            <admin>
+                <children>
+                    <fedobe>
+                        <title>Fedobe</title>
+                        <sort_order>89</sort_order>
+                        <children>
+                            <manufacturers>
+                                <title>Manufacturers</title>
+                                <sort_order>20</sort_order>
+                            </manufacturers>
+                        </children>
+                    </fedobe>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <manufacturers translate="title" module="manufacturers">
+                                        <title>Manufacturers Section</title>
+                                        <sort_order>19</sort_order>
+                                    </manufacturers>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

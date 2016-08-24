@@ -1,0 +1,19 @@
+<div class="store-locator">
+    <?php if ($this->isEnableCustomeSearch()): ?>
+        <div class="location-search-form">
+            <?php echo $this->getChildHtml('location.search'); ?>
+        </div>
+    <?php endif; ?>
+    <?php $_locations = $this->getLocations(); ?>
+    <?php if ($_locations): ?>
+        <?php if ($_locations->getData()): ?>
+            <div class="locations">
+                <?php echo $this->getChildHtml('location.map'); ?>
+            </div>
+        <?php else: ?>
+            <div>
+                No store found from your search terms!
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

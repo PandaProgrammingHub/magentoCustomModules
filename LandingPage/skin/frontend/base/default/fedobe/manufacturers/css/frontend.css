@@ -1,0 +1,119 @@
+.brand-page-filter-inner-wrapper{
+    padding:1%; 
+}
+.brand-page-full-grid,.brand-page-full-grid10-10{width:100%;}
+.brand-page-full-grid10-9{width:90%;}
+.brand-page-full-grid10-8{width:80%;}
+.brand-page-full-grid10-7{width:70%;}
+.brand-page-full-grid10-6{width:60%;}
+.brand-page-full-grid10-5{width:50%;}
+.brand-page-full-grid10-4{width:40%;}
+.brand-page-full-grid10-3{width:30%;}
+.brand-page-full-grid10-2{width:20%;}
+.brand-page-full-grid10-1{width:10%;}
+.brand-page-full-grid10-0{width:0%;}
+.brand-page-error{color:#d14836;font-size: 20px;font-weight: bold;text-align: center;}
+.fltlft{float:left;}
+.fltrht{float:right;}
+.clear,.clrbth{clear: both;}
+.brand-page-show-total{
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    /*line-height: 30px;*/
+    text-align: center;
+    text-transform: uppercase;
+    word-spacing: 0.1em;
+}
+.brand-page-tab{
+    height: 55px;
+    letter-spacing: 0.1em;
+    line-height: 55px;
+    text-align: center;
+    text-transform: uppercase;
+    word-spacing: 0.1em;
+    cursor: pointer;
+}
+.brand-extra-style{
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+.brand-page-alpha-tab{
+    height: 35px;
+    margin: 0 0 2px 2px;
+    padding: 0 10px;
+    line-height: 35px;
+    width: 12px;
+    cursor: pointer;
+    box-sizing:initial;
+}
+.brand-page-autocomplete-filter{
+    width:100%;height:50px
+}    
+
+.brand-page-detials-wrapper{margin-top:4%;}
+.brand-page-manufacturers{
+    margin-right: 1%;
+    position: relative;
+    padding-bottom: 1%;
+}
+.brand-page-manufacturers a{
+     display: inline-block;
+}
+.brand-page-sticker{
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.brand-page-image span{
+    width: 100px;display:inline-block;text-align:center;  
+}
+.fedobe_manufacture_image_wrapper{
+    position:relative;
+}
+.fedobe_search_result_sticker{
+    position:absolute;
+    top:0;
+    left:0;
+}
+.fedobe_manufacture_image_wrapper_padding{
+    padding:4%;
+    text-align: center;
+}
+.fedobe_search_result_sticker_image{
+    width: 100px;
+    height: 60px;
+}
+.fedobe_search_result_manufacture_desc_inner_wrapper{
+    padding-left: 3%; 
+}
+.fedobe_custom_search_manufacture_wrapper,.brand_infromations_top_section{
+    background-color: #F2F2F2;
+}
+.fedobe_category_brand_image img,.fedobe_search_result_sticker_image{
+    margin: 0 auto;
+}
+.fedobe_category_page_brand_wrapper_inner,.brand_infromations_top_section a{
+    text-align: center;
+}
+.brand_infromations_bottom_section{
+    margin-top: 3%;
+}
+.fedobe_brand_related_addtocart .btn-cart{
+    min-width: 120px !important;
+}
+.brand-page-image > img {
+    width: 100%;
+}
+
+/*Here for responsive design*/ 
+@media screen and (max-width: 400px)  {
+    .brand-page-full-grid10-5 {
+        float: none !important;
+        margin-top: 2%;
+        width: 100%;
+    }
+    .show-all-brands-again{line-height: 25px !important;}
+    .brand-page-image span{
+        width:auto;
+    }
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_Assembleproduct>
+            <version>0.0.1</version>
+        </Fedobe_Assembleproduct>
+    </modules>
+     <frontend>
+        <routers>
+            <fedobe_assembleproduct>
+                <use>standard</use>
+                <args>
+                    <module>Fedobe_Assembleproduct</module>
+                    <frontName>assembleproduct</frontName>
+                </args>
+            </fedobe_assembleproduct>
+        </routers>  
+    </frontend> 
+       <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <assembleproduct after="Mage_Adminhtml">Fedobe_Assembleproduct_Adminhtml</assembleproduct>
+                    </modules>
+                   <frontName>assembleproduct</frontName>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+ <adminhtml>
+       <layout>
+            <updates>
+                <fedobe_assembleproduct>
+                    <file>fedobe/assembleproduct/assembleproduct.xml</file>
+                </fedobe_assembleproduct>
+            </updates>
+        </layout>
+
+      <events>
+          <adminhtml_assembleproduct_save_after>
+                <observers>
+                    <bundleProductOptionPostionUpdate>
+                         <type>singleton</type>
+                        <class>Fedobe_Assembleproduct_Model_Observer</class>
+                        <method>bundleProductOptionPostionUpdate</method>
+                    </bundleProductOptionPostionUpdate>
+                </observers>
+            </adminhtml_assembleproduct_save_after> 
+
+        </events>
+    
+</adminhtml>  
+   
+    <global>
+        <blocks>
+            <fedobe_assembleproduct>
+                <class>Fedobe_Assembleproduct_Block</class>
+            </fedobe_assembleproduct>
+        </blocks>
+        <helpers>
+            <fedobe_assembleproduct>
+                <class>Fedobe_Assembleproduct_Helper</class>
+            </fedobe_assembleproduct>
+        </helpers>
+        <models>
+            <fedobe_assembleproduct>
+                <class>Fedobe_Assembleproduct_Model</class>
+                <resourceModel>fedobe_assembleproduct_resource</resourceModel>
+            </fedobe_assembleproduct>
+            <fedobe_assembleproduct_resource>
+                <class>Fedobe_Assembleproduct_Model_Resource</class>
+                <entities>
+                    <primaryoption>
+                         <table>fedobe_assembleproduct_primaryoption</table>
+                    </primaryoption>
+                    <dependencyoption>
+                         <table>fedobe_assembleproduct_dependencyoption</table>
+                    </dependencyoption>
+                </entities>
+            </fedobe_assembleproduct_resource>
+        </models>
+        <resources>
+            <fedobe_assembleproduct_setup>
+                <setup>
+                    <module>Fedobe_Assembleproduct</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </fedobe_assembleproduct_setup>
+            <fedobe_assembleproduct_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </fedobe_assembleproduct_write>
+            <fedobe_assembleproduct_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </fedobe_assembleproduct_read>
+        </resources>
+      
+    </global>
+</config>

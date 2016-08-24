@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+	<config>
+		<!-- General Module Information -->
+		<modules>
+			<Fedobe_Customproducttype>
+				<version>0.1.0</version>
+			</Fedobe_Customproducttype>
+		</modules>
+		<adminhtml>
+			<translate>
+				<modules>
+					<Fedobe_Customproducttype>
+					<files>
+						<default>Fedobe_Customproducttype.csv</default>
+					</files>
+					</Fedobe_Customproducttype>
+				</modules>
+			</translate>
+		</adminhtml>
+		<!-- End of general Information -->
+
+		<global>
+		<!-- WE MUST DEFINE THE MODEL DIRECTORY FOR OUR MODULE -->
+			<models>
+				<customproducttype>
+					<class>Fedobe_Customproducttype_Model</class>
+				</customproducttype>
+			</models>
+
+		<!--  HERE WE DEFINE THE PRODUCT TYPE, ITS LABEL, AND ANY MODELS IT USES
+		      NOTICE THAT I AM DECLARING A PRODUCT PRICE, MOST PRODUCT TYPES I'D ASSUME WOULD HAVE A 
+		      CUSTOM PRICING STRUCTURE.  YOU COULD LEAVE THAT LINE OUT IF YOU WISH. -->
+			<catalog>
+				<product>
+					<type>
+						<assemble translate="label" module="customproducttype">
+							<label>Assemble Product</label>
+							<model>customproducttype/product_type_assemble</model>
+							<price_model>customproducttype/product_price</price_model> <!-- OPTIONAL -->
+							<is_qty>1</is_qty>
+						</assemble>
+					</type>
+				</product>
+			</catalog>
+
+
+		<!-- HELPER CLASS IS NEEDED, OR MAGENTO WILL COMPLAIN -->
+			<helpers>
+				<customproducttype>
+					<class>Fedobe_Customproducttype_Helper</class>
+				</customproducttype>
+			</helpers>
+		</global>
+	</config>

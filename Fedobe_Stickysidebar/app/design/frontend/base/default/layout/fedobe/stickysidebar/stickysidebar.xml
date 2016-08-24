@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<layout>
+	 <default>
+          <reference name="left">
+            <block type="stickysidebar/stickyblock"  name="stickysidebar.stickyblockr" template="fedobe/stickysidebar/stickysidebar.phtml" ifconfig="stickysidebar/general/layout_2Col_left" />
+          </reference> 
+       <reference name="right">
+            <block type="stickysidebar/stickyblock"  name="stickysidebar.stickyblockr" template="fedobe/stickysidebar/stickysidebar.phtml" ifconfig="stickysidebar/general/layout_2Col_right" />
+      	</reference>
+     
+    
+    </default>
+       
+      <catalog_product_view translate="label">
+        <label>Catalog Product View (Any)</label>
+        <!-- Mage_Catalog -->
+        <reference name="root">
+            
+            <action method="setTemplate" ifconfig="stickysidebar/general/layout_2Col_left" ><template>page/2columns-left.phtml</template></action>
+           
+            <action method="setTemplate" ifconfig="stickysidebar/general/layout_2Col_right"><template>page/2columns-right.phtml</template></action>
+
+        </reference>
+        
+        </catalog_product_view>
+</layout>
+

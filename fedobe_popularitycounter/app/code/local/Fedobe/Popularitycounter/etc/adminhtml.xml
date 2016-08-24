@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <popularitycounter translate="title" module="popularitycounter">
+                                            <title>Popularity Counter</title>
+                                            <sort_order>10</sort_order>
+                                        </popularitycounter>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+ </config>

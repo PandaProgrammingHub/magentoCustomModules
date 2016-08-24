@@ -1,0 +1,92 @@
+<config>
+    <modules>
+        <Fedobe_Popularitycounter>
+            <version>0.0.1</version>
+        </Fedobe_Popularitycounter>
+    </modules>
+    
+    <frontend>
+        <routers>
+            <popularitycounter>
+                <use>standard</use>
+                <args>
+                    <module>Fedobe_Popularitycounter</module>
+                    <frontName>popularitycounter</frontName>
+                </args>
+            </popularitycounter>
+        </routers>  
+        <layout>
+            <updates>
+                <popularitycounter>
+                    <file>fedobe/popularitycounter/popularitycounter.xml</file>
+                </popularitycounter>
+            </updates>
+        </layout>
+    </frontend>
+
+     <default>
+        <popularitycounter>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </popularitycounter>
+    </default>
+    
+    <global>
+
+        <blocks>
+            <popularitycounter>
+                <class>Fedobe_Popularitycounter_Block</class>
+            </popularitycounter>
+        </blocks>
+     
+         <helpers>
+            
+            <popularitycounter>
+                <class>Fedobe_Popularitycounter_Helper</class>
+            </popularitycounter>
+            
+        </helpers>
+        
+        
+          
+        <models>
+            <popularitycounter>
+                <class>Fedobe_Popularitycounter_Model</class>
+                <resourceModel>popularitycounter_resource</resourceModel>
+            </popularitycounter>
+            <popularitycounter_resource>
+                <class>Fedobe_Popularitycounter_Model_Resource</class>
+                <entities>
+                    <popularitycountervotes>
+                         <table>fedobe_popularitycounter_votes</table>
+                    </popularitycountervotes>
+                    <popularitycounterusers>
+                         <table>fedobe_popularitycounter_users</table>
+                    </popularitycounterusers>
+                    
+                </entities>
+            </popularitycounter_resource>
+        </models>
+        <resources>
+            <popularitycounter_setup>
+                <setup>
+                    <module>Fedobe_Popularitycounter</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </popularitycounter_setup>
+            <popularitycounter_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </popularitycounter_write>
+            <popularitycounter_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </popularitycounter_read>
+        </resources>  
+    </global>
+</config>

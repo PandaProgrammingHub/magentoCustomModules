@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/repos/olovesm/!svn/ver/391/trunk/public_html/app/code/local/Innoswift/StoreLocator/sql/storelocator_setup
+END
+mysql4-upgrade-1.0.0-1.1.0.php
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/repos/olovesm/!svn/ver/374/trunk/public_html/app/code/local/Innoswift/StoreLocator/sql/storelocator_setup/mysql4-upgrade-1.0.0-1.1.0.php
+END
+mysql4-upgrade-1.1.0-1.2.0.php
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/repos/olovesm/!svn/ver/374/trunk/public_html/app/code/local/Innoswift/StoreLocator/sql/storelocator_setup/mysql4-upgrade-1.1.0-1.2.0.php
+END
+mysql4-install-1.0.0.php
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/repos/olovesm/!svn/ver/374/trunk/public_html/app/code/local/Innoswift/StoreLocator/sql/storelocator_setup/mysql4-install-1.0.0.php
+END
+mysql4-upgrade-1.2.0-1.2.1.php
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/repos/olovesm/!svn/ver/391/trunk/public_html/app/code/local/Innoswift/StoreLocator/sql/storelocator_setup/mysql4-upgrade-1.2.0-1.2.1.php
+END

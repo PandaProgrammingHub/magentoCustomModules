@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <menu>
+        <customer translate="title" module="customer">
+            <children>
+                <customercollection translate="title" module="customercollection">
+                    <title>Customer Collection</title>
+                    <sort_order>120</sort_order>
+                    <children>
+                        <latest5 translate="title">
+                            <title>Latest 5 Customers</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/customercollection_index/latest5</action>
+                        </latest5>
+                        <notconfirmed translate="title">
+                            <title>Not confirmed Customers</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/customercollection_index/notconfirmed</action>
+                        </notconfirmed>
+                        <gmailaccount translate="title">
+                            <title>Customers with Gmail account</title>
+                            <sort_order>30</sort_order>
+                            <action>adminhtml/customercollection_index/gmailaccount</action>
+                        </gmailaccount>   
+                        <largestamount translate="title">
+                            <title>Customer with largest amount</title>
+                            <sort_order>40</sort_order>
+                            <action>adminhtml/customercollection_index/largestamount</action>
+                        </largestamount>
+                        <latest5order translate="title">
+                            <title>Latest 5 Customers who purchased something</title>
+                            <sort_order>50</sort_order>
+                            <action>adminhtml/customercollection_index/latest5order</action>
+                        </latest5order>
+                    </children>                    
+                </customercollection>
+            </children>
+         </customer>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <customer translate="title" module="customer">
+                        <children>
+                            <customercollection translate="title" module="customercollection">
+                                <title>Customer Collection</title>
+                                <sort_order>120</sort_order>
+                                <children>
+                                    <latest5 translate="title">
+                                        <title>Latest 5 Customers</title>
+                                        <sort_order>10</sort_order>
+                                        <action>adminhtml/customercollection_index/latest5</action>
+                                    </latest5>
+                                    <notconfirmed translate="title">
+                                        <title>Not confirmed Customers</title>
+                                        <sort_order>20</sort_order>
+                                        <action>adminhtml/customercollection_index/notconfirmed</action>
+                                    </notconfirmed>
+                                    <gmailaccount translate="title">
+                                        <title>Customers with Gmail account</title>
+                                        <sort_order>30</sort_order>
+                                        <action>adminhtml/customercollection_index/gmailaccount</action>
+                                    </gmailaccount>   
+                                    <largestamount translate="title">
+                                        <title>Customer with largest amount</title>
+                                        <sort_order>40</sort_order>
+                                        <action>adminhtml/customercollection_index/largestamount</action>
+                                    </largestamount>
+                                    <latest5order translate="title">
+                                        <title>Latest 5 Customers who purchased something</title>
+                                        <sort_order>50</sort_order>
+                                        <action>adminhtml/customercollection_index/latest5order</action>
+                                    </latest5order>
+                                </children>                    
+                            </customercollection>
+                        </children>
+                     </customer>
+               </children>
+           </admin>
+       </resources>
+    </acl>
+</config>
+

@@ -1,0 +1,34 @@
+<config>
+    <menu>
+        <fedobe translate="title" module="fedobe_assembleproduct">
+            <title>Fedobe</title>
+            <sort_order>31</sort_order>
+            <children>
+                <assembleproduct>
+                    <title>Manage Assemble Product</title>
+                    <sort_order>6</sort_order>
+                    <action>adminhtml/assembleproduct/index</action>
+                </assembleproduct>
+            </children>
+        </fedobe>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>                
+                    <fedobe translate="title" module="fedobe_assembleproduct">
+                        <title>Fedobe Assemble Product</title>
+                        <sort_order>8</sort_order>
+                        <children>
+                            <assembleproduct>
+                                <title>Assemble Product</title>
+                            </assembleproduct>
+                        </children>
+                    </fedobe>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    
+</config> 

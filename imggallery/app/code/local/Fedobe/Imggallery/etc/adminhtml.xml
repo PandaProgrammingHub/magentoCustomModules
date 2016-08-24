@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <imggallery module="imggallery">
+            <title>Image Gallery</title>
+            <sort_order>99999</sort_order>
+            <children>
+                
+                <imgdetails module="imggallery">
+                    <title>Manage Images</title>
+                    <action>imggallery/adminhtml_image</action>
+                </imgdetails>
+            </children>
+        </imggallery>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <imggallery translate="label" module="imggallery">
+                        <title>Image Gallery(amit)</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            
+                            <imgdetails>
+                                <title>Manage Image</title>
+                                <sort_order>2</sort_order>
+                            </imgdetails>
+                        </children>
+                    </imggallery>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <imggallery translate="label" module="imggallery">
+                                        <title>Image Gallery(amit)</title>
+                                    </imggallery>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

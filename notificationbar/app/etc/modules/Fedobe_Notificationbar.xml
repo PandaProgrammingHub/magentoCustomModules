@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>       
+	    <Fedobe_Notificationbar>
+	        <active>true</active>
+            <codePool>community</codePool>
+	    </Fedobe_Notificationbar>  
+    </modules>
+</config>

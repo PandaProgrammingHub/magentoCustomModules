@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+ 
+    <PRODUCT_TYPE_bundle translate="label" module="bundle">
+      <reference name="head">
+            
+             
+            <action method="removeItem"><type>skin_js</type><name>js/bundle.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/fedobe/custombundle/custombundle.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/fedobe/custombundle/style.css</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/fedobe/custombundle/main.js</name></action>
+          <!-- <action method="addItem"><type>skin_js</type><name>js/fedobe/custombundle/modernizr.js</name></action> -->
+             
+        </reference>
+      <!--   <reference name="header">
+           <remove name="catalog.topnav"/>
+           
+           <reference name="top.menu">
+                <block type="custombundle/catalog_product_view_type_bundle" name="product.info.bundle.options" as="type_bundle_options" template="bundle/catalog/product/view/type/bundle/options.phtml">
+                    <action method="addRenderer"><type>nav</type><block>custombundle/catalog_product_view_type_bundle_option_nav</block></action>
+                </block>
+           </reference>
+
+        </reference>-->
+
+    
+            <reference name="product.info">
+                  <action method='setTemplate'><template>fedobe/custombundle/catalog/product/view.phtml</template></action>
+                  
+            </reference>
+ 
+
+        <reference name="product.info.options.wrapper">
+            <block type="bundle/catalog_product_view_type_bundle" name="product.info.bundle.options" as="type_bundle_options" template="bundle/catalog/product/view/type/bundle/options.phtml">
+                <action method="addRenderer"><type>select</type><block>bundle/catalog_product_view_type_bundle_option_select</block></action>
+                <action method="addRenderer"><type>multi</type><block>bundle/catalog_product_view_type_bundle_option_multi</block></action>
+                <action method="addRenderer"><type>radio</type><block>bundle/catalog_product_view_type_bundle_option_radio</block></action>
+                <action method="addRenderer"><type>checkbox</type><block>bundle/catalog_product_view_type_bundle_option_checkbox</block></action>
+                <action method="addRenderer"><type>nav</type><block>custombundle/catalog_product_view_type_bundle_option_nav</block></action>    
+            </block>
+            <action method="insert"><block>product.info.bundle.options</block></action>
+        </reference>
+
+    </PRODUCT_TYPE_bundle>
+
+</layout>

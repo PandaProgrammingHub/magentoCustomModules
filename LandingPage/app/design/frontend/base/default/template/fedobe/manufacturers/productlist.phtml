@@ -1,0 +1,57 @@
+<?php echo $this->getChildHtml('child' . $this->getProduct()->getId()) ?>
+<!--Here let's check whether extension enabled-->
+<?php
+$is_enabled_settings = (bool) Mage::getStoreConfig('manufacturers/general/is_enable');
+$display_logo = (bool) Mage::getStoreConfig('manufacturers/category_page_brand_logo_settings/show_brand_image_logo_in_category_page_item');
+$attribute_to_select = trim(Mage::getStoreConfig('manufacturers/general/attr_code'));
+$attribute_to_select = ($attribute_to_select) ? $attribute_to_select : 'manufacturer';
+$attr_id = $this->getProduct()->getData($attribute_to_select);
+if (($is_enabled_settings && $display_logo) && $attr_id)  :
+    ?>
+<?php
+    $display_type = Mage::getStoreConfig('manufacturers/category_page_brand_logo_settings/category_page_brand_display_type');
+    switch ($display_type) {
+        case 'image_text':
+            $show_image = TRUE;
+            $only_text = TRUE;
+            break;
+        case 'image':
+            $show_image = TRUE;
+            break;
+        case 'text':
+            $only_text = TRUE;
+            break;
+    }
+    $block = $this->getLayout()->createBlock('manufacturers/searchresult');
+    $manufacturer = $block->getManufacturerDetails($attr_id);
+    $manufacturer = $manufacturer[$attr_id];
+    $img_url = Mage::helper('attributeSplash/image')->getImageUrl($manufacturer['thumbnail']);
+    $brandpagemodel = Mage::getModel('attributeSplash/page')->load($manufacturer['page_id']);
+    $link = $brandpagemodel->getUrl();
+    if(!$link)
+        $link = Mage::helper('cms')->getPageTemplateProcessor()->filter('{{store url="catalogsearch/advanced/result" _query="' . $attribute_to_select . '=' . $attr_id . '"}}');
+?>
+<div class="fedobe_category_page_brand_wrapper">
+    <div class="fedobe_category_page_brand_wrapper_inner">
+        <a href="<?php echo $link;?>" title="<?php echo $this->__($manufacturer['short_description']);?>">
+        <?php if($show_image):?>
+        <?php 
+            $img_width = Mage::getStoreConfig('manufacturers/category_page_brand_logo_settings/category_page_brand_image_width');
+            $img_width = ($img_width) ? $img_width  : 60;
+            $img_height = Mage::getStoreConfig('manufacturers/category_page_brand_logo_settings/category_page_brand_image_height');
+            $img_height = ($img_height) ? $img_height : 35;
+        ?>
+            <div class="fedobe_category_brand_image">
+                <img width="<?php echo $img_width;?>px;" height="<?php echo $img_height;?>px;" src="<?php if($img_url):?><?php echo $img_url;?><?php else:?><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'manufacturers/noimage.jpg';?><?php endif;?>" alt="<?php echo $this->__($manufacturer['name']); ?>"  />
+            </div>
+        <?php endif; ?>
+        <?php if($only_text):?>
+        <div class="fedobe_category_brand_text">
+            <span><?php echo $this->__($manufacturer['name']) ?></span>
+        </div>
+        <?php endif; ?>
+        </a>
+    </div>
+</div>
+<br/>
+<?php endif; ?>

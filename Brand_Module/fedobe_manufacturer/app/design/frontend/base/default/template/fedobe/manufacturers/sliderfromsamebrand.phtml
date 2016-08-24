@@ -1,0 +1,173 @@
+<?php
+$all_params = $this->getData();
+$page_size = ($all_params['productquantity']) ? $all_params['productquantity'] : 10;
+$products = $this->getSameBrandCollection($page_size);
+if (!empty($products)):
+    ?>
+    <div class="brand_infromations_bottom_section brand-page-full-grid10-10">
+        <?php if ($all_params['relatedtitle']): ?>
+            <h2><?php echo $this->__($all_params['relatedtitle']); ?></h2>
+        <?php endif; ?>
+        <div class="fedobe_brand_product_slider">
+            <?php
+            $sliderClasses = '';
+            $imgClasses = '';
+            $number = $page_size;
+            $isResponsive = true; //param: is_responsive
+            $breakpoints = $all_params['breakkpoints']; //param: breakpoints
+            if ($breakpoints === NULL) { //Param not set
+                $breakpoints = '[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]'; //Set default breakpoints
+            }
+            $pagination = $all_params['pagination']; //param: pagination
+            //Slider timeout. Set to enable automatic scrolling.
+            $timeout = $all_params['timeout']; //param: timeout
+            $timeout = ($timeout) ? $timeout : 2000;
+            //Number of items that should move on scrolling
+            $move = 1; //param: move
+            //If set, slider will loop.
+            $loop = 1; //param: loop
+            //Scrolling speed
+            $speed = 200;
+            //Speed (automatic scrolling / pagination)
+            $autoSpeed = 500;
+            //Pause slider on mouse hover
+            $pause = $all_params['pauseonhover'];
+            //Lazy loading
+            $lazy = true;
+            //Slider classes
+            if ($isResponsive) {
+                $sliderClasses .= ' itemslider-responsive';
+            }
+            $sliderId = "fedobe_brands_product_slider";
+            $hover_effect = $all_params['hovereffect'];
+            ?>
+            <?php
+            //If lazy loading enabled
+            if ($lazy) {
+                $srcAttribute = 'data-src';
+                $imgClasses = 'class="lazyOwl"';
+            } else {
+                $srcAttribute = 'src';
+                $imgClasses = '';
+            }
+            ?> 
+            <div class="itemslider-wrapper brand-slider-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1 slider-pagination1-centered">
+                <div id="<?php echo $sliderId; ?>" class="itemslider<?php if ($sliderClasses) echo $sliderClasses; ?> brand-slider">
+                    <?php
+                    $i = 1;
+                    foreach ($products as $product):
+                        ?>
+                        <?php
+                        $brandPageUrl = $product->getProductUrl();
+                        $productname = $product->getName();
+                        $brandImageUrl = Mage::helper('catalog/image')->init($product, 'thumbnail')->resize(200,150);
+                        $brandDetailsHtml = '';
+                        //If brand is a link (URL exists), image's "title" tag has to be empty (otherwise it will override link's "title" tag)
+                        $imgTitle = "title=\"{$productname}\"";
+                        //Build image tag
+                        $brandDetailsHtml = "<div class='fedobe_brand_related_productimage'><img {$imgClasses} {$srcAttribute}=\"{$brandImageUrl}\" alt=\"{$imgTitle}\" {$imgTitle}/></div>";
+                        
+                        if($all_params['show_productname'])
+                            $brandDetailsHtml .="<div class='fedobe_brand_related_productname'>{$productname}</div>";
+                        if($all_params['show_productprice']){
+                            $productBlock = $this->getLayout()->createBlock('catalog/product_price');
+                            $price = $productBlock->getPriceHtml($product);
+                            $brandDetailsHtml .="<div class='fedobe_brand_related_productname'>{$price}</div>";
+                        }
+                        if($all_params['show_productreview']){
+                            $review = "";
+                            $storeId = Mage::app()->getStore()->getId();
+                            $summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->load($product->getId());
+                                if ($summaryData['rating_summary']){
+                            $review =<<<REVIEW
+                            <div class="ratings">
+                            <div class="rating-box">
+                            <div class="rating" style="width:{$summaryData['rating_summary']}%"></div>
+                            </div>
+                            </div>
+REVIEW;
+                            }
+                            if($review)
+                            $brandDetailsHtml .="<div class='fedobe_brand_related_review'>{$review}</div>";
+                        }
+                        if($all_params['show_productaddtocart']){
+                            if($product->isSaleable()){
+                                $addbtn = $this->__('Add to Cart');
+                                $addtourl = Mage::helper('checkout/cart')->getAddUrl($product);
+                                $addtocart =<<<ADDTO
+                                        <button type="button" title="$addbtn" class="button btn-cart" onclick="setLocation('$addtourl')"><span><span>$addbtn</span></span></button>
+ADDTO;
+                            }else{
+                                $outofstock  = $this->__('Out of stock');
+                                $addtocart =<<<ADDTO
+                                        <p class="availability out-of-stock"><span>$outofstock</span></p>
+ADDTO;
+                            }
+                            $brandDetailsHtml .="<div class='fedobe_brand_related_addtocart'>{$addtocart}</div>";
+                        }
+                        
+                        ?>
+                        <?php if ($brandDetailsHtml): ?>
+                            <div class="item">
+                                    <a class="fade-on-hover" href="<?php echo $brandPageUrl; ?>"><?php echo $brandDetailsHtml; ?></a>
+                            </div>
+                        <?php endif; ?>
+                        <?php
+                        if ($i++ == $number)
+                            break;
+                    endforeach;
+                    ?>
+                </div> <!-- end: itemslider -->
+            </div> <!-- end: itemslider-wrapper -->
+            <script type="text/javascript">
+                //<![CDATA[
+                jQuery(function($) {
+                        var owl = $('#<?php echo $sliderId; ?>');
+                            owl.owlCarousel({
+                                <?php if ($lazy): ?>
+                                    lazyLoad: true,
+                                <?php endif; ?>
+                                <?php if (!$isResponsive): ?>
+                                    responsive: false,
+                                    items:<?php echo $showItems; ?>,
+                                <?php else: ?>
+                                    itemsCustom: [ <?php echo $breakpoints; ?> ],
+                                    responsiveRefreshRate: 50,
+                                <?php endif; ?>
+                                <?php if ($speed): ?>
+                                    slideSpeed: <?php echo $speed; ?>,
+                                <?php endif; ?>
+                                <?php if ($autoSpeed): ?>
+                                    paginationSpeed: <?php echo $autoSpeed; ?>,
+                                <?php endif; ?>
+                                <?php if ($move !== 1): ?>
+                                    scrollPerPage: true,
+                                <?php endif; ?>
+                                <?php if ($timeout): ?>
+                                    autoPlay: <?php echo $timeout; ?>,
+                                <?php endif; ?>
+                                <?php if ($pause): ?>
+                                    stopOnHover: true,
+                                <?php endif; ?>
+                                <?php if ($loop): ?>
+                                    rewindNav: true,
+                                    rewindSpeed: 600,
+                                <?php else: ?>
+                                    rewindNav: false,
+                                <?php endif; ?>
+                                <?php if ($pagination): ?>
+                                    pagination: true,
+                                    paginationSpeed: 600,
+                                <?php else: ?>
+                                    pagination: false,
+                                <?php endif; ?>
+                                navigation: true,
+                                   navigationText: false
+
+                                }); //end: owl
+                            });
+                            //]]>
+            </script>
+        </div>
+    </div>
+<?php endif; ?>

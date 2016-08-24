@@ -1,0 +1,706 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <avatar_modules translate="label">
+            <label>Avatar Settings</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>5</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Product Carousel Options</label>
+                    <comment>
+                                <![CDATA[
+                                <div class="pro-fedobe-info">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="pro-fedobe-logo">
+                                                    <img id="pro-fedobe-logo" src="" />
+                                                    <script>$('pro-fedobe-logo').src = SKIN_URL + "images/fedobe/logo.png";</script>
+                                                </div>
+                                                <div class="social-icons">
+                                                    <a href="https://www.facebook.com/fedobe" style="background-position:-60px 0; width:30px; height:30px;" class="icon1-class" title="Facebook" target="_blank"><img class="facebook" id="facebook" src="" /></a>
+                                                    <a href="http://twitter.com/fedobe" style="background-position:0 0; width:30px; height:30px;" class="icon2-class" title="Twitter" target="_blank"><img class="twitter" id="twitter" src="" /></a>
+                                                    <a href="skype:support.fedobe?chat" style="background-position:-150px -30px; width:30px; height:30px;" class="icon3-class" title="Skype" target="_blank"><img class="skype" id="skype" src="" /></a>
+                                                    <script>$('facebook').src = SKIN_URL + "images/fedobe/facebook.png";</script>
+                                                    <script>$('twitter').src = SKIN_URL + "images/fedobe/twitter.png";</script>
+                                                    <script>$('skype').src = SKIN_URL + "images/fedobe/skype.png";</script>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li>
+                                                        <div><strong><a href="dev.fedobe.org/avatar/category-carousel/" target="_blank">Product Carousel Demo</a></strong></div>
+                                                    </li>
+                                                    <li>
+                                                        <div><strong><a href="#" target="_blank">Product Carousel Documentation</a></strong></div>
+                                                    </li>
+                                                    <li>
+                                                        <div><strong><a href="#" target="_blank">Product Carousel Store</a></strong></div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <ul>
+                                                        <li>
+                                                            <strong><a href="mailto:support@fedobe.com?subject=Fedobe+Store+Suppor" target="_blank">Email Support</a></strong>
+                                                        </li>
+                                                        <li>
+                                                            <strong><a href="http://support.fedobe.com" target="_blank">Helpdesk Support</a></strong>
+                                                        </li>
+                                                        <li>
+                                                            <strong><a href="skype:support.fedobe?chat" target="_blank">Skype Support</a></strong>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <ul>
+                                                        <li>
+                                                            <strong><a href="http://fedobe.com/magento/" target="_blank">Fedobe Magento Services</a></strong>
+                                                        </li>
+                                                        <li>
+                                                            <strong><a href="http://store.fedobe.com/" target="_blank">Fedobe Magento Store</a></strong>
+                                                        </li>
+                                                        <li>
+                                                             <strong><a href=" http://fedobe.com/contacts/" target="_blank">Request A Quote</a></strong>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <style type="text/css">
+                                    .pro-fedobe-logo #pro-fedobe-logo{
+                                        width: 200px;
+                                        height: 54px;
+                                        background-size: 200px;
+                                    }
+                                    .pro-fedobe-info{
+                                        background: #EAF0EE;
+                                        border: 1px solid #CCCCCC;
+                                        margin-bottom: 10px;
+                                        padding: 5px 0 5px 5px;
+                                    }
+                                    .social-icons a img.facebook {
+                                        background-color: #9e9e9e;
+                                        border-radius: 50%;
+                                        padding: 6px 10px;
+                                    }
+                                    .social-icons a img.skype {
+                                        background-color: #9e9e9e;
+                                        border-radius: 50%;
+                                        padding: 6px 8px;
+                                    }
+                                    .social-icons a img.twitter {
+                                        background-color: #9e9e9e;
+                                        border-radius: 50%;
+                                        padding: 6px 10px;
+                                    }
+                                    .social-icons img.facebook:hover {
+                                        background-color: #3c599b;
+                                    }
+                                    .social-icons img.twitter:hover {
+                                        background-color: #1ca8e3;
+                                    }
+                                    .social-icons img.skype:hover {
+                                        background-color: #4975b6;
+                                    }
+                                    .pro-fedobe-info table td{
+                                        width:25%;
+                                        padding: 0 15px;
+                                    }
+                                </style>
+                                ]]>
+                    </comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <general_option_design_heading translate="label">
+                            <label><![CDATA[<div style="text-align:center;margin: 20px 0 0 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GENERAL SETTINGS<div style="position: absolute;"><img id="general_option_block" src="" alt="" border="0" /></div>&nbsp;<script>$('general_option_block').src = SKIN_URL + "images/fedobe/title_red.png";</script></div>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </general_option_design_heading>
+                        <enable_module translate="label">
+                            <label>Enable Module</label>
+                            <comment>Select to enable/disable module.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_module>
+                        
+                        <global_setting translate="label">
+                            <label>Module Design Setting</label>
+                            <comment>Choose Default to use Global Style.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_productsettings</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </global_setting>
+                        <product_option_design_heading translate="label">
+                            <!--<label>Product Options</label>-->
+                            <label><![CDATA[<div style="text-align:center;margin: 20px 0 0 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BASIC SETTINGS<div style="position: absolute;"><img id="magepal_block" src="" alt="" border="0" /></div>&nbsp;<script>$('magepal_block').src = SKIN_URL + "images/fedobe/title_red.png";</script></div>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_option_design_heading>
+                        <product_option_heading translate="label">
+                            <label>Product Options</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_option_heading>
+                        <product_type translate="label">
+                            <label>Sort By</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_producttypes</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_type>
+<!--                        <product_category translate="label">
+                            <label>Product Category</label>
+                            <comment>Enter the category id to show from specific category. Leave blank to show from any category.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><product_type separator=",">recently-added,best-seller</product_type></depends>
+                        </product_category>-->
+                        <related_product_sku translate="label">
+                            <label>Product Sku Value</label>
+                            <comment>Enter the product sku value whose related products you want to show.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>required-entry</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><product_type>related</product_type></depends>
+                        </related_product_sku>
+                        <show_product_name translate="label">
+                            <label>Show Product Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_name>
+                        <show_product_sku translate="label">
+                            <label>Show Product Sku</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_sku>
+                        <show_product_price translate="label">
+                            <label>Show Product Price</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_price>
+                        <show_product_addtocart translate="label">
+                            <label>Show Add To Cart Button</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_addtocart>
+                        <show_product_label translate="label">
+                            <label>Show Product Label</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_product_label>
+                        <product_label translate="label">
+                            <label>Product Label</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>62</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_label>
+                        <show_discount_percentage translate="label">
+                            <label>Show Discount Percentage</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_discount_percentage>
+                        
+                        <advance_design_heading translate="label">
+                            <label><![CDATA[<div style="text-align:center;margin: 20px 0 0 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADVANCE SETTINGS<div style="position: absolute;"><img id="advance_design_block" src="" alt="" border="0" /></div>&nbsp;<script>$('advance_design_block').src = SKIN_URL + "images/fedobe/title_red.png";</script></div>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>69</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </advance_design_heading>
+<!--                        <module_custom_setting_heading translate="label">
+                            <label>Custom Settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </module_custom_setting_heading>-->
+                        <include_jquery translate="label">
+                            <label>Include Jquery</label>
+                            <comment>Choose Yes only if it is not included already.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </include_jquery>
+                        <carousel_custom_setting_enable translate="label">
+                            <label>Enable Setting</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>71</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </carousel_custom_setting_enable>
+                        <product_settings_heading translate="label">
+                            <label>Carousel Settings</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </product_settings_heading>
+                        <items translate="label">
+                            <label>Number of Items To Display</label>
+                            <comment>Add here the maximum amount of items displayed at a time with the widest browser width.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>76</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </items>
+                        
+                        <slider_speed translate="label">
+                            <label>Slider Speed</label>
+                            <comment><![CDATA[Specify the speed of the slider. <strong>(in milisecond)</strong>.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number validate-number-range number-range-1-2000</validate>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </slider_speed>
+                        <pagination_speed translate="label">
+                            <label>Pagination Speed</label>
+                            <comment><![CDATA[Specify the speed of the pagination. <strong>(in milisecond)</strong>.]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number validate-number-range number-range-1-2000</validate>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </pagination_speed>
+                        <auto_play translate="label">
+                            <label>Auto Play</label>
+                            <comment>Choose True if you want To autoplay Carousel.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </auto_play>
+                        <stop_on_hover translate="label">
+                            <label>Stop On Hover</label>
+                            <comment>Choose Disable if you don't want slideshow pause automatically on hover.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>95</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </stop_on_hover>
+                        <navigation_button translate="label">
+                            <label>Show Navigation</label>
+                            <comment>Display "next" and "prev" buttons.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </navigation_button>
+                        <navigation_button_position translate="label">
+                            <label>Navigation Position</label>
+                            <comment>Set position of "next" and "prev" buttons.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_navigationposition</source_model>
+                            <sort_order>101</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                            <depends><navigation_button>1</navigation_button></depends>
+                        </navigation_button_position>
+                        <show_pagination translate="label">
+                            <label>Show Pagination</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>105</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </show_pagination>
+                        <lazy_load translate="label">
+                            <label>Lazy Load</label>
+                            <comment>Delays loading of images. Images outside of viewport won't be loaded before user scrolls to them.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>106</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><carousel_custom_setting_enable>1</carousel_custom_setting_enable></depends>
+                        </lazy_load>
+                        <custom_style_heading translate="label">
+                            <label><![CDATA[<div style="text-align:center;margin: 20px 0 0 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUSTOM STYLE SETTINGS<div style="position: absolute;"><img id="custom_design_block" src="" alt="" border="0" /></div>&nbsp;<script>$('custom_design_block').src = SKIN_URL + "images/fedobe/title_red.png";</script></div>]]></label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>107</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_style_heading>
+                        <custom_style_setting_enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>108</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </custom_style_setting_enable>
+                        <border_color_settings_heading translate="label">
+                            <label>Border</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>112</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </border_color_settings_heading>
+                        <border_width translate="label">
+                            <label>Border Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>113</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </border_width>
+                        <border_type translate="label">
+                            <label>Border Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_bordertype</source_model>
+                            <sort_order>114</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </border_type>
+                        <border_color translate="label">
+                            <label>Border Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>115</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </border_color>
+                        
+                        
+                        
+                        <basic_color_settings_heading translate="label">
+                            <label>Basic Color</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>119</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </basic_color_settings_heading>
+                        <text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </text_color>
+                        <link_color translate="label">
+                            <label>Link Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>125</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </link_color>
+                        <link_hover_color translate="label">
+                            <label>Link Hover Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </link_hover_color>
+                        <price_color translate="label">
+                            <label>Price Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>131</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </price_color>
+                        <new_price_color translate="label">
+                            <label>New Price Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>132</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </new_price_color>
+                        <button_color_settings_heading translate="label">
+                            <label>Button Color</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>135</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </button_color_settings_heading>
+                        <button_background_color translate="label">
+                            <label>Button Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </button_background_color>
+                        <button_text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>145</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </button_text_color>
+                        <button_hover_color translate="label">
+                            <label>Hover Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </button_hover_color>
+                        <button_hover_text_color translate="label">
+                            <label>Hover Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>155</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </button_hover_text_color>
+                        
+                        <product_label_heading translate="label">
+                            <label>Product Top Sticker Color</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>156</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </product_label_heading>
+                        <product_label_color translate="label">
+                            <label>Label Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>157</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </product_label_color>
+                        <product_label_bg_color translate="label">
+                            <label>Label Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>158</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </product_label_bg_color>
+                        <discount_percentage_color translate="label">
+                            <label>Discount Percentage Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>159</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </discount_percentage_color>
+                        <discount_percentage_bg translate="label">
+                            <label>Discount Percentage Background</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>carousel/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>carousel/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </discount_percentage_bg>
+                        
+                        <custom_style_css_heading translate="label">
+                            <label>Custom Style CSS</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>164</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </custom_style_css_heading>
+<!--                        <custom_style_css_enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>165</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                        </custom_style_css_enable>
+                        <custom_style_css translate="label">
+                            <label>Custom CSS</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><custom_style_setting_enable>1</custom_style_setting_enable></depends>
+                            <depends><custom_style_css_enable>1</custom_style_css_enable></depends>
+                        </custom_style_css>-->
+                        
+                        
+                        
+<!--                        <footer>
+                            <label>Details</label>
+                            <frontend_type>Note</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <model>Fedobe_Avatar_Carousel_Model_System_Config_Source_Instructiondetails</model>
+                            </comment>
+                        </footer>-->
+<!--                        <test>
+                <label>Attributes</label>
+                <frontend_model>carousel/config_shippingcosts</frontend_model>
+                <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+            </test>-->
+                    </fields>
+                </general>
+<!--                <hint>
+                        <frontend_model>carousel/adminhtml_system_config_fieldset_hint</frontend_model>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                </hint> -->
+            </groups>
+        </avatar_modules>
+    </sections>
+</config>

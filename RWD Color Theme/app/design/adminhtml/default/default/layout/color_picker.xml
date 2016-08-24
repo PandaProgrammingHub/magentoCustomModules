@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.1">
+ <adminhtml_system_config_edit>
+  <reference name="head">
+      
+    <action method="addItem"><type>skin_css</type><name>css/fedobe_color_picker.css</name></action>
+    <action method="addJs"><file>fedobe_color_picker/jquery-1.9.1.js</file></action>
+    <action method="addJs"><file>fedobe_color_picker/noconflict.js</file></action>
+    <action method="addJs"><file>fedobe_color_picker/fedobe_color_picker.js</file></action>
+   
+    
+  </reference>
+ </adminhtml_system_config_edit>
+</layout>

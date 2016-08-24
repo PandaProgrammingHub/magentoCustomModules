@@ -1,0 +1,17 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<p>
+   <?php echo $this->getChildHtml('store_switcher')?>
+</p>
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>
+<style type="text/css">
+    .head-adminhtml-page {background-image: url("<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'adminhtml/default/default/images/fedobe_landing_page.png';?>");}
+</style>

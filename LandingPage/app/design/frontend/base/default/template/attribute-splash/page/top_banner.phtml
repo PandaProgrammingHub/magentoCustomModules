@@ -1,0 +1,101 @@
+<?php if ($splashPage = $this->getSplashPage()): ?>
+    <div class="grid-full">
+        <div class="banner_container">
+                <?php if ($splashPage->getImageUrl()): ?>
+                    <a href="<?php echo $splashPage->getImageUrl() ?>" title="<?php echo $this->escapeHtml($splashPage->getName()) ?>">
+                <?php endif; ?>
+                <?php if($splashPage->getImage()):?>  
+                        <img src="<?php echo $this->helper('attributeSplash/image')->init($splashPage, 'image')->resize(null, null) ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>"/>
+                <?php else: ?>        
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."/fedimages/default_banner.jpg"; ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>"/>
+                <?php endif; ?>
+                <?php if ($splashPage->getImageUrl()): ?>
+                    </a>
+                <?php endif; ?>
+        </div>
+        <div class="tag_banner">
+            <div class="temp_container">
+                <div class="brand_pic">
+                    <?php if ($splashPage->getThumbnail()): ?>
+                        <img src="<?php echo $this->helper('attributeSplash/image')->init($splashPage, 'thumbnail')->resize(170, 170) ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>"/>
+                    <?php else: ?>
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."/fedimages/nobrand-logo.jpg"; ?>" alt="<?php echo $this->escapeHtml($splashPage->getName()) ?>"/>
+                    <?php endif; ?>
+                </div>
+                <p class="brand_name">
+                    <?php echo $this->escapeHtml($splashPage->getName()) ?>
+                </p>
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+            </div>
+        </div>
+    </div>
+<br/>
+<?php if ($shortDescription = $splashPage->getShortDescription()): ?>
+  <?php if($shortDescription != 'No content') { ?>
+    <div class="container brand-desc">
+        <div class="temp_container">
+            <div class="brands_summry">
+                <p>
+                   <?php echo $shortDescription; ?>
+                </p>
+            </div>
+            <?php if ($Description = $splashPage->getDescription()): ?>
+            <?php if($Description != 'No content') { ?>
+                <div class="show_more_desc"><?php echo $this->__('Read More') ?></div>
+                <div class="brands_summry desc" style = "display:none;">
+                    <p>
+                       <?php echo $Description; ?>
+                        
+                    </p>
+                </div>
+                <div class="show_less_desc" style = "display:none;"><?php echo $this->__('Read Less') ?></div>
+            <?php } ?>
+            <?php endif; ?>
+        </div>
+    </div>
+  <?php } ?>
+<?php endif; ?>
+<?php endif; ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".show_more_desc").click(function(){
+            $('.brands_summry.desc').fadeIn('slow');
+            $('.show_more_desc').hide();
+            $('.show_less_desc').show();
+            $('.brands_summry.desc').show();
+        });
+            $(".show_less_desc").click(function(){
+            
+            $('.brands_summry').show();
+            $('.show_less_desc').hide();
+
+            $('.brands_summry.desc').fadeOut('fast');
+            $('.show_more_desc').show();
+        });
+    });
+</script> 
+<style>
+        .temp_container{width:1225px; margin:0 auto; position:relative;}
+	.banner_container{ width:100%; height:155px;}
+	.banner_container img{width:100%; height:100%;}
+	.tag_banner{background:#26153F; height:62px; position:relative;color: #FFFFFF;}
+	.brand_pic{float:left; position: relative; bottom: 30px;}
+	.brand_name{display:block; float:left;  padding:0 0 0 15px; font-size: 20px;margin-top:20px;}
+	.breadcrumbs{background: rgba(0, 0, 0, 0) none repeat scroll 0 0;left: 185px;position: absolute;top: 80px;width: auto;}
+	.breadcrumbs > ul{display:block; margin:0; padding:0;}
+	.breadcrumbs > ul li{list-style:none; float:left; display:block; font-size:12px; color:#aaa;}
+	.breadcrumbs > ul li > a{color:#aaa; text-decoration:none;}
+	.brands_summry{width:100%; padding: 16px 0 8px 0;}
+	.brands_summry p{text-align:left; color:#646464; font-size:14px; line-height:20px;  letter-spacing: 1px; margin:0 auto;}
+	.block_heading1{color: #000; font-size: 20px; margin: 53px 0 30px;text-align: center; text-transform: uppercase; width: 100%;}
+	.block_heading1::after {content: url("images/underline.jpg"); display: block; height: 1px; margin: 5px 0 20px;}
+	.brand_collection{width:95%; margin:0 auto 30px;}
+	.brand_collection .grid12-2{width: 16.26%; margin:0 0.2% 0.2%; float:left;}
+	.brand_collection .grid12-2 img{width:100%;}
+        .block-layered-nav .currently .block-subtitle{margin:0;}
+        .brand-desc{background: #FFFFFF;}
+        .show_more_desc {text-align: right;padding-bottom: 10px;cursor: pointer;}
+        .show_less_desc {text-align: right;padding-bottom: 10px;cursor:pointer;}
+</style>
+

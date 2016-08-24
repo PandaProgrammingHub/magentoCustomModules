@@ -1,0 +1,408 @@
+<?php
+//Here let's collect all the parameters
+$all_params = $this->getData('block_params');
+//Here let's check whether enabled of not
+$is_enabled = TRUE;
+$is_enabled_settings = (bool) Mage::getStoreConfig('manufacturers/general/is_enable');
+$is_enabled_params = (isset($all_params['is_enable'])) ? $all_params['is_enable'] : $is_enabled_settings;
+$show_products_count = (bool) Mage::getStoreConfig('manufacturers/brand_view/show_label_brand');
+$show_products_count_param = (isset($all_params['show_product_count'])) ? (bool) $all_params['show_product_count'] : $show_products_count;
+if (!$is_enabled_params || !$is_enabled_settings)
+    $is_enabled = FALSE;
+//End of checking enable status
+?>
+<?php if ($is_enabled): ?>
+    <!--Here let's check whether to show filters-->
+    <?php
+    $showonlystickers = (isset($all_params['stickers'])) ? $all_params['stickers'] : "";
+    $manufacturers = $this->getManufacturers($show_products_count_param,$showonlystickers);
+    $is_filter_enabled = TRUE;
+    $filter_by_label = (bool) Mage::getStoreConfig('manufacturers/brand_view/filter_brand_page_by_labels');
+    $filter_by_label_param = (isset($all_params['filter_by_label'])) ? $all_params['filter_by_label'] : $filter_by_label;
+    $filter_autocomplete = (bool) Mage::getStoreConfig('manufacturers/brand_view/auto_complete_search');
+    $filter_autocomplete_param = (isset($all_params['filter_by_autocomplete'])) ? $all_params['filter_by_autocomplete'] : $filter_autocomplete;
+    $filter_alphanumerics = (bool) Mage::getStoreConfig('manufacturers/brand_view/filter_brand_by_alphabets_or_numbers');
+    $filter_alphanumerics_param = (isset($all_params['filter_by_alphanumerics'])) ? $all_params['filter_by_alphanumerics'] : $filter_alphanumerics;
+    $final_filter_show_status_param = ($filter_by_label_param || $filter_autocomplete_param || $filter_alphanumerics_param);
+    $final_filter_show_status_settings = ($filter_by_label || $filter_autocomplete || $filter_alphanumerics);
+    $is_enabled_params = (isset($all_params['enable_filter'])) ? (bool) $all_params['enable_filter'] : TRUE;
+    if (!$is_enabled_params || !$final_filter_show_status_settings || !$final_filter_show_status_param)
+        $is_filter_enabled = FALSE;
+    ?>
+    <?php if ($is_filter_enabled) : ?>
+        <?php 
+            $filter_label_cond = ($filter_by_label_param || $filter_by_label);
+            $attribute_to_select = trim(Mage::getStoreConfig('manufacturers/general/attr_code'));
+            $attribute_to_select = ($attribute_to_select) ? $attribute_to_select : "manufacturer";
+            $attribute = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attribute_to_select);
+            if($attribute->getData('attribute_id')):?>
+            <?php
+            $show_products_count = (bool) Mage::getStoreConfig('manufacturers/brand_view/show_label_brand');
+            $show_products_count_param = (isset($all_params['show_product_count'])) ? (bool) $all_params['show_product_count'] : $show_products_count;
+            
+            $total_brands_found =  count($manufacturers['org']);
+            $widthhelper = ($filter_alphanumerics_param || $filter_autocomplete_param);
+        ?>
+        <?php if($total_brands_found):?>
+        <!--Here goes the Html elemets-->
+        <div class="brand-page-filter-outer-wrapper">
+            <div class="brand-page-filter-inner-wrapper brand-page-filter-inner-style">
+                <?php
+                    $show_total = Mage::getStoreConfig('manufacturers/brand_view/total_brands_found_in_brand_page');
+                    $show_total_param = (isset($all_params['show_total'])) ? (bool) $all_params['show_total'] : $show_total;
+                    if($show_total_param):
+                ?>
+                <div class="brand-page-show-total">
+                    <?php 
+                        $show_total_lable = trim(Mage::getStoreConfig('manufacturers/brand_view/total_brands_found_label'));
+                        $str = str_replace("{total_brands}", $total_brands_found, $show_total_lable);
+                        echo $this->__($str);
+                    ?>
+                </div>
+                <?php endif;?>
+                <div class="brand-page-full-grid brand-extra-style">
+                    <div class="fltlft <?php if ($filter_label_cond): ?><?php if($widthhelper) :?>brand-page-full-grid10-5<?php else: ?>brand-page-full-grid10-10<?php endif;?><?php else: ?>brand-page-full-grid10-5<?php endif; ?>">
+                        <div class="left-tab-outer-wrapper">
+                            <div class="brand-page-tab fltlft current-active show-all-brands-again"><span><?php echo $this->__("All Brands");?></span></div>
+                            <?php if($filter_label_cond) :?>
+                            <?php foreach ($manufacturers['labels'] as $key => $stickerlabels) :?>
+                            <div class="brand-page-tab brand-page-tab-sticker-filter fltlft" id="<?php echo $this->__($stickerlabels);?>"><span class="sticker-labels"><?php echo $this->__($stickerlabels);?></span></div>
+                            <?php endforeach;?>
+                            <?php endif;?>       
+                            <div class="clrbth"></div>       
+                        </div>
+                    </div>
+                    <div class="fltlft <?php if ($filter_label_cond): ?><?php if($widthhelper) :?>brand-page-full-grid10-5<?php else: ?>brand-page-full-grid10-0<?php endif;?><?php else: ?>brand-page-full-grid10-5<?php endif; ?>">
+                        <!--Here goes the alphabet filter-->
+                            <?php if($filter_alphanumerics_param):?>
+                                <div class="right-tab-outer-wrapper">
+                                    <?php foreach ($manufacturers['formated'] as $key => $filterlabels) :?>
+                                        <div class="brand-page-alpha-tab fltlft brand-letters" id="<?php echo $this->__($key);?>"><?php echo $this->__($key);?></div>
+                                    <?php endforeach;?>
+                                        <div class="clrbth"></div> 
+                                </div>
+                            <?php endif;?>
+                        <!--End of alphabet filter-->
+                        
+                        <!--Here goes for Autocomplete Filter-->
+                        <?php if($filter_autocomplete_param):?>
+                            <div class="right-tab-outer-wrapper">
+                                <input type="text" id="brand-page-autocomplete-filter" class="brand-page-autocomplete-filter" placeholder="<?php echo $this->__("Type few characters to filter over $total_brands_found brands!");?>"/>
+                            </div>
+                        <?php endif;?>
+                        <!--End of Autocomplete Filter-->
+                    </div>
+                    <div class="clrbth"></div>
+                </div>
+            </div>
+        </div>
+        <!--End of Html elemets-->
+
+        <!--Here goes the javascript needed for filter-->
+        <script type="text/javascript">
+            var autosearcharr = <?php echo json_encode($manufacturers['autosearch']);?>;
+            jQuery(document).ready(function ($) {
+                $(".brand-page-manufacturers").addClass('brand-active');
+                $('.show-all-brands-again').click(function () {
+                    $(".brand-page-tab").removeClass('current-active');
+                    $(".brand-page-alpha-tab").removeClass('current-active');
+                    $(this).addClass('current-active');
+                    $(".brand-page-manufacturers").addClass('brand-active').show();
+                    preparebrandfilterarray();
+                });
+                <?php if($filter_alphanumerics_param):?>
+                    $(".brand-page-alpha-tab").click(function(){
+                        $(".brand-page-tab").removeClass('current-active');
+                        $(".brand-page-alpha-tab").removeClass('current-active');
+                        jQuery(this).addClass('current-active');
+                        var filterclass = $(this).attr('id');
+                        $(".brand-page-manufacturers").removeClass('brand-active').hide();
+                        $(".helper-cls-"+filterclass).addClass('brand-active').show();
+                        preparebrandfilterarray();
+                    });
+                <?php endif;?>
+                <?php if($filter_by_label_param):?>
+                $('.brand-page-tab-sticker-filter').click(function () {
+                    $(".brand-page-tab").removeClass('current-active');
+                    $(".brand-page-alpha-tab").removeClass('current-active');
+                    jQuery(this).addClass('current-active');
+                    var filterclass = $(this).attr('id');
+                    $(".brand-page-manufacturers").removeClass('brand-active').hide();
+                    $(".filter-helper-cls-"+filterclass).addClass('brand-active').show();
+                    preparebrandfilterarray();
+                });
+                <?php endif;?>
+                <?php if($filter_autocomplete_param):?>
+                    $("#brand-page-autocomplete-filter").keyup(function(){
+                        var arr = autosearcharr;
+                        var autosearchval = $.trim($(this).val());
+                        if(autosearchval){
+                            arr = $.grep(arr, function( n, i ) {
+                                var patt = new RegExp(autosearchval,"i");
+                                var res = patt.test(n);
+                                return res;
+                            });
+                            if($(arr).length){
+                                $(".brand-page-manufacturers").hide();
+                                $(arr).each(function(i,v){
+                                    $(".helper-auto-"+v).show();
+                                });
+                            }
+                        }else{
+                            if($(".current-active").hasClass("show-all-brands-again")){
+                                $(".brand-page-manufacturers").removeClass('brand-active').addClass('brand-active').show();
+                            }else{
+                                var currentactivefilter = $(".current-active").attr('id');
+                                var finalselector = ($(".current-active").hasClass('brand-page-alpha-tab')) ? "helper-cls-" : "filter-helper-cls-";
+                                finalselector += currentactivefilter;
+                                $("."+finalselector).removeClass('brand-active').addClass('brand-active').show();
+                            }
+                        }
+                    });
+                <?php endif;?>
+                function preparebrandfilterarray(){
+                    autosearcharr = new Array();
+                    $(".brand-active").each(function(){
+                        autosearcharr.push($(this).find(".brand-page-text-info .brand-page-manufacture-labels").attr('id'));
+                    });
+                }
+            });
+        </script>
+        <!--End of javascript needed for filter-->
+
+        <!--Here goes the System CSS-->
+        <?php
+        $filter_background_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/filter_section_background_color');
+        $filter_background_color_param = (isset($all_params['filter_background_color'])) ? $all_params['filter_background_color'] : $filter_background_color;
+        $filter_text_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_text_color');
+        $filter_text_color_param = (isset($all_params['filter_text_color'])) ? $all_params['filter_text_color'] : $filter_text_color;
+        $filter_tab_background_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_filter_tab_button_color');
+        $filter_tab_background_color_param = (isset($all_params['filter_tab_background_color'])) ? $all_params['filter_tab_background_color'] : $filter_tab_background_color;
+        $filter_tab_background_hover_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_filter_tab_button_hover_color');
+        $filter_tab_background_hover_color_param = (isset($all_params['filter_tab_background_hover_color'])) ? $all_params['filter_tab_background_hover_color'] : $filter_tab_background_hover_color;
+        $filter_tab_text_hover_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_filter_tab_button_hover_text_color');
+        $filter_tab_text_hover_color_param = (isset($all_params['filter_tab_text_hover_color'])) ? $all_params['filter_tab_text_hover_color'] : $filter_tab_text_hover_color;
+        $filter_active_background_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_current_active_background_color');
+        $filter_active_background_color_param = (isset($all_params['filter_active_background_color'])) ? $all_params['filter_active_background_color'] : $filter_active_background_color;
+        $filter_active_text_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brandpage_current_active_text_color');
+        $filter_active_text_color = (isset($all_params['filter_active_text_color'])) ? $all_params['filter_active_text_color'] : $filter_active_text_color;
+        ?>
+        <style type="text/css">
+            .brand-page-filter-inner-style{
+                <?php if ($filter_background_color_param): ?>
+                    background-color: <?php echo $filter_background_color_param; ?>;
+                <?php endif; ?>
+                <?php if ($filter_background_color_param): ?>
+                    color: <?php echo $filter_text_color_param; ?>;
+                <?php endif; ?>
+            }
+            .brand-page-alpha-tab{
+                <?php if ($filter_tab_background_color_param): ?>
+                    background-color: <?php echo $filter_tab_background_color_param; ?>;
+                <?php endif; ?>
+                <?php if ($filter_background_color_param): ?>
+                    color: <?php echo $filter_text_color_param; ?>;
+                <?php endif; ?>
+            }
+            .brand-page-tab{
+                <?php if ($filter_tab_background_color_param): ?>
+                    background-color: <?php echo $filter_tab_background_color_param; ?>;
+                <?php endif; ?>
+                <?php if ($filter_background_color_param): ?>
+                    color: <?php echo $filter_text_color_param; ?>;
+                <?php endif; ?>
+                <?php 
+                $margin_right = 1;
+                $totstickers = count($manufacturers['labels']);
+                $totwidth = 100 - ($totstickers*$margin_right);
+                $finalwidth = ($totwidth/($totstickers+1))-$margin_right;
+                $finalwidth = ($filter_label_cond) ? $finalwidth : 70;
+                ?>
+                margin-right :<?php echo $margin_right;?>%;
+                width : <?php echo $finalwidth;?>%;
+            }
+            .brand-page-tab:hover,.brand-page-alpha-tab:hover{
+                <?php if ($filter_tab_background_hover_color_param): ?>
+                    background-color: <?php echo $filter_tab_background_hover_color_param; ?>;
+                <?php endif; ?>
+                <?php if ($filter_tab_text_hover_color_param): ?>
+                    color: <?php echo $filter_tab_text_hover_color_param; ?>;
+                <?php endif; ?>
+            }
+            .current-active,.current-active:hover{
+                <?php if ($filter_active_background_color_param): ?>
+                    background-color: <?php echo $filter_active_background_color_param; ?>;
+                <?php endif; ?>
+                <?php if ($filter_active_text_color): ?>
+                    color: <?php echo $filter_active_text_color; ?>;
+                <?php endif; ?>
+            }
+            
+        </style>
+        <!--End of System CSS-->
+            <?php else:?>
+                <div class="brand-page-error">
+                    No data found for this attribute "<?php echo $attribute_to_select;?>",use correct attribute!
+                </div>
+            <?php endif;?>
+            <?php else:?>
+                <div class="brand-page-error">
+                    Attribute used "<?php echo $attribute_to_select;?>" not exist,use correct attribute else leave it blank!
+                </div>
+            <?php endif; ?>
+    <?php endif; ?>
+    <!--End-->
+    <?php if (!empty($manufacturers['org'])):?>
+        <?php
+        $display_type = Mage::getStoreConfig('manufacturers/brand_view/brand_display_type');
+        $display_type_param = (isset($all_params['brand_display_type'])) ? $all_params['brand_display_type'] : $display_type;
+        $brand_images_border_option = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_images_border_options');
+        $brand_images_border_option_param = (isset($all_params['brand_images_border_option'])) ? $all_params['brand_images_border_option'] : $brand_images_border_option;
+        $brand_images_border_style = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_images_border_style');
+        $brand_images_border_style_param = (isset($all_params['brand_images_border_style'])) ? $all_params['brand_images_border_style'] : $brand_images_border_style;
+        $brand_images_border_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_images_border_color');
+        $brand_images_border_color_param = (isset($all_params['brand_images_border_color'])) ? $all_params['brand_images_border_color'] : $brand_images_border_color;
+        $dispaly_brand_item_stickers = Mage::getStoreConfig('manufacturers/brandpage_design_settings/dispaly_brand_item_stickers');
+        $dispaly_brand_item_stickers_param = (isset($all_params['dispaly_brand_item_stickers'])) ? $all_params['dispaly_brand_item_stickers'] : $dispaly_brand_item_stickers;
+        $show_brand_label = $only_text = FALSE;
+        switch ($display_type_param) {
+            case 'image_text':
+                $show_image = TRUE;
+                $show_brand_label = TRUE;
+                break;
+            case 'image':
+                $show_image = TRUE;
+                break;
+            case 'text':
+                $only_text = TRUE;
+                break;
+            default:
+                $show_image = FALSE;
+                break;
+        }
+        $thumbW = intval(Mage::getStoreConfig('manufacturers/general/thumb_w'));
+        $thumbW_param = (isset($all_params['thumb_width'])) ? $all_params['thumb_width'] : $thumbW;
+        $thumbH = intval(Mage::getStoreConfig('manufacturers/general/thumb_h'));
+        $thumbH_param = (isset($all_params['thumb_height'])) ? $all_params['thumb_height'] : $thumbH;
+        $thumbW_param = ($thumbW_param > 0) ? $thumbW_param : 120;
+        $thumbH_param = ($thumbH_param > 0) ? $thumbH_param : 60;
+        $dimension_spec = (bool) Mage::getStoreConfig('manufacturers/general/dimension_spec');
+        
+        
+        $sticker_lables = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_sticker_labels');
+        $sticker_lables_param = (isset($all_params['sticker_lables'])) ? $all_params['sticker_lables'] : $sticker_lables;
+        $sticker_lables_color_code = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_sticker_labels_color');
+        $sticker_lables_color_code_param = (isset($all_params['sticker_lables_color_code'])) ? $all_params['sticker_lables_color_code'] : $sticker_lables_color_code;
+        $sticker_lables_text_color = Mage::getStoreConfig('manufacturers/brandpage_design_settings/brand_sticker_labels_text_color');
+        $sticker_lables_text_color_param = (isset($all_params['sticker_lables_text_color'])) ? $all_params['sticker_lables_text_color'] : $sticker_lables_text_color;
+        
+        $sticker_lables_param_arr = explode(",",$sticker_lables_param);
+        $sticker_lables_color_code_param_arr = explode(",",$sticker_lables_color_code_param);
+        $sticker_lables_text_color_param_arr = explode(",",$sticker_lables_text_color_param);
+        
+        $stickerbckcolorarr = array_combine($sticker_lables_param_arr,$sticker_lables_color_code_param_arr);
+        $stickertextcolorarr = array_combine($sticker_lables_param_arr,$sticker_lables_text_color_param_arr);
+        ?>
+        <!--Here goes the System CSS-->
+        <style type="text/css">
+            .brand-page-detials-wrapper{
+                background: #ffffff none repeat scroll 0 0;
+                margin-top: 1.5%;
+                padding-top: 0.5%;
+            }
+            .brand-page-manufacturers{
+                   margin: 0 6.85px 0px;
+                    position: relative;
+            }
+            .brand-page-manufacturers a{
+                <?php if($brand_images_border_option):?>
+                    <?php if ($brand_images_border_color_param): ?>
+                        border: 1px solid <?php echo $brand_images_border_color_param; ?>;
+                    <?php endif; ?>
+                    <?php if ($brand_images_border_style_param): ?>
+                        border-style:<?php echo $brand_images_border_style_param; ?>;
+                    <?php endif; ?>
+                <?php endif; ?>
+            }
+        </style>
+        <!--End of System CSS-->
+        
+        <!--Here these are custom options to use other places-->
+        <!--End of custom options to use other places-->
+        
+        <?php if(isset($all_params['block_title']) && $all_params['block_title']) :?>
+        <h2><?php echo $this->__(trim($all_params['block_title']))?></h2>
+        <?php endif;?>
+        
+        <div class="brand-page-detials-wrapper">
+            <div class="brand-page-detials-wrapper">
+                    <?php $i=1;?>
+                    <?php foreach ($manufacturers['org'] as $idx => $manufacturer) :?>
+                        <?php 
+                            if(isset($all_params['total_to_show']) && $all_params['total_to_show']){
+                                if($i == $all_params['total_to_show']+1)
+                                    break;
+                            }
+                        ?>
+                        <div class="brand-page-manufacturers fltlft <?php echo "helper-auto-".$this->__($manufacturer['label']);?> <?php echo "helper-cls-{$manufacturer['class']}"?> <?php echo "filter-helper-cls-{$manufacturer['sticker']}"?>">
+                            <?php 
+                                $link = $manufacturer['url'];
+                            ?>
+                            <a href="<?php echo $link;?>"   title="<?php echo $this->__($manufacturer['label'])?>" class="tooltip tooltipstered">
+                                <div class="manufacture-outer-decor-helper">
+                                    <?php if($dispaly_brand_item_stickers_param):?>
+                                    <?php $stickerlbl = strtoupper($manufacturer['sticker']);?>
+                                    <?php if($stickerlbl):?>
+                                    <div class="brand-page-sticker" style="<?php if(isset($stickerbckcolorarr[$stickerlbl])):?>background-color:<?php echo $stickerbckcolorarr[$stickerlbl];?>;<?php endif;?><?php if(isset($stickertextcolorarr[$stickerlbl])):?>color:<?php echo $stickertextcolorarr[$stickerlbl];?>;<?php endif;?>">
+                                            <?php echo $this->__($stickerlbl);?>
+                                    </div>
+                                    <?php endif;?>
+                                    <?php endif;?>
+                                    <div class="manufacture-inner-decor-helper">
+                                        <?php if($show_image):?>
+                                            <div class="brand-page-image">
+                                                <img <?php if($dimension_spec):?>width="<?php echo $thumbW_param;?>px;" height="<?php echo $thumbH_param;?>px;" <?php endif;?>src="<?php if($manufacturer['image']):?><?php echo $manufacturer['image'];?><?php else :?><?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'manufacturers/noimage.jpg';?><?php endif;?>" alt="<?php echo $this->__($manufacturer['label']);?>" />
+                                            </div>
+                                        <?php endif;?>
+                                        <?php if($only_text):?>
+                                            <div class="brand-page-image">
+                                                <span><?php echo $this->__($manufacturer['label'])?></span>
+                                            </div>
+                                        <?php endif;?>
+                                        
+                                    </div>    
+                                </div>    
+                            </a>
+                            <div class="brand-page-text-info">
+                                <?php if($show_brand_label):?>
+                                    <span class="brand-page-manufacture-labels" id="<?php echo $this->__($manufacturer['label']);?>"><?php echo $this->__($manufacturer['label']);?></span>    
+                                <?php endif;?>
+                                <?php if($show_products_count_param):?>  
+                                    <span class="brand-page-manufacture-product-count">(<?php echo $manufacturer['product_count'];?>)</span>    
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    <?php $i++;?>
+                    <?php endforeach; ?>
+                        <?php if(isset($all_params['show_all_brands_link']) && $all_params['show_all_brands_link']):?>
+                            <?php 
+                                $all_brand_bckground_color = (isset($all_params['all_brands_background-color'])) ? $all_params['all_brands_background-color'] : "#FF6600";
+                                $all_brand_text_color = (isset($all_params['all_brands_text-color'])) ? $all_params['all_brands_text-color'] : "#FFFFFF";
+                            ?>
+                            <div class="brand-page-manufacturers fltlft">
+                                <a href="<?php echo $link;?>">
+                                    <div class="manufacture-outer-decor-helper">
+                                        <div class="brand-page-image" style='background-color: <?php echo $all_brand_bckground_color;?>;color:<?php echo $all_brand_text_color;?>; <?php if($dimension_spec):?>width:<?php echo $thumbW_param;?>px;height:<?php echo $thumbH_param;?>px;line-height:<?php echo $thumbH_param;?>px;<?php endif;?>'>
+                                            <span>
+                                                <?php echo $this->__("ALL BRANDS")?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    <div class="clear"></div>
+                </div>
+            </div>
+    <?php endif; ?>
+<?php endif; ?>

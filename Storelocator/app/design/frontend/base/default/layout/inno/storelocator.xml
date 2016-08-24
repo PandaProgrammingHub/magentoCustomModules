@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/storelocator.css</stylesheet>
+            </action>
+        </reference>
+        <!--<reference name="top.links">
+            <action method="addLink" translate="label title" module="customer">
+                <label>Store locator</label>
+                <url helper="storelocator/getStorelocatorUrl"/>
+                <title>Store locator</title>
+                <prepare/>
+                <urlParams/>
+                <position>1</position>
+            </action>
+        </reference> -->
+    </default>
+    <storelocator_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="storelocator/location" name="location.main" template="inno/storelocator/location.phtml" >
+                <block type="storelocator/location" name="location.search" template="inno/storelocator/location/search.phtml" />
+                <block type="storelocator/location" name="location.map" template="inno/storelocator/location/map.phtml" />
+            </block>
+        </reference>
+    </storelocator_index_index>    
+</layout>

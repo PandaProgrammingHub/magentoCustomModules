@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fedobe_AttributeSplash>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fedobe_AttributeSplash>
+        <Fedobe_AttributeSplash_FPAdmin>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Fedobe_AttributeSplash_FPAdmin>
+    </modules>
+</config>

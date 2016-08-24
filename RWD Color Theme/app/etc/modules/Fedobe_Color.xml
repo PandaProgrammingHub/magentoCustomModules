@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Fedobe_Color>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Fedobe_Color>
+    </modules>
+</config>     

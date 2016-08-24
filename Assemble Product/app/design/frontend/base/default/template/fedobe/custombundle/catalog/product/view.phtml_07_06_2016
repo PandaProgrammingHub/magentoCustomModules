@@ -1,0 +1,641 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct();
+$optionCollection = $_product->getTypeInstance()->getOptionsCollection();
+foreach ($optionCollection as $option) {
+      $option_ids[] = $option->option_id;
+      $option_positions[] = $option->position;
+      $option_labels[] =$option->default_title;
+      $option_required[] =$option->required; 
+    } 
+$skinUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+
+  //echo "<pre>";
+  //print_r($_product->getData());
+ ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+
+     <div class="menu_custom_nav">
+        <div id="menu">
+          <ul id="myDIV">
+            <?php for($i=0; $i<count($option_ids); $i++){ 
+                //if($option_labels[$i] !='HD' && $option_labels[$i] !='DVD' && $option_labels[$i] !='Fan' && $option_labels[$i] !='Source' ){
+                ?>
+            <li id='bundle-option-lable-<?php echo $option_positions[$i]; ?>'  class="nav <?php echo ($i == 0)? 'sort-active':'' ; ?>" <?php if($i != 0){echo 'data-reveal-id="myModal" data-animation="fade"';}?> data-postion = "<?php echo $option_positions[$i]; ?> ">
+            <a href="javascript:void(0)" >
+            <?php $opt_icon = $skinUrl."frontend/fedobe/theme/images/icons/".$option_labels[$i].".png";?>
+            <img src="<?php echo $opt_icon ; ?>" width="100%">
+            <span class="opt_label"><?php echo $option_labels[$i];?></span>
+            </a></li>
+            <?php //} ?>
+            <?php } ?>      
+          </ul>
+        </div>
+    </div>
+    <div id="myModal" class="reveal-modal">
+            <h1>Opps!</h1>
+            <p>sorry please choose previous options.</p>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+<div class="product-view">
+<div class="row">
+    <div class="product-essential">
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+            <div class="col-md-7">
+            <div class="product-shop">
+                    <!-- <div class="product-name">
+                        <span class="h1"><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+                    </div> -->
+
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+                        <?php echo $this->getChildHtml('other');?>
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php endif;?>
+
+                </div>
+             <div id="dependency_not_found" style="display:none;"> </div>
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+               
+                <?php //echo Mage::helper('fedobe_assembleproduct')->getOptionBlock($_product); ?>
+                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+            <?php endif;?>
+            </div>
+            <div class="col-md-5 product-img-box-bundle">
+              <div class="product-img-box">
+                   <!-- <div class="product-name">
+                        <h1><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>
+                     <img src="<?php //echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'catalog/product'.$_product->getImage() ; ?> " alt="image" style="height: 228px;width: 228px;" >
+                    <?php //echo $this->getChildHtml('media') ?> -->
+
+                <?php 
+                    
+
+                        
+
+                        
+                    ?>
+                    <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'cabinet')){
+                        $imageByLabel_cabinate = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'cabinet');?>
+                        <div class="<?php echo $imageByLabel_cabinate->getLabel_default();?>">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_cabinate ->getFile())->resize(600, 600); ?> " alt="Cabinate" style="width: 100%;"/>
+                        <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Mother_Board')){
+                            $imageByLabel_motherbord = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Mother_Board');
+
+                            $imageByLabel_processors = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Processor');
+                        $imageByLabel_video_card = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Video_Card');
+                        $imageByLabel_cooler = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Cooler');
+                        $imageByLabel_memory = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Ram');
+                            ?>
+                                 <div class="<?php echo $imageByLabel_motherbord->getLabel_default();?>">
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_motherbord ->getFile())->resize(222, 240);; ?>"  alt="Motherbord" style="width: 100%;"/>
+                            <div class="<?php echo $imageByLabel_processors->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_processors ->getFile())->resize(57, 63); ?>"  alt="processors" style="width: 100%;"/>
+                                <div class="<?php echo $imageByLabel_cooler->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_cooler ->getFile())->resize(72, 80); ?>"  alt="cooler" style="width: 100%;"/>
+                                </div>
+                            </div>
+                            <div class="<?php echo $imageByLabel_memory->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_memory ->getFile())->resize(87, 1); ?>"  alt="memory" style="width: 100%;"/>
+                            </div>
+                        </div>
+                        
+                        <?php } ?>
+
+                        <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Video_Card')){?>
+                        <?php $imageByLabel_video_card = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Video_Card');?>
+                            <div class="<?php echo $imageByLabel_video_card->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_video_card ->getFile())->resize(206, 35); ?>"  alt="video_card" style="width: 100%;"/>
+                             </div>
+
+                        <?php }?>
+                    
+                       <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Source')){?>
+                            <?php $imageByLabel_source = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'Source');?>
+                             <div class="<?php echo $imageByLabel_source->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_source ->getFile())->resize(156, 70); ?>"  alt="source" style="width: 100%;"/>
+                            </div>
+                       <?php } ?>
+
+                       <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'HD')){?>
+                       <?php $imageByLabel_hd = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'HD');?>
+
+                        <div class="<?php echo $imageByLabel_hd->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_hd ->getFile())->resize(109, 30); ?>"  alt="hd" style="width: 100%;"/>
+                        </div>
+
+                       <?php }?>
+
+                       <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'DVD')) {?>
+                       <?php $imageByLabel_dvd = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'DVD');?>
+
+                        <div class="<?php echo $imageByLabel_dvd->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_dvd ->getFile())->resize(115, 30); ?>"  alt="dvd" style="width: 100%;"/>
+                        </div>
+                       <?php } ?>
+
+                       <?php if($_product->getMediaGalleryImages()->getItemByColumnValue('label', 'SSD')) {?>
+                       <?php $imageByLabel_ssd = $_product->getMediaGalleryImages()->getItemByColumnValue('label', 'SSD');?>
+
+                        <div class="<?php echo $imageByLabel_ssd->getLabel_default();?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image', $imageByLabel_ssd ->getFile())->resize(111, 32); ?>"  alt="ssd" style="width: 100%;"/>
+                        </div>
+
+                       <?php } ?>
+
+
+                    </div>
+                    <?php }?>                    
+                </div>
+
+                <div class="add-to-cart-wrapper">
+                   <div class="add-to-cart-price-block">
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+                        <?php echo $this->getChildHtml('extrahint') ?>
+
+                        <?php if (!$this->hasOptions()):?>
+                            <div class="add-to-box">
+                                <?php if($_product->isSaleable()): ?>
+                                    <?php echo $this->getChildHtml('addtocart') ?>
+                                    <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                                        <span class="or"><?php echo $this->__('OR') ?></span>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php echo $this->getChildHtml('addto') ?>
+                                <?php echo $this->getChildHtml('sharing') ?>
+                            </div>
+                            <?php echo $this->getChildHtml('extra_buttons') ?>
+                        <?php elseif (!$_product->isSaleable()): ?>
+                            <div class="add-to-box">
+                                <?php echo $this->getChildHtml('addto') ?>
+                                <?php echo $this->getChildHtml('sharing') ?>
+                            </div>
+                        <?php endif; ?>
+                        </div>
+                        <div class="add-to-cart">
+                            <button type="button" title="Add to Cart" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><i class="icon-cart"></i>Add to Cart</span></span></button>
+                            <span id="ajax_loader" style="display:none"><i class="ajax-loader small animate-spin"></i></span>
+                        </div>
+                    </div>
+
+            </div>
+           
+            
+           
+                   
+          
+
+            <?php echo $this->getChildHtml('related_products') ?>
+            
+            <div class="clearer"></div>
+            </div>
+            
+        </form>
+        <script type="text/javascript">
+        //<![CDATA[
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                       form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(productAddToCartForm);
+
+            productAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+        //]]>
+        </script>
+        </div>
+    </div>
+
+    <!--<div class="product-collateral toggle-content tabs">
+        <?php //if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+            <dl id="collateral-tabs" class="collateral-tabs">
+                <?php //foreach ($detailedInfoGroup as $alias => $html):?>
+                    <dt class="tab"><span><?php //echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
+                    <dd class="tab-container">
+                        <div class="tab-content"><?php //echo $html ?></div>
+                    </dd>
+                <?php //endforeach;?>
+            </dl>
+        <?php //endif; ?>
+    </div>-->
+
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+function my_implode_js(separator,array){
+       var temp = '';
+       for(var i=0;i<array.length;i++){
+           temp +=  array[i] 
+           if(i!=array.length-1){
+                temp += separator  ; 
+           }
+       }//end of the for loop
+
+       return temp;
+}
+ jQuery.fn.filterByText = function(textbox, selectSingleMatch) {
+  return this.each(function() {
+    var select = this;
+    var options = [];
+    jQuery(select).find('option').each(function() {
+      options.push({value: jQuery(this).val(), text: jQuery(this).text()});
+    });
+    jQuery(select).data('options', options);
+    jQuery(textbox).bind('change keyup', function() {
+      var options = jQuery(select).empty().scrollTop(0).data('options');
+      var search = jQuery.trim(jQuery(this).val());
+      var regex = new RegExp(search,'gi');
+ 
+      jQuery.each(options, function(i) {
+        var option = options[i];
+        if(option.text.match(regex) !== null) {
+          jQuery(select).append(
+             jQuery('<option>').text(option.text).val(option.value)
+          );
+        }
+      });
+      if (selectSingleMatch === true && 
+          jQuery(select).children().length === 1) {
+        jQuery(select).children().get(0).selected = true;
+      }
+    });
+  });
+};
+
+
+/*==========Adding Active Class Product Options================*/
+ jQuery(function ($) {
+     $('#menu').on('click','.nav', function ( e ) {
+        e.preventDefault();
+         var not_allow = this.readAttribute('data-reveal-id');
+         var postion = this.readAttribute('data-postion');
+        if(not_allow != "myModal"){
+        $(this).parents('#menu').find('.sort-active').removeClass('sort-active').end().end().addClass('sort-active');
+        $(".bundle-option-block" ).addClass('bundle-option-div-display-none'); 
+        $("#bundle-option-div-"+postion).removeClass('bundle-option-div-display-none');
+       }
+        
+    }); 
+});
+ /*========hide and show bundel options=================*/
+  
+     jQuery(function ($) {
+      $(".bundel-option-next").click(function(){
+         var isRequired = this.readAttribute('data-required');
+         var optionId = this.readAttribute('data-optionId');
+                  
+         var currentOptionPostion = parseInt(this.readAttribute('data-position')); 
+         var addOptionPostion = parseInt(1);
+         var nextOptionPostion = currentOptionPostion + addOptionPostion;
+         var currentOptionName = this.readAttribute('data-optionName');
+         //var item_width = ;
+         //console.log(item_width); 
+          var elmnt = document.getElementById("myDIV");
+           
+         
+        if(isRequired == 1){
+             var chcekboxname="bundle_option["+optionId+"]";
+             var favorite = [];
+            /*
+             $.each($("input[name='"+chcekboxname+"']:checked"), function(){            
+                favorite.push($(this).val());
+            });
+            alert("My favourite sports are: " + favorite.join(", "));*/
+            if ($("input[name='"+chcekboxname+"']:checked").length > 0){
+            //if(values){
+                           $("#bundle-option-div-"+currentOptionPostion).addClass('bundle-option-div-display-none');
+                           $("#bundle-option-div-"+nextOptionPostion).removeClass('bundle-option-div-display-none');
+                           $("#bundle-option-lable-"+nextOptionPostion).removeAttr('data-reveal-id');
+                           $("#bundle-option-lable-"+nextOptionPostion).addClass('sort-active');
+                           $("#bundle-option-lable-"+currentOptionPostion).removeClass('sort-active');
+                          // $("#menu li").animate({marginRight: "+="+item_width}, 1000);
+                          //$("#menu ul").scrollLeft(140,0);
+                          elmnt.scrollLeft += 140;
+
+                           
+                           
+                      
+               }
+               else{
+                     alert("please choose at least one product Of "+currentOptionName);
+               }
+          }
+     else {
+                           
+                           $("#bundle-option-div-"+currentOptionPostion).addClass('bundle-option-div-display-none');
+                           $("#bundle-option-div-"+nextOptionPostion).removeClass('bundle-option-div-display-none');
+                           $("#bundle-option-lable-"+nextOptionPostion).removeAttr('data-reveal-id');
+                           $("#bundle-option-lable-"+nextOptionPostion).addClass('sort-active');
+                           $("#bundle-option-lable-"+currentOptionPostion).removeClass('sort-active');
+                          // $("#menu li").animate({marginRight: "+="+item_width}, 1000);
+                          //$("#menu ul").scrollLeft(140,0);
+                          elmnt.scrollLeft += 140;
+                            
+        }
+
+      
+});
+ 
+});
+  jQuery(function($){
+        $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+        var currentOptionName = this.readAttribute('data-optionName');
+         currentOptionName = currentOptionName.split(" ");
+         var str = my_implode_js('_',currentOptionName);
+         $("."+str).show();
+        });
+});
+</script>
+
+
+
+<style type="text/css">
+
+topmenu {
+   
+    padding: 10px;
+}
+
+.input-box .custom-bundle-options > input {
+    width: 100%;
+    padding: 5px;
+    
+}
+.input-box  .custom-bundle-options select{
+   width: 100%; 
+}
+  .input-box {
+    padding-top: 2px ;
+   
+}
+
+input[type=text].qty {
+    width: 3em;
+    text-align: center;
+    vertical-align: middle;
+   
+}
+.bundle-option-select option:disabled {
+         display: none;
+    }
+.bundle-option-div-display-none{
+         display: none;
+
+}
+div#dependency_not_found {
+    font-family: Consolas,"courier new";
+    font-size: 16px;
+    line-height: 2.4;
+    width: auto;
+    height: 50px;
+    background-color: #E8F2F3;
+    padding: 8px 12px;
+    border-left: 4px solid #00923F;
+    word-wrap: break-word;
+}
+.catalog-product-view .product-view .product-essential .col-md-7 .product-options-bottom .add-to-cart {
+    display: none;
+}
+
+/*Custom Bundle Product Image CSS */
+.cabinet {
+    position: absolute;
+    
+}
+.product-img-box-bundle .price-box {
+    margin: 0px 0 0px !important;
+}
+.product-img-box {
+    height: 460px;
+    position: relative;
+    margin-bottom: 0 !important;
+}
+.product-img-box-bundle .add-to-cart-wrapper {
+    margin-left: 75px;
+}
+.product-img-box-bundle .add-to-cart-price-block {
+    margin-left: 50px;
+    padding: 15px;
+}
+.product-img-box-bundle .add-to-cart-wrapper .add-to-cart {
+    padding: 7px;
+}
+.custom-bundle-options-menu-lable .bundle-option-steps {
+    text-transform: uppercase;
+}
+.custom-bundle-options-menu-lable .bundle-option-steps em {
+    color: red;
+}
+.col1-layout .product-view .col-md-7 .product-options + div.clearer {
+    border-bottom: none !important;
+}
+.col-md-9.custom-bundle-options {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.bundle-option-product-block {float: left;height: 200px;width: 160px;border: 1px solid gainsboro;margin-left: 5px;margin-bottom: 10px;}
+.bundle-option-product-block-inner {padding: 10px;}
+.bundle-option-select {width: 20px;height: 17px;}
+span.bundle-option-product-lable {display: block;padding: 9px;font-size: 11px;line-height: 15px;}
+span.bundle-option-product-price.price {margin-left: 20px;color: #00923F;padding: 15px;}
+.bundle-option-warpper { padding: 30px; }
+.bundle-option-qty-warpper {float: right;}
+.bundel-option-next-warpper {float: right; margin-right: 5px; }
+.bundel-option-next {height: 37px;line-height: 30px;width: 130px;font-size: 21px;background: #000;text-transform: uppercase;border: none;color: #fff;}
+.<?php echo $imageByLabel_motherbord->getLabel_default();?> {
+    position: absolute;
+    top: 85px;
+    left: 65px;
+    display: none;
+}
+.<?php echo $imageByLabel_processors->getLabel_default();?>{
+    position: absolute;
+    top: 35px;
+    left: 95px;
+    display: none;
+}
+.<?php echo $imageByLabel_video_card->getLabel_default();?>{
+    position: absolute;
+    top: 310px;
+    left: 75px;
+    display: none;
+}
+.<?php echo $imageByLabel_source->getLabel_default();?>{
+    position: absolute;
+    top: 355px;
+    left: 35px;
+    display: none;
+}
+
+.<?php echo $imageByLabel_hd->getLabel_default();?>{
+    position: absolute;
+    top: 390px;
+    right: 60px;
+    display: none;
+}
+
+.<?php echo $imageByLabel_dvd->getLabel_default();?>{
+    position: absolute;
+    right: 65px;
+    top: 140px;
+    display: none;
+}
+
+.<?php echo $imageByLabel_cooler->getLabel_default();?>{
+    position: absolute;
+    top: 0;
+    display: none;
+}
+.<?php echo $imageByLabel_memory->getLabel_default();?> {
+    position: absolute;
+    top: 143px;
+    left: 50px;
+    display: none;
+}
+
+.<?php echo $imageByLabel_ssd->getLabel_default();?>{
+    position: absolute;
+    right: 172px;
+    top: 390px;
+    display: none;
+}
+
+.sorter label {
+    margin-right: 5px;
+    display: inline-block;
+}
+#menu {
+    display: block;
+    
+}
+#menu ul {
+   /* height: 114px; */
+    padding: 0;
+    margin: auto;
+    width: 1106px;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+#menu li { 
+    display: inline-block;
+    padding: 10px 35px;
+    margin: 0;
+    background: #ececec;
+}
+#menu a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    float: none;
+    text-align: center;
+}
+#menu img{
+height:70px;
+width:70px;
+display:block;
+}
+#menu li:hover {
+    color: #F90;
+    background: #fff;
+}
+#menu .sort-active {
+    color: #ff8831;
+    background: #fff;
+}
+.menu_custom_nav
+  {
+     /* background:#ececec; */
+  } 
+/*Custom Bundle Product Image CSS */
+</style>

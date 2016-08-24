@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <fedobe translate="title" module="fedobe_assembleproduct">
+            <title>Fedobe</title>
+            <sort_order>31</sort_order>
+            <children>
+                <assembleproduct>
+                    <title>Manage Assemble Product</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/dependency/index</action>
+                </assembleproduct>
+            </children>
+        </fedobe>
+    </menu>
+    
+    <acl>
+        <resources>
+            <admin>
+                <children>                
+                    <fedobe translate="title" module="fedobe_assembleproduct">
+                        <title>Fedobe</title>
+                        <sort_order>1</sort_order>
+                        <children>
+                            <example>
+                                <title>Manage Assemble Product Dependency</title>
+                            </example>
+                        </children>
+                    </fedobe>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    
+</config> 

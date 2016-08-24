@@ -1,0 +1,92 @@
+<?php
+$filternm = strtolower($this->getAttributeModel()->getAttributeCode());
+?>
+<ul class="no-style <?php echo $filternm . "-main"; ?>">
+    <?php foreach ($this->getItems() as $_item): ?>
+        <?php
+        $filternm = $_item->getFilter()->getAttributeModel()->getAttributeCode();
+        $label = explode("---", trim($_item->getLabel()));
+        ?>
+        <li class="<?php echo $filternm . "-sub"; ?>" id="<?php echo $label[1]; ?>" data-text="<?php echo $label[0]; ?>">
+            <?php if ($_item->getCount() > 0): ?>
+                <a href="<?php echo ($this->isAttrSelected($_item)) ? $_item->getRemoveUrl() : $_item->getUrl() ?>">
+                    <div class="checkbox_wrapper fltlft chkbx <?php echo $filternm . "-chkbx"; ?>">                  
+                        <input id="check1" class="clickhyperlink" type="checkbox"<?php if ($this->isAttrSelected($_item)): ?> checked="checked" <?php endif; ?>/> 
+                        <label></label>                                   	
+                    </div>
+
+                    <div class="fltlft <?php echo "img-" . $label[1] . "-icon"; ?> <?php echo $filternm . "-global"; ?>">                                      
+                        <span><?php echo $label[0]; ?>
+                            <?php if ($this->shouldDisplayProductCount()): ?>
+                                (<?php echo $_item->getCount() ?>)
+                            <?php endif; ?>
+                        </span>                     
+                    </div>                 
+                    <div class="clear"></div>
+                </a>
+            <?php else: ?>
+                <span>
+                    <?php echo $label[0]; ?>
+                    <?php if ($this->shouldDisplayProductCount()): ?>
+                        <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                    <?php endif; ?>
+                </span>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ul>
+<style type="text/css">
+    .checkbox_wrapper{
+        position: relative;
+        height: 16px;
+        width: 17px;
+    }
+
+    input[type="checkbox"] {
+        opacity:0;
+        height: 16px;
+        width: 17px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    input[type="checkbox"] + label{
+        background-color: #FFFFFF;
+        border: 1px solid #BCBCBC;
+        border-radius:2px;
+        height: 11px;
+        width: 12px;
+        display:inline-block;
+        padding: 0 0 0 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    input[type="checkbox"]:checked + label{
+        background: url(<?php echo $this->getSkinUrl('images/checked.png') ?>) no-repeat 0 0;
+        border: 0px;
+        height: 11px;
+        width: 12px;
+        display:inline-block;
+        padding: 0 0 0 0px; top: 2px;
+    }
+    .display_type-chkbx input[type="checkbox"], .display_type-chkbx input[type="checkbox"] + label {
+        top:10px;
+    }
+    .case_width-chkbx input[type="checkbox"], .case_width-chkbx input[type="checkbox"] + label {
+        top:20px;
+    }
+    .watch_shape-chkbx input[type="checkbox"], .watch_shape-chkbx input[type="checkbox"] + label {
+        top:6px;
+    }
+    .dial_color-chkbx input[type="checkbox"], .dial_color-chkbx input[type="checkbox"] + label {
+        top:10px;
+    }
+    .band_color-chkbx input[type="checkbox"], .band_color-chkbx input[type="checkbox"] + label {
+        top:10px;
+    }
+</style>

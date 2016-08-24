@@ -1,0 +1,85 @@
+<?php 
+
+     $enableOptions=Mage::getStoreConfig('stickysidebar/general/enabled');
+     $stickyEnd=Mage::getStoreConfig('stickysidebar/general/sticky_end');
+     $price_block=Mage::getStoreConfig('stickysidebar/general/price_block');
+     $_product = $this->getProductId();
+     $url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+     $src = Mage::helper('catalog/image')->init($_product, 'small_image')->resize(150,200);
+     if($enableOptions){
+
+
+  ?>
+ <div class="floatingBuySection" id="sticker">
+  				<div class="sticky-product-image">
+ 					
+ 					<img src="<?php echo $src;?>" alt="produc_image">
+				</div>
+  				<div class="sticky-product-name">
+                    <span><?php echo  $_product->getName(); ?></span>
+                </div>
+				<div class="sticky-price-info">
+                    
+                    <?php echo $this->getPriceHtml($_product, true); ?>
+                    <?php echo $this->getChildHtml('bundle_prices'); ?>
+                    <?php echo $this->getTierPriceHtml(); ?>
+                    
+                </div>  
+                
+                <div class="sticky-add-to-cart-buttons">
+            			<button type="button" title="Add to Cart" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span>Add to Cart</span></span></button>
+                </div>
+           
+
+ <div class="clear"></div>
+</div><!--/wrapper-->
+              
+
+<?php } ?>
+ <style type="text/css">
+.floatingBuySection {
+   	height: auto;
+    width: 245px;
+    border-radius: 2px;
+    box-shadow: 0 0 3px #f0f0f0;
+    color: #000000;
+    background: #ececec;
+    font-family: "robotoRegular"
+}
+
+.stick {
+	position:fixed;
+	top:0px;
+}
+.sticky-product-image, .sticky-product-name , .sticky-price-info,.sticky-add-to-cart-buttons {
+       padding: 10px 55px 0;
+   }
+.sticky-product-imgage img{
+	height: 200px;
+    
+}
+ </style>
+
+ <script type="text/javascript">
+jQuery(document).ready(function($) {
+	var s = $("#sticker");
+	var pos = s.position();	
+	var stickermax = $(document).outerHeight() - $("<?php echo $stickyEnd ?>").outerHeight() - s.outerHeight() - 250; //40 value is the total of the top and bottom margin
+	console.log(stickermax);
+	$(window).scroll(function() {
+		var windowpos = $(window).scrollTop();
+		
+		if (windowpos >= pos.top && windowpos < stickermax) {
+			s.attr("style", ""); //kill absolute positioning
+			s.addClass("stick"); //stick it
+		} else if (windowpos >= stickermax) {
+			s.removeClass("stick"); //un-stick
+			s.css({position: "absolute", top: stickermax + "px"}); //set sticker right above the footer
+			
+		} else {
+			s.removeClass("stick"); //top of page
+		}
+	});
+	//alert(stickermax); //uncomment to show max sticker postition value on doc.ready
+});
+</script>

@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Fedobe_OneStepCheckout>
+        <active>true</active>
+        <codePool>local</codePool>
+        </Fedobe_OneStepCheckout>
+    </modules>
+</config>

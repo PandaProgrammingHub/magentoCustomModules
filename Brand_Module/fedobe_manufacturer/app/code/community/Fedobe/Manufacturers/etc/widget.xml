@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<widgets>
+    <widgetmanufacturer translate="label description" type="manufacturers/Manufacturerwidget">
+        <name>Brand Page</name>
+        <description>Create a Brand Page.</description>
+        <parameters>
+            <enable_filter>
+                <label>Enable Filter</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </enable_filter>
+            <block_title>
+                <label>Block Title</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+            </block_title>
+            <brand_display_type>
+                <label>Display Type</label>
+                <type>select</type>
+                <source_model>Fedobe_Manufacturers_Model_Displayoption</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </brand_display_type>
+            <show_product_count>
+                <label>Show Product Count</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_product_count>
+            <dispaly_brand_item_stickers>
+                <label>Show Brand Item Sticker</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </dispaly_brand_item_stickers>
+            <show_all_brands_link>
+                <label>Show All Brands Link</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <visible>1</visible>
+                <required>0</required>
+            </show_all_brands_link>
+            <total_to_show>
+                <label>Total to Show</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+            </total_to_show>
+            <stickers>
+                <label>Stickers</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+            </stickers>
+            <name>
+                <value>fedobe.brandpage</value> 
+                <visible>0</visible>
+            </name>
+       <!--     <template>
+                <visible>0</visible>
+                <value>fedobe/manufacturers/grid.phtml</value>  
+            </template>    -->
+        </parameters>
+    </widgetmanufacturer>
+</widgets>

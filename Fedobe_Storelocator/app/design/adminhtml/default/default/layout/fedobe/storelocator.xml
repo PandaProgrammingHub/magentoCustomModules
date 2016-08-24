@@ -1,0 +1,42 @@
+<layout>
+    <storelocator_adminhtml_location_index>
+        <reference name="content">                  
+            <block type="storelocator/adminhtml_location" name="location.grid">  
+                <block type="adminhtml/store_switcher" name="store_switcher"  as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>              
+            </block>
+              
+        </reference>
+    </storelocator_adminhtml_location_index>
+    <storelocator_adminhtml_location_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="storelocator/adminhtml_location_grid" name="admin.location.grid"/>
+        </block>
+    </storelocator_adminhtml_location_grid>
+    <storelocator_adminhtml_location_new>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="storelocator/adminhtml_location_edit" name="location_edit">
+                <block type="storelocator/adminhtml_location_edit_form" name="edit_form" />
+            </block>
+        </reference>
+        <reference name="left">
+            <block type="core/template" name="location.info" template="fedobe/storelocator/location/info.phtml" />          
+        </reference>
+    </storelocator_adminhtml_location_new>
+    <storelocator_adminhtml_location_edit>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="storelocator/adminhtml_location_edit" name="location_edit">
+                <block type="storelocator/adminhtml_location_edit_form" name="edit_form" />
+            </block>
+        </reference><!--
+-->        
+        <reference name="left">                 
+            <block type="storelocator/adminhtml_location_edit" name="location.info" template="fedobe/storelocator/location/info.phtml" />
+        </reference>
+    </storelocator_adminhtml_location_edit>
+</layout>

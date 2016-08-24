@@ -1,0 +1,783 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <fedobe translate="label" module="manufacturers">
+            <label>Fedobe</label>
+            <sort_order>0</sort_order>
+        </fedobe>
+    </tabs>
+    <sections>
+        <manufacturers translate="label" module="manufacturers">                    
+            <label>Brand Settings</label>
+            <tab>fedobe</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>            
+            <groups>
+                <brand_page_instructions translate="label">
+                    <label>Instructions</label>
+                    <comment>
+                        <![CDATA[
+                            <style type="text/css">
+                                #row_manufacturers_brand_page_instructions_brand_page_instruction_details .value{width:100%;}
+                                #row_manufacturers_brand_page_instructions_brand_page_instruction_details .label,#row_manufacturers_brand_page_instructions_brand_page_instruction_details .scope-label{display:none}
+                                #row_manufacturers_brand_page_instructions_brand_page_instruction_details .value p.note{background:none;padding:0;width:100%;}
+                            </style>
+                        ]]>
+                    </comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <brand_page_instruction_details translate="label">
+                            <label>Details</label>
+                            <frontend_type>Note</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <model>Fedobe_Manufacturers_Model_Instructiondetails</model>
+                            </comment>
+                        </brand_page_instruction_details>
+                    </fields>
+                </brand_page_instructions>
+                <general translate="label"> 
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <is_enable translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_enable>
+                        <brand_page_load_external_jquery>
+                            <label>Load JQuery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_page_load_external_jquery>
+                        <attr_code translate="label">
+                            <label>Manufacturers attribute code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      Attribute code for Manufacturer. <br /> Please fill the attribute code and save the configuration first!
+                      ]]> 
+                            </comment>
+                        </attr_code>
+                        <brand_page_url_slug>
+                            <label>Brandpage URL Slug</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                                    This will be used as URL slug of each brand
+                      ]]> 
+                            </comment>
+                        </brand_page_url_slug>
+                        <brand_page_thumb_upload_resize translate="label">
+                            <label>Resize images when upload</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[
+                      Choose YES to enable resizing image when upload in backend. The resized dimension is defined above.
+                      ]]> 
+                            </comment>
+                        </brand_page_thumb_upload_resize>
+                        <resize_thumbnail_width>
+                            <label>Thumbnail Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                            width in Pixel
+                      ]]> 
+                            </comment>
+                            <depends>
+                                <brand_page_thumb_upload_resize>1</brand_page_thumb_upload_resize>
+                            </depends>
+                        </resize_thumbnail_width>
+                        <resize_thumbnail_height>
+                            <label>Thumbnail Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                            Height in Pixel
+                      ]]> 
+                            </comment>
+                            <depends>
+                                <brand_page_thumb_upload_resize>1</brand_page_thumb_upload_resize>
+                            </depends>
+                        </resize_thumbnail_height>
+                    </fields>
+                </general>
+                <brand_view translate="label">
+                    <label>Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <total_brands_found_in_brand_page>
+                            <label>Display Total Brands Found</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </total_brands_found_in_brand_page>
+                        <total_brands_found_label>
+                            <label>Display Total Brands Label</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span> Use <b>{total_brands}</b> as the variable in your lable to show
+                      ]]> 
+                            </comment>
+                            <depends>
+                                <total_brands_found_in_brand_page>1</total_brands_found_in_brand_page>
+                            </depends>
+                        </total_brands_found_label>
+                        <filter_brand_by_alphabets_or_numbers>
+                            <label>Filter Brand by Alphabets</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span> When enabled the Auto Complete filter will be replaced by A-Z filter
+                      ]]> 
+                            </comment>
+                        </filter_brand_by_alphabets_or_numbers>
+                        <auto_complete_search>
+                            <label>Auto complete search</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span> When enabled the A-Z filter will be replaced by Auto Complete filter
+                      ]]> 
+                            </comment>
+                        </auto_complete_search>
+                        <filter_brand_page_by_labels>
+                            <label>Filter Brand by Label</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span> Can be filtered with lable tabs i.e <b>NEW</b>,<b>SALE</b>
+                      <br/><span class='error'><b><u>Note</u>:</b></span> If set's No and Auto complete search and Filter Brand by Alphabets disabled then the filter section will disappear
+                      ]]> 
+                            </comment>
+                        </filter_brand_page_by_labels>
+                        <brand_display_type>
+                            <label>Display type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fedobe_Manufacturers_Model_Displayoption</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_display_type>
+                        <brand_page_image_width>
+                            <label>Brand Page Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_page_image_width>
+                        <brand_page_image_height>
+                            <label>Brand Page Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>42</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_page_image_height>
+                        <brand_page_image_aspect_ratio>
+                            <label>Maintain Aspect Ratio</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <br/><span class='error'><b><u>Note</u>:</b></span> If set's No the image will be resized with exact size
+                      ]]> 
+                            </comment>
+                        </brand_page_image_aspect_ratio>
+                        
+                        <show_label_brand translate="label">
+                            <label>Show Number of product</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_label_brand>
+                        
+                    </fields>
+                </brand_view>
+                <brandpage_design_settings>
+                    <label>Design Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>25</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <brand_sticker_labels translate="label">
+                            <label>Brand Sticker Labels</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span>Comma separated list of labels i.e <br>NEW,SALE,HOT</b> etc<br/>
+                                If left blank then default set of labels will be used i.e <b>FEATURE,POPULAR,NEW,SALE,HOT</b>
+                      ]]> 
+                            </comment>
+                        </brand_sticker_labels>
+                        <brand_sticker_labels_color translate="label">
+                            <label>Brand Sticker Labels Color code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span>Use comma separated hexadecimal color codes for label background<br/>
+                      <span class='error'><b><u>Note</u> :</b></span> The number of element must match with the number of sticker labels otherwise behaves wrong          
+                      ]]> 
+                            </comment>
+                        </brand_sticker_labels_color>
+                        <brand_sticker_labels_text_color translate="label">
+                            <label>Brand Sticker Labels Text Color code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      <span class='notice'><b><u>Note</u> :</b></span>Use comma separated hexadecimal color codes label Text<br/>
+                      <span class='error'><b><u>Note</u> :</b></span> The number of element must match with the number of sticker labels otherwise behaves wrong                    
+                      ]]> 
+                            </comment>
+                        </brand_sticker_labels_text_color>
+                        <dimension_spec translate="label">
+                            <label>Specify dimension for image tag</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[
+                      Choose YES to put 'width="Wpx" height="Hpx"' in img tag. Where Wpx and Hpx is defined above.
+                      ]]> 
+                            </comment>
+                        </dimension_spec>
+                        <thumb_w translate="label">
+                            <label>Thumbnail width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      Type a number for thummnail width (px). Example: 120
+                      ]]> 
+                            </comment>
+                            <depends>
+                                <dimension_spec>1</dimension_spec>
+                            </depends>
+                        </thumb_w>
+                        <thumb_h translate="label">
+                            <label>Thumbnail height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                      Type a number for thummnail height (px). Example: 60
+                      ]]> 
+                            </comment>
+                            <depends>
+                                <dimension_spec>1</dimension_spec>
+                            </depends>
+                        </thumb_h>
+                        <filter_section_background_color translate="label">
+                            <label>Filter Sections Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </filter_section_background_color>
+                        <brandpage_text_color translate="label">
+                            <label>Filter Sections Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_text_color>
+                        <brandpage_filter_tab_button_color>
+                            <label>Filter Section Tab/Button Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_filter_tab_button_color>
+                        <brandpage_filter_tab_button_hover_color>
+                            <label>Filter Section Tab/Button On Hover Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_filter_tab_button_hover_color>
+                        <brandpage_filter_tab_button_hover_text_color>
+                            <label>Filter Section On Hover Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_filter_tab_button_hover_text_color>
+                        <brandpage_current_active_background_color>
+                            <label>Current Active Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_current_active_background_color>
+                        <brandpage_current_active_text_color>
+                            <label>Current Active Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brandpage_current_active_text_color>
+                        <brand_images_border_options>
+                            <label>Brand Imges Border Option</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_images_border_options>
+                        <brand_imges_border_color>
+                            <label>Brand Imges Border Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>manufacturers/adminhtml_system_config_form_field_color</frontend_model>
+                            <backend_model>manufacturers/system_config_backend_design_color_validatetransparent</backend_model>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_images_border_options>1</brand_images_border_options>
+                            </depends>
+                        </brand_imges_border_color>
+                        <brand_images_border_style>
+                            <label>Brand Imges Border Style</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fedobe_Manufacturers_Model_Borderoption</source_model>
+                            <sort_order>39</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_images_border_options>1</brand_images_border_options>
+                            </depends>
+                        </brand_images_border_style>
+                        <dispaly_brand_item_stickers>
+                            <label>Display Stickers in Brand Items</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dispaly_brand_item_stickers>
+                    </fields>
+                </brandpage_design_settings>
+                <product_page_brand_settings>
+                    <label>Product Page Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <brand_use_in_product_page>
+                            <label>Show Brand Informations</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </brand_use_in_product_page>
+                        <brand_images_use_in_product_page>
+                            <label>Display Brand Image</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                            </depends>
+                        </brand_images_use_in_product_page>
+                        <brand_display_type_in_product_page>
+                            <label>Display type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fedobe_Manufacturers_Model_Displayoption</source_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <brand_images_use_in_product_page>1</brand_images_use_in_product_page>
+                            </depends>
+                        </brand_display_type_in_product_page>
+                        <brand_image_width_in_product_page>
+                            <label>Brand Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[
+                                    Use an integer value that will used as Pixel
+                                ]]> 
+                            </comment>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <brand_images_use_in_product_page>1</brand_images_use_in_product_page>
+                            </depends>
+                        </brand_image_width_in_product_page>
+                        <brand_image_height_in_product_page>
+                            <label>Brand Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[
+                                    Use an integer value that will used as Pixel
+                                ]]> 
+                            </comment>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <brand_images_use_in_product_page>1</brand_images_use_in_product_page>
+                            </depends>
+                        </brand_image_height_in_product_page>
+                        <brand_description_text_in_product_page>
+                            <label>Show Brand Description</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                            </depends>
+                        </brand_description_text_in_product_page>
+                        
+                        <show_related_brand_items_in_product_page>
+                            <label>Show Related Items from Same Brand</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                            </depends>
+                        </show_related_brand_items_in_product_page>
+                        <related_brand_item_product_name_in_product_page>
+                            <label>Show Product Name</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_name_in_product_page>
+                        <related_brand_item_product_price_in_product_page>
+                            <label>Show Product Price</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>36</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_price_in_product_page>
+                        <related_brand_item_product_review_in_product_page>
+                            <label>Show Product Review</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_review_in_product_page>
+                        <related_brand_item_product_add_to_cart_in_product_page>
+                            <label>Show Product Add To Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>47</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_add_to_cart_in_product_page>
+                        <related_brand_items_title_in_product_page>
+                            <label>Related Product Block Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>48</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_items_title_in_product_page>
+                        <related_brand_items_quantity_in_product_page>
+                            <label>Number Of Related Products</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>49</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_items_quantity_in_product_page>
+                        <related_brand_item_product_slider_settings_breakpoints>
+                            <label>Slider Breakpoints</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_breakpoints>
+                        <related_brand_item_product_slider_settings_pagination>
+                            <label>Show Slider Pagination</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_pagination>
+                        <related_brand_item_product_slider_settings_time_out>
+                            <label>Slider Timeout</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>55</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_time_out>
+                        <related_brand_item_product_slider_settings_pauseonmouse>
+                            <label>Pause on Mouse</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_pauseonmouse>
+                        <related_brand_item_product_slider_settings_hover_effect>
+                            <label>Items Hover Effect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_hover_effect>
+                        <related_brand_item_product_slider_settings_move_auto>
+                            <label>Move Automatically</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <brand_use_in_product_page>1</brand_use_in_product_page>
+                                <show_related_brand_items_in_product_page>1</show_related_brand_items_in_product_page>
+                            </depends>
+                        </related_brand_item_product_slider_settings_move_auto>
+                    </fields>
+                </product_page_brand_settings>
+                <category_page_brand_logo_settings>
+                    <label>Category Page Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_brand_image_logo_in_category_page_item>
+                            <label>Show Brands in category Items</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_brand_image_logo_in_category_page_item>
+                        <category_page_brand_display_type>
+                            <label>Display type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Fedobe_Manufacturers_Model_Displayoption</source_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_brand_image_logo_in_category_page_item>1</show_brand_image_logo_in_category_page_item>
+                            </depends>
+                        </category_page_brand_display_type>
+                        <category_page_brand_image_width>
+                            <label>Brand Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>77</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_brand_image_logo_in_category_page_item>1</show_brand_image_logo_in_category_page_item>
+                            </depends>
+                        </category_page_brand_image_width>
+                        <category_page_brand_image_height>
+                            <label>Brand Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>78</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_brand_image_logo_in_category_page_item>1</show_brand_image_logo_in_category_page_item>
+                            </depends>
+                        </category_page_brand_image_height>
+                    </fields>
+                </category_page_brand_logo_settings>
+            </groups>
+        </manufacturers>
+    </sections>
+</config>

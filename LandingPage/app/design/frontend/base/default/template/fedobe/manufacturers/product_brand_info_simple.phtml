@@ -1,0 +1,55 @@
+<?php
+$attr_id = $this->getBrandid();
+$all_params = $this->getRequest()->getParams();
+$manufacturer = $this->getManufacturerDetails($attr_id);
+if ($attr_id && !empty($manufacturer)) :
+    ?>
+    <?php
+    $manufacturer = $manufacturer[$attr_id];
+    $manufacturer_name = $manufacturer['display_name'];
+    $cat_det = $this->__($manufacturer['short_description']);
+    $img_url = Mage::helper('attributeSplash/image')->getImageUrl($manufacturer['thumbnail']);
+    $brandpagemodel = Mage::getModel('attributeSplash/page')->load($manufacturer['page_id']);
+    $link = $brandpagemodel->getUrl();
+    if (!$link)
+        $link = Mage::helper('cms')->getPageTemplateProcessor()->filter('{{store url="catalogsearch/advanced/result" _query="' . $attribute_to_select . '=' . $attr_id . '"}}');
+    $img_width = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_image_width_in_product_page');
+    $img_width_param = (isset($all_params['img_width'])) ? $all_params['img_width'] : $img_width;
+    $img_height = Mage::getStoreConfig('manufacturers/product_page_brand_settings/brand_image_height_in_product_page');
+    $img_height_param = (isset($all_params['img_height'])) ? $all_params['img_height'] : $img_height;
+    $img_width = ($img_width_param) ? $img_width_param : 170;
+    $img_height = ($img_height_param) ? $img_height_param : 100;
+    ?>
+    <div class="brand-desc-area">
+
+        <div class="fltlft brand-info-left" style="width:auto !important;">
+            <div class="brand-img-area">
+                <a  href="<?php echo $link;?>">
+                    <?php
+                    if ($img_url):
+                        ?>
+                        <img src="<?php echo $img_url;?>" style="height:150px;"/>
+                    <?php else: ?>
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . "fedimages/nobrand-logo.jpg"; ?>" />
+    <?php endif; ?>
+                </a>
+            </div>
+        </div>
+        <div class="fltrht brand-info-right">
+          <?php if($cat_det != 'No content') { ?>
+            <div class="brand-desc-info" style="font-size: 15px;padding-top:10px;">
+                <?php
+                //Here to fetch the brand description
+                echo $cat_det;
+                ?>
+            </div>
+          <?php } ?>
+            <div class="brand-link-info">
+                <a  href="<?php echo $link;?>" title="<?php echo $this->__($manufacturer_name) ?>" style="color: #E9A522;font-weight: 800;text-transform: uppercase;" >
+                    <?php echo $this->__('View More Amazing Watches from ') . $manufacturer_name;?>
+                </a>
+            </div>
+        </div>
+        <div class="clearer"></div>
+    </div>
+<?php endif; ?>
